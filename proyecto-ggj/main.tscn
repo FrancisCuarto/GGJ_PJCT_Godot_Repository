@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjw5kfexww2dl"]
+[gd_scene load_steps=9 format=3 uid="uid://bjw5kfexww2dl"]
 
 [ext_resource type="Texture2D" uid="uid://c805vcl6ha41o" path="res://icon.svg" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://b184pciuuwnv2" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cyju4a84tud8p" path="res://player.tscn" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://cs3hs2pxnu23p" path="res://lado_izquierdo.gd" id="4_lquwl"]
 [ext_resource type="Script" uid="uid://de2iki58n2p6e" path="res://lado_derecho.gd" id="5_7mycd"]
+[ext_resource type="Texture2D" uid="uid://d5ou3xko6ak4" path="res://backgrounds/test_background_image.png" id="6_7mycd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(1205, 494)
@@ -14,6 +15,16 @@ size = Vector2(1174.5, 508)
 
 [node name="Main" type="Node2D" groups=["Player"]]
 script = ExtResource("1_h2yge")
+
+[node name="background" type="Node2D" parent="."]
+
+[node name="TestBackgroundImage" type="Sprite2D" parent="background"]
+texture_repeat = 2
+position = Vector2(1574, 299)
+scale = Vector2(0.8047615, 0.8843924)
+texture = ExtResource("6_7mycd")
+region_enabled = true
+region_rect = Rect2(0, 0, 4017.4421, 1024)
 
 [node name="test_objects" type="Node2D" parent="."]
 
@@ -33,7 +44,7 @@ scale = Vector2(19.878906, 1)
 texture = ExtResource("1_0xm2m")
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("2_h2yge")]
-position = Vector2(154, 586)
+position = Vector2(154, 500)
 
 [node name="camaras" type="Node2D" parent="."]
 

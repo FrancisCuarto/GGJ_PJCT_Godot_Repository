@@ -1,18 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://cyju4a84tud8p"]
 
 [ext_resource type="Script" uid="uid://1tmqyv1id2ox" path="res://player.gd" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://c805vcl6ha41o" path="res://icon.svg" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://2dckux5r1c8g" path="res://Player/Trapito Grande Boceto.png" id="2_onrkg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
-size = Vector2(118, 120)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3pqv"]
+radius = 26.0
+height = 210.0
 
 [node name="Player" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_onrkg")
 speed = 10
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_i3pqv")
+texture = ExtResource("2_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_hqtel")
+shape = SubResource("CapsuleShape2D_i3pqv")
