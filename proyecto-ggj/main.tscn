@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjw5kfexww2dl"]
+[gd_scene load_steps=12 format=3 uid="uid://cmb4mywi2q15d"]
 
 [ext_resource type="Texture2D" uid="uid://c805vcl6ha41o" path="res://icon.svg" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://b184pciuuwnv2" path="res://main.gd" id="1_h2yge"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://de2iki58n2p6e" path="res://lado_derecho.gd" id="5_7mycd"]
 [ext_resource type="Texture2D" uid="uid://d5ou3xko6ak4" path="res://backgrounds/test_background_image.png" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://llr8clerxhyn" path="res://assets/cars/auto.tscn" id="7_272bh"]
-[ext_resource type="Script" uid="uid://8sqiriby1oyn" path="res://slow_zone.gd" id="8_5vw27"]
+[ext_resource type="Script" path="res://slow_zone.gd" id="8_5vw27"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
 size = Vector2(1429, 683)
