@@ -54,8 +54,8 @@ debug_color = Color(0.63265514, 0.2764048, 0.056211755, 0.41960785)
 
 [node name="auto" parent="test_cars" groups=["auto"] instance=ExtResource("7_272bh")]
 position = Vector2(-277, 567)
-speed_normal = 300
-speed_lenta = 150
+speed_normal = 400
+speed_lenta = 170
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("2_h2yge")]
 position = Vector2(154, 500)
