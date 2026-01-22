@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjw5kfexww2dl"]
+[gd_scene load_steps=12 format=3 uid="uid://bjw5kfexww2dl"]
 
 [ext_resource type="Texture2D" uid="uid://c805vcl6ha41o" path="res://icon.svg" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://b184pciuuwnv2" path="res://main.gd" id="1_h2yge"]
@@ -6,6 +6,11 @@
 [ext_resource type="Script" uid="uid://cs3hs2pxnu23p" path="res://lado_izquierdo.gd" id="4_lquwl"]
 [ext_resource type="Script" uid="uid://de2iki58n2p6e" path="res://lado_derecho.gd" id="5_7mycd"]
 [ext_resource type="Texture2D" uid="uid://d5ou3xko6ak4" path="res://backgrounds/test_background_image.png" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://llr8clerxhyn" path="res://assets/cars/auto.tscn" id="7_272bh"]
+[ext_resource type="Script" uid="uid://8sqiriby1oyn" path="res://slow_zone.gd" id="8_5vw27"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
+size = Vector2(1429, 683)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(1205, 494)
@@ -13,7 +18,7 @@ size = Vector2(1205, 494)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(1174.5, 508)
 
-[node name="Main" type="Node2D" groups=["Player"]]
+[node name="Main" type="Node2D" groups=["Player", "auto"]]
 script = ExtResource("1_h2yge")
 
 [node name="background" type="Node2D" parent="."]
@@ -28,20 +33,29 @@ region_rect = Rect2(0, 0, 4017.4421, 1024)
 
 [node name="test_objects" type="Node2D" parent="."]
 
-[node name="test_object" type="Sprite2D" parent="test_objects"]
-position = Vector2(289.5, 496.5)
-scale = Vector2(0.4765625, 2.2734375)
-texture = ExtResource("1_0xm2m")
-
-[node name="test_object2" type="Sprite2D" parent="test_objects"]
-position = Vector2(1181, 495.99997)
-scale = Vector2(1, 2.5937502)
-texture = ExtResource("1_0xm2m")
-
 [node name="test_floor" type="Sprite2D" parent="test_objects"]
 position = Vector2(1237.75, 709)
 scale = Vector2(19.878906, 1)
 texture = ExtResource("1_0xm2m")
+
+[node name="test_cars" type="Node2D" parent="."]
+
+[node name="slow_zone" type="Area2D" parent="test_cars"]
+position = Vector2(1030, 389)
+scale = Vector2(0.5199976, 1)
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("8_5vw27")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="test_cars/slow_zone"]
+shape = SubResource("RectangleShape2D_272bh")
+debug_color = Color(0.63265514, 0.2764048, 0.056211755, 0.41960785)
+
+[node name="auto" parent="test_cars" groups=["auto"] instance=ExtResource("7_272bh")]
+position = Vector2(-277, 567)
+speed_normal = 300
+speed_lenta = 150
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("2_h2yge")]
 position = Vector2(154, 500)
@@ -74,5 +88,7 @@ position = Vector2(1780.25, 459)
 shape = SubResource("RectangleShape2D_1bvp3")
 debug_color = Color(0.86415935, 0.3492322, 0.21470326, 0.41960785)
 
+[connection signal="body_entered" from="test_cars/slow_zone" to="test_cars/slow_zone" method="_on_body_entered"]
+[connection signal="body_exited" from="test_cars/slow_zone" to="test_cars/slow_zone" method="_on_body_exited"]
 [connection signal="body_entered" from="street_sides/lado_izquierdo" to="street_sides/lado_izquierdo" method="_on_body_entered"]
 [connection signal="body_entered" from="street_sides/lado_derecho" to="street_sides/lado_derecho" method="_on_body_entered"]

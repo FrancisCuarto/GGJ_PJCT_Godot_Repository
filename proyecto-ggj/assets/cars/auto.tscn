@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://llr8clerxhyn"]
+
+[ext_resource type="Texture2D" uid="uid://plgrh4ok1qmm" path="res://assets/cars textures/test_car_texture.png" id="1_o38vp"]
+[ext_resource type="Script" uid="uid://buhndf7viivg6" path="res://assets/cars/auto.gd" id="1_po63d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o38vp"]
+size = Vector2(1193.7058, 160.5824)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_po63d"]
+size = Vector2(229, 276)
+
+[node name="auto" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 2
+collision_mask = 8
+script = ExtResource("1_po63d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_o38vp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.007082, 11.000002)
+scale = Vector2(1.0220392, -0.97146386)
+shape = SubResource("RectangleShape2D_o38vp")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-32.5, -47)
+shape = SubResource("RectangleShape2D_po63d")
+debug_color = Color(3.6098064e-07, 0.49991494, 0.2643189, 0.41960785)

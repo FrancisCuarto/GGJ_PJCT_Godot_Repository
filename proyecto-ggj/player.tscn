@@ -10,7 +10,7 @@ height = 210.0
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_onrkg")
-speed = 10
+speed = 300
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
