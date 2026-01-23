@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://llr8clerxhyn"]
+[gd_scene load_steps=6 format=3 uid="uid://llr8clerxhyn"]
 
 [ext_resource type="Texture2D" uid="uid://plgrh4ok1qmm" path="res://assets/cars textures/test_car_texture.png" id="1_o38vp"]
 [ext_resource type="Script" uid="uid://buhndf7viivg6" path="res://assets/cars/auto.gd" id="1_po63d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_po63d"]
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o38vp"]
 size = Vector2(1193.7058, 160.5824)
@@ -9,11 +13,22 @@ size = Vector2(1193.7058, 160.5824)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_po63d"]
 size = Vector2(229, 276)
 
-[node name="auto" type="CharacterBody2D"]
+[node name="auto" type="CharacterBody2D" groups=["auto"]]
 scale = Vector2(0.5, 0.5)
 collision_layer = 2
 collision_mask = 8
 script = ExtResource("1_po63d")
+speed_normal = 400
+speed_lenta = 170
+
+[node name="LabelTarea" type="Label" parent="."]
+offset_left = -219.99998
+offset_top = -294.0
+offset_right = -169.99998
+offset_bottom = -271.0
+scale = Vector2(6.279999, 3.32)
+text = "TEXTO"
+label_settings = SubResource("LabelSettings_po63d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_o38vp")

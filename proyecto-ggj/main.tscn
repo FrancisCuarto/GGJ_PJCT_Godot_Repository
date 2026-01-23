@@ -1,13 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmb4mywi2q15d"]
+[gd_scene load_steps=13 format=3 uid="uid://cmb4mywi2q15d"]
 
 [ext_resource type="Texture2D" uid="uid://c805vcl6ha41o" path="res://icon.svg" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://b184pciuuwnv2" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cyju4a84tud8p" path="res://player.tscn" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://t21wfioxd66t" path="res://backgrounds/new_test_background.png" id="2_kek77"]
 [ext_resource type="Script" uid="uid://cs3hs2pxnu23p" path="res://lado_izquierdo.gd" id="4_lquwl"]
 [ext_resource type="Script" uid="uid://de2iki58n2p6e" path="res://lado_derecho.gd" id="5_7mycd"]
-[ext_resource type="Texture2D" uid="uid://d5ou3xko6ak4" path="res://backgrounds/test_background_image.png" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://llr8clerxhyn" path="res://assets/cars/auto.tscn" id="7_272bh"]
-[ext_resource type="Script" path="res://slow_zone.gd" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://8sqiriby1oyn" path="res://slow_zone.gd" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://1el8yswkxm25" path="res://spawn_point.gd" id="9_kek77"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
 size = Vector2(1429, 683)
@@ -27,7 +28,7 @@ script = ExtResource("1_h2yge")
 texture_repeat = 2
 position = Vector2(1574, 299)
 scale = Vector2(0.8047615, 0.8843924)
-texture = ExtResource("6_7mycd")
+texture = ExtResource("2_kek77")
 region_enabled = true
 region_rect = Rect2(0, 0, 4017.4421, 1024)
 
@@ -51,11 +52,6 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="test_cars/slow_zone"]
 shape = SubResource("RectangleShape2D_272bh")
 debug_color = Color(0.63265514, 0.2764048, 0.056211755, 0.41960785)
-
-[node name="auto" parent="test_cars" groups=["auto"] instance=ExtResource("7_272bh")]
-position = Vector2(-277, 567)
-speed_normal = 400
-speed_lenta = 170
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("2_h2yge")]
 position = Vector2(154, 500)
@@ -88,7 +84,28 @@ position = Vector2(1780.25, 459)
 shape = SubResource("RectangleShape2D_1bvp3")
 debug_color = Color(0.86415935, 0.3492322, 0.21470326, 0.41960785)
 
+[node name="car_spawner" type="Node2D" parent="."]
+
+[node name="spawner" type="Node2D" parent="car_spawner"]
+position = Vector2(-550, 568)
+metadata/_edit_group_ = true
+
+[node name="spawn_point" type="Marker2D" parent="car_spawner/spawner"]
+script = ExtResource("9_kek77")
+car_scene = ExtResource("7_272bh")
+
+[node name="parking_slots" type="Node2D" parent="car_spawner"]
+
+[node name="slot1" type="Marker2D" parent="car_spawner/parking_slots"]
+
+[node name="spawn_control" type="Node2D" parent="car_spawner"]
+
+[node name="Timer" type="Timer" parent="car_spawner/spawn_control"]
+wait_time = 5.0
+autostart = true
+
 [connection signal="body_entered" from="test_cars/slow_zone" to="test_cars/slow_zone" method="_on_body_entered"]
 [connection signal="body_exited" from="test_cars/slow_zone" to="test_cars/slow_zone" method="_on_body_exited"]
 [connection signal="body_entered" from="street_sides/lado_izquierdo" to="street_sides/lado_izquierdo" method="_on_body_entered"]
 [connection signal="body_entered" from="street_sides/lado_derecho" to="street_sides/lado_derecho" method="_on_body_entered"]
+[connection signal="timeout" from="car_spawner/spawn_control/Timer" to="car_spawner/spawner/spawn_point" method="_on_timer_timeout"]
