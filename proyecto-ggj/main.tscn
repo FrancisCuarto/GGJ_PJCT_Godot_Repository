@@ -61,9 +61,6 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_272bh")
 debug_color = Color(0.6313726, 0.27450982, 0.05490196, 0.5411765)
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("2_h2yge")]
-position = Vector2(154, 500)
-
 [node name="camaras" type="Node2D" parent="."]
 
 [node name="camera" type="Camera2D" parent="camaras" groups=["camera"]]
@@ -146,11 +143,11 @@ position = Vector2(1215, 560)
 position = Vector2(648, 560)
 
 [node name="service_zone" type="Node2D" parent="."]
-visible = false
 position = Vector2(2170, 386)
 metadata/_edit_group_ = true
 
 [node name="service_area1" type="Area2D" parent="service_zone"]
+visible = false
 position = Vector2(618.99994, 7.9999995)
 scale = Vector2(13.36, 1)
 collision_layer = 8
@@ -164,6 +161,7 @@ shape = SubResource("RectangleShape2D_4c57u")
 debug_color = Color(0.08235294, 0.6666667, 0.7529412, 0.6784314)
 
 [node name="service_area2" type="Area2D" parent="service_zone"]
+visible = false
 position = Vector2(64.99994, 0)
 scale = Vector2(27.32, 1)
 collision_layer = 8
@@ -177,6 +175,7 @@ shape = SubResource("RectangleShape2D_4c57u")
 debug_color = Color(0.08235294, 0.6666667, 0.7529412, 0.6784314)
 
 [node name="service_area3" type="Area2D" parent="service_zone"]
+visible = false
 position = Vector2(-301, 0)
 scale = Vector2(34.12, 1)
 collision_layer = 8
@@ -188,6 +187,9 @@ metadata/_edit_group_ = true
 scale = Vector2(4.36, 34.120003)
 shape = SubResource("RectangleShape2D_4c57u")
 debug_color = Color(0.08235294, 0.6666667, 0.7529412, 0.6784314)
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("2_h2yge")]
+position = Vector2(154, 500)
 
 [connection signal="body_entered" from="test_cars/slow_zone" to="test_cars/slow_zone" method="_on_body_entered"]
 [connection signal="body_exited" from="test_cars/slow_zone" to="test_cars/slow_zone" method="_on_body_exited"]

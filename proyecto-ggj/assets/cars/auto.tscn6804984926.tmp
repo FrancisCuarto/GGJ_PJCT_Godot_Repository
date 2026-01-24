@@ -60,6 +60,7 @@ value = 15.0
 show_percentage = false
 
 [node name="LabelInteractuar" type="Label" parent="."]
+visible = false
 offset_left = 112.0
 offset_top = -162.0
 offset_right = 193.0
