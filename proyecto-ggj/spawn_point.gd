@@ -1,7 +1,21 @@
 extends Marker2D
 
 @export var car_scene: PackedScene
-@export var max_cars := 5
+@export var max_cars := 0
+
+
+
+func _on_body_entered(body):
+	if body.is_in_group("auto"):
+		print("VIEWPORT ENTER")
+		max_cars += 1
+
+func _on_body_exited(body):
+	if body.is_in_group("auto"):
+		max_cars -= 1
+
+
+
 
 
 #spawnea los autos
@@ -9,10 +23,14 @@ func _spawn_car():
 	if car_scene == null:
 		push_warning("No hay escena de auto asignada")
 		return
-	var car_scene_instance = car_scene.instantiate()
-	add_child(car_scene_instance)
-	car_scene_instance.asignar_tarea_random()
+	if max_cars <= 3:
+		var car_scene_instance = car_scene.instantiate()
+		add_child(car_scene_instance)
+		car_scene_instance.asignar_tarea_random()
+	else:
+		print("Slots llenos")
 	
+
 
 
 

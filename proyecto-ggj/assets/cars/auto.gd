@@ -5,6 +5,9 @@ extends CharacterBody2D
 @export var speed_lenta := 80
 @onready var label_tarea = $LabelTarea
 var current_speed: float
+var stoped := 0
+
+
 
 #--------------------------------------------------------------
 #CONTROL DE ESTADOS
@@ -17,7 +20,7 @@ enum Estado {
 }
 
 var estado := Estado.ESPERANDO
-var paciencia := 10.0
+var paciencia := 100.0
 
 #CONTROL DE TAREAS
 enum Tarea {
@@ -52,6 +55,8 @@ func irse_enojado():
 	queue_free()
 
 
+
+
 func _process(delta):
 	#TIMER DE PACIENCIA
 	if estado == Estado.ESPERANDO:
@@ -73,3 +78,13 @@ func set_slow(value: bool):
 	current_speed = speed_lenta if value else speed_normal
 	print("SLOW:", value, " | speed:", current_speed)
 #-----------------------------------------------
+
+
+#--------------------------------------------
+#LO HACE PARAR CUANDO ENTRA EN LA SERVICE ZONE
+func set_service(value: bool):
+	current_speed = stoped if value else speed_normal
+	print("SERVICE:", value, " | speed:", current_speed)
+#-----------------------------------------------
+
+	
