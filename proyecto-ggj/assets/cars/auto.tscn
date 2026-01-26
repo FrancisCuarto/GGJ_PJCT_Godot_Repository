@@ -22,8 +22,6 @@ scale = Vector2(0.5, 0.5)
 collision_layer = 2
 collision_mask = 8
 script = ExtResource("1_po63d")
-speed_normal = 400
-speed_lenta = 170
 
 [node name="LabelTarea" type="Label" parent="."]
 offset_left = -219.99998
@@ -69,5 +67,10 @@ text = "Presioná E"
 label_settings = SubResource("LabelSettings_ko1h0")
 horizontal_alignment = 1
 
+[node name="ScreenNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(30.520002, 1)
+rect = Rect2(-100, -100, 200, 200)
+
 [connection signal="body_entered" from="interaction_area" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="interaction_area" to="." method="_on_interaction_area_body_exited"]
+[connection signal="screen_exited" from="ScreenNotifier" to="." method="_on_screen_notifier_screen_exited"]

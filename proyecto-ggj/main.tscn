@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cmb4mywi2q15d"]
+[gd_scene load_steps=13 format=3 uid="uid://cmb4mywi2q15d"]
 
 [ext_resource type="Texture2D" uid="uid://c805vcl6ha41o" path="res://icon.svg" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://b184pciuuwnv2" path="res://main.gd" id="1_h2yge"]
@@ -8,23 +8,14 @@
 [ext_resource type="Script" uid="uid://de2iki58n2p6e" path="res://lado_derecho.gd" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://im8fxoj1u3bv" path="res://camara_1.gd" id="6_4c57u"]
 [ext_resource type="PackedScene" uid="uid://llr8clerxhyn" path="res://assets/cars/auto.tscn" id="7_272bh"]
-[ext_resource type="Script" uid="uid://8sqiriby1oyn" path="res://slow_zone.gd" id="8_5vw27"]
 [ext_resource type="Script" uid="uid://1el8yswkxm25" path="res://spawn_point.gd" id="9_kek77"]
-[ext_resource type="Script" uid="uid://pleiw5x1ekp8" path="res://max_cars.gd" id="11_dg77c"]
-[ext_resource type="Script" uid="uid://n6sy5xpjmxdn" path="res://service_area.gd" id="11_efxa6"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
-size = Vector2(1429, 683)
+[ext_resource type="Script" uid="uid://dt22tr88ohcd7" path="res://queue_manager.gd" id="11_ycdy4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(1205, 494)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(1174.5, 508)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycdy4"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4c57u"]
 
 [node name="Main" type="Node2D" groups=["Player", "auto"]]
 script = ExtResource("1_h2yge")
@@ -47,19 +38,6 @@ scale = Vector2(19.878906, 1)
 texture = ExtResource("1_0xm2m")
 
 [node name="test_cars" type="Node2D" parent="."]
-
-[node name="slow_zone" type="Area2D" parent="test_cars"]
-visible = false
-position = Vector2(1030, 389)
-scale = Vector2(0.5199976, 1)
-collision_layer = 8
-collision_mask = 2
-script = ExtResource("8_5vw27")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="test_cars/slow_zone"]
-shape = SubResource("RectangleShape2D_272bh")
-debug_color = Color(0.6313726, 0.27450982, 0.05490196, 0.5411765)
 
 [node name="camaras" type="Node2D" parent="."]
 
@@ -111,96 +89,28 @@ metadata/_edit_group_ = true
 [node name="spawn_point" type="Marker2D" parent="car_spawner/spawner"]
 script = ExtResource("9_kek77")
 car_scene = ExtResource("7_272bh")
+queue_manager = NodePath("../../../QueueManager")
+player = NodePath("../../../Player")
 
-[node name="spawn_control" type="Node2D" parent="car_spawner"]
-
-[node name="Timer" type="Timer" parent="car_spawner/spawn_control"]
-wait_time = 10.0
+[node name="Timer" type="Timer" parent="car_spawner/spawner"]
+wait_time = 5.0
 autostart = true
 
-[node name="max_cars" type="Area2D" parent="car_spawner"]
-visible = false
-position = Vector2(1625, 509.00006)
-scale = Vector2(166.52002, 18)
-collision_layer = 8
-collision_mask = 2
-script = ExtResource("11_dg77c")
-metadata/_edit_group_ = true
+[node name="QueueManager" type="Node2D" parent="."]
+script = ExtResource("11_ycdy4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="car_spawner/max_cars"]
-shape = SubResource("RectangleShape2D_ycdy4")
-debug_color = Color(0.7529412, 0.09803922, 1, 0.6156863)
-
-[node name="parking_slots" type="Node2D" parent="."]
-
-[node name="slot1" type="Marker2D" parent="parking_slots"]
+[node name="Slot1" type="Marker2D" parent="QueueManager"]
 position = Vector2(1700, 560)
 
-[node name="slot2" type="Marker2D" parent="parking_slots"]
+[node name="Slot2" type="Marker2D" parent="QueueManager"]
 position = Vector2(1215, 560)
 
-[node name="slot3" type="Marker2D" parent="parking_slots"]
+[node name="Slot3" type="Marker2D" parent="QueueManager"]
 position = Vector2(648, 560)
-
-[node name="service_zone" type="Node2D" parent="."]
-position = Vector2(2170, 386)
-metadata/_edit_group_ = true
-
-[node name="service_area1" type="Area2D" parent="service_zone"]
-visible = false
-position = Vector2(618.99994, 7.9999995)
-scale = Vector2(13.36, 1)
-collision_layer = 8
-collision_mask = 2
-script = ExtResource("11_efxa6")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="service_zone/service_area1"]
-scale = Vector2(4.36, 34.120003)
-shape = SubResource("RectangleShape2D_4c57u")
-debug_color = Color(0.08235294, 0.6666667, 0.7529412, 0.6784314)
-
-[node name="service_area2" type="Area2D" parent="service_zone"]
-visible = false
-position = Vector2(64.99994, 0)
-scale = Vector2(27.32, 1)
-collision_layer = 8
-collision_mask = 2
-script = ExtResource("11_efxa6")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="service_zone/service_area2"]
-scale = Vector2(4.36, 34.120003)
-shape = SubResource("RectangleShape2D_4c57u")
-debug_color = Color(0.08235294, 0.6666667, 0.7529412, 0.6784314)
-
-[node name="service_area3" type="Area2D" parent="service_zone"]
-visible = false
-position = Vector2(-301, 0)
-scale = Vector2(34.12, 1)
-collision_layer = 8
-collision_mask = 2
-script = ExtResource("11_efxa6")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="service_zone/service_area3"]
-scale = Vector2(4.36, 34.120003)
-shape = SubResource("RectangleShape2D_4c57u")
-debug_color = Color(0.08235294, 0.6666667, 0.7529412, 0.6784314)
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("2_h2yge")]
 position = Vector2(154, 500)
 
-[connection signal="body_entered" from="test_cars/slow_zone" to="test_cars/slow_zone" method="_on_body_entered"]
-[connection signal="body_exited" from="test_cars/slow_zone" to="test_cars/slow_zone" method="_on_body_exited"]
 [connection signal="body_entered" from="street_sides/lado_izquierdo" to="street_sides/lado_izquierdo" method="_on_body_entered"]
 [connection signal="body_entered" from="street_sides/lado_derecho" to="street_sides/lado_derecho" method="_on_body_entered"]
-[connection signal="timeout" from="car_spawner/spawn_control/Timer" to="car_spawner/spawner/spawn_point" method="_on_timer_timeout"]
-[connection signal="body_entered" from="car_spawner/max_cars" to="car_spawner/spawner/spawn_point" method="_on_body_entered"]
-[connection signal="body_exited" from="car_spawner/max_cars" to="car_spawner/spawner/spawn_point" method="_on_body_exited"]
-[connection signal="body_entered" from="service_zone/service_area1" to="service_zone/service_area1" method="_on_body_entered"]
-[connection signal="body_exited" from="service_zone/service_area1" to="service_zone/service_area1" method="_on_body_exited"]
-[connection signal="body_entered" from="service_zone/service_area2" to="service_zone/service_area2" method="_on_body_entered"]
-[connection signal="body_exited" from="service_zone/service_area2" to="service_zone/service_area2" method="_on_body_exited"]
-[connection signal="body_entered" from="service_zone/service_area3" to="service_zone/service_area3" method="_on_body_entered"]
-[connection signal="body_exited" from="service_zone/service_area3" to="service_zone/service_area3" method="_on_body_exited"]
+[connection signal="timeout" from="car_spawner/spawner/Timer" to="car_spawner/spawner/spawn_point" method="_on_timer_timeout"]

@@ -1,14 +1,26 @@
 extends CharacterBody2D
 
 
-@export var speed_normal := 200
-@export var speed_lenta := 80
+@export var speed_normal := 400
+@export var speed_lenta := 250
+@export var paciencia := 10.0
 @onready var label_tarea = $LabelTarea
 @onready var patience_bar = $PatienceBar
 @onready var label_interactuar = $LabelInteractuar
+@onready var screen_notifier = $ScreenNotifier
 var paciencia_activa := false
 var current_speed: float
 var stoped := 0
+var slot_actual = null
+var target_position: Vector2
+var esperando_en_slot := false
+var estado := Estado.ESPERANDO
+var queue_manager = null
+var player: Node2D = null
+
+
+
+
 
 
 
@@ -22,8 +34,7 @@ enum Estado {
 	YENDOSE
 }
 
-var estado := Estado.ESPERANDO
-var paciencia := 20.0
+
 
 #CONTROL DE TAREAS
 enum Tarea {
@@ -66,10 +77,45 @@ func asignar_tarea_random():
 #------------------------------------------------------------------
 #ELIMINA EL AUTO CUANDO LA PACIENCIA SE ACABA
 func irse_enojado():
+	if estado == Estado.YENDOSE:
+		return
+
+	paciencia_activa = false
+	label_tarea.visible = false
+	patience_bar.visible = false
+
 	estado = Estado.YENDOSE
-	#queue_free()
 
+	# 🔑 ACÁ ESTÁ LA CLAVE
+	if queue_manager:
+		queue_manager.remover_auto(self)
 
+	# liberar slot
+	if queue_manager:
+		queue_manager.liberar_slot(self)
+
+	target_position = global_position + Vector2(2000, 0)
+	current_speed = speed_normal
+	
+	
+func ir_a_slot(pos: Vector2):
+	target_position = pos
+	estado = Estado.ESPERANDO
+	current_speed = speed_lenta
+	
+func irse():
+	estado = Estado.YENDOSE
+
+	if slot_actual:
+		slot_actual.auto_actual = null
+		slot_actual = null
+
+	# después camina y se borra fuera de pantalla
+
+func _on_screen_notifier_screen_exited():
+	if estado == Estado.YENDOSE:
+		queue_free()
+		print("auto eliminado")
 
 
 func _process(delta):
@@ -78,44 +124,81 @@ func _process(delta):
 		interactuar()
 		
 	#TIMER DE PACIENCIA
-	if estado == Estado.ESPERANDO and paciencia_activa:
+	if esperando_en_slot and paciencia_activa:
 		paciencia -= delta
 		patience_bar.value = paciencia
 		actualizar_color_paciencia()
-
-		if paciencia <= 0:
-			set_service(false)
+	if paciencia <= 0:
+			paciencia = 0
+			irse_enojado()
+	
 	
 
 func _ready():
+	target_position = global_position
 	current_speed = speed_normal
 	patience_bar.max_value = paciencia
 	patience_bar.value = paciencia
 	patience_bar.visible = false
 	label_interactuar.visible = false
+	paciencia_activa = false
+	label_tarea.visible = false
 
 func _physics_process(delta):
-	#velocity.x = current_speed
-	velocity.x = lerp(velocity.x, current_speed, 0.1)
+	match estado:
+		Estado.ESPERANDO, Estado.YENDOSE:
+			mover_hacia_target()
+			
+	pass
+
 	move_and_slide()
 	
-#--------------------------------------------
-#LO HACE IR LENTO CUANDO ENTRA EN LA ESCENA
-func set_slow(value: bool):
-	current_speed = speed_lenta if value else speed_normal
-	print("SLOW:", value, " | speed:", current_speed)
-#-----------------------------------------------
+	
 
+	
+	
+func mover_hacia_target():
+	var dir = target_position - global_position
 
-#--------------------------------------------
-#LO HACE PARAR CUANDO ENTRA EN LA SERVICE ZONE
-func set_service(value: bool):
-	estado = Estado.ESPERANDO
-	current_speed = stoped if value else speed_normal
-	print("SERVICE:", value, " | speed:", current_speed)
+	if dir.length() > 5:
+		velocity = dir.normalized() * current_speed
+	else:
+		# llegó al marker
+		velocity = Vector2.ZERO
+
+		if estado == Estado.ESPERANDO and not paciencia_activa:
+			al_llegar_al_slot()
+			
+			
+			
+func al_llegar_al_slot():
 	paciencia_activa = true
+	esperando_en_slot = true
+
+	# activar UI
+	label_tarea.visible = true
 	patience_bar.visible = true
-#-----------------------------------------------
+
+	# inicializar paciencia
+	patience_bar.value = paciencia
+
+	print("Auto detenido en slot. Tarea:", Tarea.keys()[tarea])
+
+func entrar_en_espera():
+	paciencia_activa = true
+
+	# UI
+	label_tarea.visible = true
+	patience_bar.visible = true
+
+	# Debug opcional
+	print("Auto", self, "entró en espera con tarea:", Tarea.keys()[tarea])
+
+
+
+
+
+
 
 
 
@@ -142,7 +225,7 @@ func interactuar():
 	if estado != Estado.ESPERANDO:
 		return
 
-	set_service(true) # frena +  paciencia
+	#set_service(true) # frena +  paciencia
 
 	"""match tarea:
 		Tarea.LIMPIAR:
@@ -153,6 +236,3 @@ func interactuar():
 			iniciar_pago()
 		Tarea.NADA:
 			irse_enojado()"""
-
-func finalizar_tarea():
-	set_service(false)
