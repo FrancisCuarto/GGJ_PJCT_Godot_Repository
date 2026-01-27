@@ -106,9 +106,19 @@ func ir_a_slot(pos: Vector2):
 func irse():
 	estado = Estado.YENDOSE
 
-	if slot_actual:
-		slot_actual.auto_actual = null
-		slot_actual = null
+	# Remove from queue manager if exists
+	if queue_manager:
+		queue_manager.remover_auto(self)
+
+	# Free the slot properly using the queue manager
+	if queue_manager and slot_actual:
+		queue_manager.liberar_slot(self)
+
+	slot_actual = null
+
+	# Move off-screen to be removed later
+	target_position = global_position + Vector2(2000, 0)
+	current_speed = speed_normal
 
 	# después camina y se borra fuera de pantalla
 
@@ -119,10 +129,10 @@ func _on_screen_notifier_screen_exited():
 
 
 func _process(delta):
-	
+
 	if jugador_cerca and Input.is_action_just_pressed("interactuar"):
 		interactuar()
-		
+
 	#TIMER DE PACIENCIA
 	if esperando_en_slot and paciencia_activa:
 		paciencia -= delta
@@ -209,25 +219,26 @@ var jugador_cerca := false
 func _on_interaction_area_body_entered(body):
 	if body.is_in_group("Player"):
 		jugador_cerca = true
-	if body.is_in_group("Player") and estado == Estado.ESPERANDO:
-		label_interactuar.visible = true
-	print("entro")
+		player = body
+		if estado == Estado.ESPERANDO:
+			label_interactuar.visible = true
+			print("Player entered interaction area")
 
 
 func _on_interaction_area_body_exited(body):
 	if body.is_in_group("Player"):
 		jugador_cerca = false
-	if body.is_in_group("Player"):
+		player = null
 		label_interactuar.visible = false
-	print("salio")
+		print("Player exited interaction area")
 	
 func interactuar():
 	if estado != Estado.ESPERANDO:
 		return
 
-	#set_service(true) # frena +  paciencia
+	set_service(true) # frena +  paciencia
 
-	"""match tarea:
+	match tarea:
 		Tarea.LIMPIAR:
 			iniciar_limpieza()
 		Tarea.ESTACIONAR:
@@ -235,4 +246,43 @@ func interactuar():
 		Tarea.PAGAR:
 			iniciar_pago()
 		Tarea.NADA:
-			irse_enojado()"""
+			irse_enojado()
+
+func set_service(in_servicio: bool):
+	if in_servicio:
+		# Stop the car and start service
+		estado = Estado.LIMPIANDO
+		current_speed = 0
+		velocity = Vector2.ZERO
+		# Change appearance to indicate service state
+		$Sprite2D.modulate = Color(0.7, 0.7, 1.0)  # Light blue tint
+		label_interactuar.text = "Servicio..."
+		print("Car is now in service mode - being cleaned")
+	else:
+		# Resume normal operation
+		estado = Estado.ESPERANDO
+		current_speed = speed_lenta
+		# Restore normal appearance
+		$Sprite2D.modulate = Color.WHITE
+		label_interactuar.text = "Presioná E"
+
+func iniciar_limpieza():
+	print("Starting cleaning service for car")
+	label_interactuar.text = "Limpiando..."
+	# For now, just complete the cleaning task and make the car leave
+	await get_tree().create_timer(2.0).timeout  # Simulate cleaning time
+	irse()
+
+func iniciar_estacionamiento():
+	print("Starting parking service for car")
+	label_interactuar.text = "Estacionando..."
+	# For now, just complete the parking task and make the car leave
+	await get_tree().create_timer(2.0).timeout  # Simulate parking time
+	irse()
+
+func iniciar_pago():
+	print("Starting payment service for car")
+	label_interactuar.text = "Pagando..."
+	# For now, just complete the payment task and make the car leave
+	await get_tree().create_timer(2.0).timeout  # Simulate payment time
+	irse()
