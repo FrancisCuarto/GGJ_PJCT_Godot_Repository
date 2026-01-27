@@ -1,6 +1,5 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmb4mywi2q15d"]
+[gd_scene load_steps=16 format=3 uid="uid://cmb4mywi2q15d"]
 
-[ext_resource type="Texture2D" uid="uid://c805vcl6ha41o" path="res://icon.svg" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://b184pciuuwnv2" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cyju4a84tud8p" path="res://player.tscn" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://t21wfioxd66t" path="res://backgrounds/new_test_background.png" id="2_kek77"]
@@ -8,8 +7,12 @@
 [ext_resource type="Script" uid="uid://de2iki58n2p6e" path="res://lado_derecho.gd" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://im8fxoj1u3bv" path="res://camara_1.gd" id="6_4c57u"]
 [ext_resource type="PackedScene" uid="uid://llr8clerxhyn" path="res://assets/cars/auto.tscn" id="7_272bh"]
+[ext_resource type="Script" uid="uid://b182i385vct23" path="res://resources/cars/car_type.gd" id="9_dg77c"]
 [ext_resource type="Script" uid="uid://1el8yswkxm25" path="res://spawn_point.gd" id="9_kek77"]
-[ext_resource type="Script" uid="uid://dt22tr88ohcd7" path="res://queue_manager.gd" id="11_ycdy4"]
+[ext_resource type="Resource" uid="uid://byrt46ir2ddl2" path="res://resources/cars/auto_comun.tres" id="10_ycdy4"]
+[ext_resource type="Resource" uid="uid://d6vvqiyricho" path="res://resources/cars/auto_grande.tres" id="11_w48qg"]
+[ext_resource type="Script" path="res://queue_manager.gd" id="11_ycdy4"]
+[ext_resource type="Resource" uid="uid://n1n3j56inkr2" path="res://resources/cars/auto_mediano.tres" id="12_w48qg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(1205, 494)
@@ -31,11 +34,6 @@ region_enabled = true
 region_rect = Rect2(0, 0, 4017.4421, 1024)
 
 [node name="test_objects" type="Node2D" parent="."]
-
-[node name="test_floor" type="Sprite2D" parent="test_objects"]
-position = Vector2(1237.75, 709)
-scale = Vector2(19.878906, 1)
-texture = ExtResource("1_0xm2m")
 
 [node name="test_cars" type="Node2D" parent="."]
 
@@ -90,7 +88,8 @@ metadata/_edit_group_ = true
 script = ExtResource("9_kek77")
 car_scene = ExtResource("7_272bh")
 queue_manager = NodePath("../../../QueueManager")
-player = NodePath("../../../Player")
+Player = NodePath("../../../Player")
+car_types = Array[ExtResource("9_dg77c")]([ExtResource("10_ycdy4"), ExtResource("11_w48qg"), ExtResource("12_w48qg")])
 
 [node name="Timer" type="Timer" parent="car_spawner/spawner"]
 wait_time = 5.0
@@ -100,16 +99,16 @@ autostart = true
 script = ExtResource("11_ycdy4")
 
 [node name="Slot1" type="Marker2D" parent="QueueManager"]
-position = Vector2(1700, 560)
+position = Vector2(2070, 560)
 
 [node name="Slot2" type="Marker2D" parent="QueueManager"]
-position = Vector2(1215, 560)
+position = Vector2(1500, 560)
 
 [node name="Slot3" type="Marker2D" parent="QueueManager"]
-position = Vector2(648, 560)
+position = Vector2(771, 560)
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("2_h2yge")]
-position = Vector2(154, 500)
+position = Vector2(154, 594)
 
 [connection signal="body_entered" from="street_sides/lado_izquierdo" to="street_sides/lado_izquierdo" method="_on_body_entered"]
 [connection signal="body_entered" from="street_sides/lado_derecho" to="street_sides/lado_derecho" method="_on_body_entered"]
