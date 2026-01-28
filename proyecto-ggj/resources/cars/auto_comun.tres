@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CarType" load_steps=3 format=3 uid="uid://byrt46ir2ddl2"]
+
+[ext_resource type="Script" uid="uid://b182i385vct23" path="res://resources/cars/car_type.gd" id="1_0150o"]
+[ext_resource type="Texture2D" uid="uid://l60nlkuxvhrl" path="res://assets/cars textures/Fiat_UNO_Grande_Azul.png" id="2_3m3xf"]
+
+[resource]
+script = ExtResource("1_0150o")
+nombre = "Auto_comun"
+sprite = ExtResource("2_3m3xf")
+tareas_posibles = Array[int]([1, 2])
+metadata/_custom_type_script = "uid://b182i385vct23"

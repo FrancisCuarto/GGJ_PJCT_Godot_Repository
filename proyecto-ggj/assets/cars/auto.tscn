@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://llr8clerxhyn"]
 
-[ext_resource type="Texture2D" uid="uid://plgrh4ok1qmm" path="res://assets/cars textures/test_car_texture.png" id="1_o38vp"]
 [ext_resource type="Script" uid="uid://buhndf7viivg6" path="res://assets/cars/auto.gd" id="1_po63d"]
+[ext_resource type="Texture2D" uid="uid://l60nlkuxvhrl" path="res://assets/cars textures/Fiat_UNO_Grande_Azul.png" id="2_po63d"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_po63d"]
 outline_size = 10
@@ -11,7 +11,7 @@ outline_color = Color(0, 0, 0, 1)
 size = Vector2(1193.7058, 160.5824)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_po63d"]
-size = Vector2(229, 276)
+size = Vector2(138, 163)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ko1h0"]
 outline_size = 4
@@ -24,16 +24,17 @@ collision_mask = 8
 script = ExtResource("1_po63d")
 
 [node name="LabelTarea" type="Label" parent="."]
-offset_left = -219.99998
-offset_top = -294.0
-offset_right = -169.99998
-offset_bottom = -271.0
-scale = Vector2(6.279999, 3.32)
+offset_left = -34.0
+offset_top = -128.0
+offset_right = 16.0
+offset_bottom = -105.0
+scale = Vector2(1.6179938, 1.4228282)
 text = "TEXTO"
 label_settings = SubResource("LabelSettings_po63d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_o38vp")
+texture = ExtResource("2_po63d")
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4.007082, 11.000002)
@@ -43,26 +44,26 @@ shape = SubResource("RectangleShape2D_o38vp")
 [node name="interaction_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_area"]
-position = Vector2(-32.5, -47)
+position = Vector2(8, -4)
 shape = SubResource("RectangleShape2D_po63d")
 debug_color = Color(3.6098064e-07, 0.49991494, 0.2643189, 0.41960785)
 
 [node name="PatienceBar" type="ProgressBar" parent="."]
-offset_left = -227.99998
-offset_top = -386.0
-offset_right = -163.99998
-offset_bottom = -359.0
-scale = Vector2(5, 3)
+offset_left = -60.0
+offset_top = -156.0
+offset_right = 4.0
+offset_bottom = -129.0
+scale = Vector2(2, 0.893)
 max_value = 15.0
 value = 15.0
 show_percentage = false
 
 [node name="LabelInteractuar" type="Label" parent="."]
-offset_left = 112.0
-offset_top = -162.0
-offset_right = 193.0
-offset_bottom = -139.0
-scale = Vector2(5.319997, 3.3999999)
+offset_left = 95.99999
+offset_top = -70.0
+offset_right = 177.0
+offset_bottom = -47.0
+scale = Vector2(1.1599964, 0.9199996)
 text = "Presioná E"
 label_settings = SubResource("LabelSettings_ko1h0")
 horizontal_alignment = 1

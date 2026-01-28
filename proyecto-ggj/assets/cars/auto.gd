@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var speed_normal := 400
 @export var speed_lenta := 250
 @export var paciencia := 10.0
+@export var car_type: CarType
 @onready var label_tarea = $LabelTarea
 @onready var patience_bar = $PatienceBar
 @onready var label_interactuar = $LabelInteractuar
@@ -38,7 +39,7 @@ enum Estado {
 
 #CONTROL DE TAREAS
 enum Tarea {
-	ESTACIONAR,
+	ESTACIONAR, 
 	LIMPIAR,
 	PAGAR,
 	NADA
@@ -62,8 +63,16 @@ func actualizar_color_paciencia():
 func asignar_tarea_random():
 	if label_tarea == null:
 		return
-	tarea = Tarea.values().pick_random()
+	if car_type.tareas_posibles.is_empty():
+		tarea = Tarea.NADA
+		return
+		
+#Toma la tarea del resource car_type
+	tarea = car_type.tareas_posibles.pick_random()
+	
 	label_tarea.text = Tarea.keys()[tarea]
+	
+	
 	#CAMBIA EL COLOR DEL TEXTO SEGUN LA TAREA
 	match tarea:
 		Tarea.LIMPIAR:
@@ -145,6 +154,35 @@ func _process(delta):
 	
 
 func _ready():
+	if car_type == null:
+		push_error("Auto sin CarType asignado")
+		return
+
+	# stats desde el resource
+	speed_normal = car_type.speed_normal
+	speed_lenta = car_type.speed_lenta
+	paciencia = car_type.paciencia_max
+
+	# visual
+	$Sprite2D.texture = car_type.sprite
+	$Sprite2D.flip_h = true
+	scale = Vector2(1.0, 1.0)
+	
+
+	# UI
+	patience_bar.max_value = paciencia
+	patience_bar.value = paciencia
+	patience_bar.visible = false
+	label_interactuar.visible = false
+	label_tarea.visible = false
+
+	current_speed = speed_normal
+	target_position = global_position
+	
+	
+	
+	
+	
 	target_position = global_position
 	current_speed = speed_normal
 	patience_bar.max_value = paciencia

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CarType" load_steps=3 format=3 uid="uid://n1n3j56inkr2"]
+
+[ext_resource type="Script" uid="uid://b182i385vct23" path="res://resources/cars/car_type.gd" id="1_liwv0"]
+[ext_resource type="Texture2D" uid="uid://djwy6idsk2slk" path="res://assets/cars textures/Fiat_UNO_Grande_Rojo.png" id="2_4xpqm"]
+
+[resource]
+script = ExtResource("1_liwv0")
+speed_normal = 600.0
+speed_lenta = 500.0
+sprite = ExtResource("2_4xpqm")
+metadata/_custom_type_script = "uid://b182i385vct23"
