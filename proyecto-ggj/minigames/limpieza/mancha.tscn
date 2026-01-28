@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://df8otnoi038qn"]
+
+[ext_resource type="Script" uid="uid://caslkxx8i1538" path="res://mancha.gd" id="1_f5tdf"]
+[ext_resource type="Texture2D" uid="uid://doh1p2fdbqv7p" path="res://assets/cars textures/Fiat_UNO_Grande_Amarillo.png" id="1_xh1j7"]
+
+[node name="Mancha" type="TextureRect"]
+process_mode = 3
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 0
+mouse_behavior_recursive = 2
+texture = ExtResource("1_xh1j7")
+script = ExtResource("1_f5tdf")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

@@ -52,6 +52,7 @@ func liberar_slot(auto) -> void:
 	# El auto libera su slot (si tenía)
 	if auto.slot_actual != null:
 		auto.slot_actual = null
+		
 
 
 # -----------------------------

@@ -114,10 +114,20 @@ func ir_a_slot(pos: Vector2):
 	
 func irse():
 	estado = Estado.YENDOSE
+	paciencia_activa = false
+	label_tarea.visible = false
+	patience_bar.visible = false
+	queue_manager.liberar_slot(self)
+	
+	if queue_manager:
+		queue_manager.remover_auto(self)
 
-	if slot_actual:
-		slot_actual.auto_actual = null
-		slot_actual = null
+	# liberar slot
+	if queue_manager:
+		queue_manager.liberar_slot(self)
+
+	target_position = global_position + Vector2(2000, 0)
+	current_speed = speed_normal
 
 	# después camina y se borra fuera de pantalla
 
@@ -259,16 +269,42 @@ func _on_interaction_area_body_exited(body):
 		label_interactuar.visible = false
 	print("salio")
 	
+	
+func iniciar_limpieza():
+	print("Iniciando minijuego de limpieza")
+	var escena = preload("res://minigames/limpieza/limpieza_minigame.tscn")
+	var minijuego = escena.instantiate()
+	print(minijuego)
+	get_tree().current_scene.add_child(minijuego)
+	get_tree().paused = true
+
+	var root = minijuego.get_node("Root UI")
+	root.connect("terminado", Callable(self, "_on_limpieza_terminada"))
+	
+func _on_limpieza_terminada(exito: bool) -> void:
+	print("Resultado limpieza:", exito)
+
+	get_tree().paused = false
+
+	if exito:
+		irse()
+	else:
+		paciencia -= 3
+		irse_enojado()
+	
+
+	
 func interactuar():
 	if estado != Estado.ESPERANDO:
 		return
 
 	#set_service(true) # frena +  paciencia
 
-	"""match tarea:
+
+	match tarea:
 		Tarea.LIMPIAR:
 			iniciar_limpieza()
-		Tarea.ESTACIONAR:
+	"""Tarea.ESTACIONAR:
 			iniciar_estacionamiento()
 		Tarea.PAGAR:
 			iniciar_pago()

@@ -9,4 +9,5 @@ nombre = "Auto Grande"
 speed_normal = 500.0
 speed_lenta = 350.0
 sprite = ExtResource("2_lbher")
+tareas_posibles = Array[int]([1, 2])
 metadata/_custom_type_script = "uid://b182i385vct23"

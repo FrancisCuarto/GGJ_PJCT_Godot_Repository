@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://1el8yswkxm25" path="res://spawn_point.gd" id="9_kek77"]
 [ext_resource type="Resource" uid="uid://byrt46ir2ddl2" path="res://resources/cars/auto_comun.tres" id="10_ycdy4"]
 [ext_resource type="Resource" uid="uid://d6vvqiyricho" path="res://resources/cars/auto_grande.tres" id="11_w48qg"]
-[ext_resource type="Script" path="res://queue_manager.gd" id="11_ycdy4"]
+[ext_resource type="Script" uid="uid://dt22tr88ohcd7" path="res://queue_manager.gd" id="11_ycdy4"]
 [ext_resource type="Resource" uid="uid://n1n3j56inkr2" path="res://resources/cars/auto_mediano.tres" id="12_w48qg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]

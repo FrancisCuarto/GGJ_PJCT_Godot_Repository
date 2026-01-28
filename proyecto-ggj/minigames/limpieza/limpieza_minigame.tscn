@@ -1,8 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://gt1iu1hmyjdo"]
+[gd_scene load_steps=5 format=3 uid="uid://gt1iu1hmyjdo"]
 
 [ext_resource type="Script" uid="uid://ckewnjcxl3lw3" path="res://limpieza_minigame.gd" id="1_imkcr"]
+[ext_resource type="PackedScene" uid="uid://df8otnoi038qn" path="res://minigames/limpieza/mancha.tscn" id="2_2ekaa"]
+[ext_resource type="Texture2D" uid="uid://c805vcl6ha41o" path="res://icon.svg" id="2_ducnp"]
 
-[node name="LimpiezaMinigame" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ekaa"]
+bg_color = Color(0.19570318, 0.7199952, 0, 1)
+
+[node name="LimpiezaMinigame" type="CanvasLayer"]
+process_mode = 3
+
+[node name="Root UI" type="Control" parent="."]
+process_mode = 3
+z_index = 100
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,28 +20,54 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_imkcr")
+mancha_scene = ExtResource("2_2ekaa")
+metadata/_edit_group_ = true
 
-[node name="Fondo" type="TextureRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="Root UI"]
+process_mode = 3
+z_index = 100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14117648, 0.14117648, 0.14117648, 0.5176471)
+
+[node name="Fondo" type="TextureRect" parent="Root UI"]
+process_mode = 3
+z_index = 100
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 500.0
+offset_bottom = 500.0
+texture = ExtResource("2_ducnp")
 
-[node name="Parabrisas" type="TextureRect" parent="."]
+[node name="Parabrisas" type="TextureRect" parent="Root UI"]
+process_mode = 3
+z_index = 100
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 500.0
+offset_bottom = 500.0
+texture = ExtResource("2_ducnp")
 
-[node name="ManchaLayer" type="Control" parent="."]
+[node name="ManchaLayer" type="Control" parent="Root UI"]
+process_mode = 3
+z_index = 100
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 500.0
+offset_bottom = 500.0
 
-[node name="Progreso" type="ProgressBar" parent="."]
+[node name="Progreso" type="ProgressBar" parent="Root UI"]
+process_mode = 3
+z_index = 100
 layout_mode = 0
-offset_right = 4.0
-offset_bottom = 27.0
+offset_left = 531.0
+offset_top = 678.0
+offset_right = 731.0
+offset_bottom = 705.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_2ekaa")
 
-[node name="AreaMouse" type="Control" parent="."]
+[node name="AreaMouse" type="Control" parent="Root UI"]
+process_mode = 3
+z_index = 100
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
