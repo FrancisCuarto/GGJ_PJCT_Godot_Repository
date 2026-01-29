@@ -18,6 +18,8 @@ var esperando_en_slot := false
 var estado := Estado.ESPERANDO
 var queue_manager = null
 var player: Node2D = null
+var dinero_a_pagar := 0
+
 
 
 
@@ -31,6 +33,7 @@ enum Estado {
 	ESPERANDO,
 	LIMPIANDO,
 	ESTACIONADO,
+	ESPERANDO_COBRO,
 	ENOJADO,
 	YENDOSE
 }
@@ -159,6 +162,12 @@ func _ready():
 		return
 
 	# stats desde el resource
+	dinero_a_pagar = randi_range(
+	car_type.dinero_min,
+	car_type.dinero_max
+	)
+	print("Este auto va a pagar $", dinero_a_pagar)
+	
 	speed_normal = car_type.speed_normal
 	speed_lenta = car_type.speed_lenta
 	paciencia = car_type.paciencia_max
@@ -203,7 +212,10 @@ func _physics_process(delta):
 	
 	
 
-	
+func cobrar():
+	MoneyManager.agregar_dinero(dinero_a_pagar)
+	print("Auto pagó $", dinero_a_pagar)
+	irse()	
 	
 func mover_hacia_target():
 	var dir = target_position - global_position
@@ -220,6 +232,8 @@ func mover_hacia_target():
 			
 			
 func al_llegar_al_slot():
+	CameraManager.trigger_reactive()
+
 	paciencia_activa = true
 	esperando_en_slot = true
 
@@ -257,9 +271,11 @@ var jugador_cerca := false
 func _on_interaction_area_body_entered(body):
 	if body.is_in_group("Player"):
 		jugador_cerca = true
-	if body.is_in_group("Player") and estado == Estado.ESPERANDO:
+	if body.is_in_group("Player") and (
+		estado == Estado.ESPERANDO
+		or estado == Estado.ESPERANDO_COBRO
+	):
 		label_interactuar.visible = true
-	print("entro")
 
 
 func _on_interaction_area_body_exited(body):
@@ -287,26 +303,32 @@ func _on_limpieza_terminada(exito: bool) -> void:
 	get_tree().paused = false
 
 	if exito:
-		irse()
+		tarea_completada()
+		
 	else:
 		paciencia -= 3
 		irse_enojado()
 	
+func tarea_completada():
+	estado = Estado.ESPERANDO_COBRO
 
+	# reiniciar paciencia para el cobro
+	paciencia = patience_bar.max_value
+	patience_bar.value = paciencia
+	paciencia_activa = true
+
+	label_tarea.text = "COBRAR"
+	label_tarea.modulate = Color.YELLOW
+
+	print("Tarea completada, esperando cobro")
 	
 func interactuar():
-	if estado != Estado.ESPERANDO:
-		return
+	match estado:
+		Estado.ESPERANDO:
+			match tarea:
+				Tarea.LIMPIAR:
+					iniciar_limpieza()
+				# después agregamos ESTACIONAR, etc.
 
-	#set_service(true) # frena +  paciencia
-
-
-	match tarea:
-		Tarea.LIMPIAR:
-			iniciar_limpieza()
-	"""Tarea.ESTACIONAR:
-			iniciar_estacionamiento()
-		Tarea.PAGAR:
-			iniciar_pago()
-		Tarea.NADA:
-			irse_enojado()"""
+		Estado.ESPERANDO_COBRO:
+			cobrar()

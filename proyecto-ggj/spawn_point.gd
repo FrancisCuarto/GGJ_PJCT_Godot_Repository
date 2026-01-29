@@ -9,6 +9,9 @@ extends Marker2D
 
 #spawnea los autos
 func _spawn_car():
+	if not DayManager.dia_activo:
+		return
+
 	if car_scene == null:
 		push_warning("No hay escena de auto asignada")
 		return
@@ -71,6 +74,8 @@ func _process(delta: float) -> void:
 
 #timer que maneja cuanto tarda en aparecer cada auto
 func _on_timer_timeout() -> void:
+	if not DayManager.dia_activo:
+		return
 	var qm = get_node(queue_manager)
 
 	if qm == null:

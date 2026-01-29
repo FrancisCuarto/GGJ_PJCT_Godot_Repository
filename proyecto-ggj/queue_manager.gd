@@ -32,6 +32,7 @@ func remover_auto(auto) -> void:
 	print("Autos activos:", autos_activos.size())
 
 
+
 func hay_espacio() -> bool:
 	return autos_activos.size() < max_autos
 
@@ -60,6 +61,8 @@ func liberar_slot(auto) -> void:
 # -----------------------------
 func _slot_ocupado(slot: Marker2D) -> bool:
 	for a in autos_activos:
+		if not is_instance_valid(a):
+			continue
 		if a.slot_actual == slot:
 			return true
 	return false

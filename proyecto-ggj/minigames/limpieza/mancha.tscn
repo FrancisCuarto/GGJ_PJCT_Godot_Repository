@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://df8otnoi038qn"]
+[gd_scene load_steps=6 format=3 uid="uid://df8otnoi038qn"]
 
 [ext_resource type="Script" uid="uid://caslkxx8i1538" path="res://mancha.gd" id="1_f5tdf"]
-[ext_resource type="Texture2D" uid="uid://doh1p2fdbqv7p" path="res://assets/cars textures/Fiat_UNO_Grande_Amarillo.png" id="1_xh1j7"]
+[ext_resource type="Texture2D" uid="uid://brug1fpu8i5t6" path="res://assets/minigame_textures/limpieza_textures/mancha1.png" id="2_1y80h"]
+[ext_resource type="Texture2D" uid="uid://csvxe07jeheym" path="res://assets/minigame_textures/limpieza_textures/mancha2.png" id="3_jxil0"]
+[ext_resource type="Texture2D" uid="uid://dmvxbgkrmlsy1" path="res://assets/minigame_textures/limpieza_textures/mancha3.png" id="4_5dpk6"]
+[ext_resource type="Texture2D" uid="uid://sj7g8r7t1snr" path="res://assets/minigame_textures/limpieza_textures/mancha5.png" id="5_vxvlx"]
 
 [node name="Mancha" type="TextureRect"]
 process_mode = 3
@@ -9,7 +12,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 0
 mouse_behavior_recursive = 2
-texture = ExtResource("1_xh1j7")
 script = ExtResource("1_f5tdf")
+texturas = Array[Texture2D]([ExtResource("2_1y80h"), ExtResource("3_jxil0"), ExtResource("4_5dpk6"), ExtResource("5_vxvlx")])
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

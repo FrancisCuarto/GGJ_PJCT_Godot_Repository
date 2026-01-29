@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cmb4mywi2q15d"]
+[gd_scene load_steps=19 format=3 uid="uid://cmb4mywi2q15d"]
 
 [ext_resource type="Script" uid="uid://b184pciuuwnv2" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cyju4a84tud8p" path="res://player.tscn" id="2_h2yge"]
@@ -13,6 +13,9 @@
 [ext_resource type="Resource" uid="uid://d6vvqiyricho" path="res://resources/cars/auto_grande.tres" id="11_w48qg"]
 [ext_resource type="Script" uid="uid://dt22tr88ohcd7" path="res://queue_manager.gd" id="11_ycdy4"]
 [ext_resource type="Resource" uid="uid://n1n3j56inkr2" path="res://resources/cars/auto_mediano.tres" id="12_w48qg"]
+[ext_resource type="Script" uid="uid://cnhtthp0agawl" path="res://camera_controller.gd" id="14_w48qg"]
+[ext_resource type="Script" uid="uid://cixuwqch04vd" path="res://day_ui.gd" id="15_vivmo"]
+[ext_resource type="Script" uid="uid://qit6gviwssd" path="res://end_day_ui.gd" id="16_2cqfq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(1205, 494)
@@ -33,24 +36,21 @@ texture = ExtResource("2_kek77")
 region_enabled = true
 region_rect = Rect2(0, 0, 4017.4421, 1024)
 
-[node name="test_objects" type="Node2D" parent="."]
+[node name="camaras (obsoleto)" type="Node2D" parent="."]
 
-[node name="test_cars" type="Node2D" parent="."]
-
-[node name="camaras" type="Node2D" parent="."]
-
-[node name="camera" type="Camera2D" parent="camaras" groups=["camera"]]
+[node name="camera" type="Camera2D" parent="camaras (obsoleto)" groups=["camera"]]
 position = Vector2(603, 389)
+enabled = false
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 script = ExtResource("6_4c57u")
 
-[node name="camera_targets" type="Node2D" parent="camaras"]
+[node name="camera_targets" type="Node2D" parent="camaras (obsoleto)"]
 
-[node name="target1" type="Marker2D" parent="camaras/camera_targets"]
+[node name="target1" type="Marker2D" parent="camaras (obsoleto)/camera_targets"]
 position = Vector2(554, 390)
 
-[node name="target2" type="Marker2D" parent="camaras/camera_targets"]
+[node name="target2" type="Marker2D" parent="camaras (obsoleto)/camera_targets"]
 position = Vector2(1806, 390)
 
 [node name="street_sides" type="Node2D" parent="."]
@@ -59,7 +59,7 @@ visible = false
 [node name="lado_izquierdo" type="Area2D" parent="street_sides"]
 position = Vector2(-21, 0)
 script = ExtResource("4_lquwl")
-camera_target = NodePath("../../camaras/camera_targets/target1")
+camera_target = NodePath("../../camaras (obsoleto)/camera_targets/target1")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="street_sides/lado_izquierdo"]
@@ -70,7 +70,7 @@ debug_color = Color(0.62568676, 0.5254878, 0.24051675, 0.41960785)
 [node name="lado_derecho" type="Area2D" parent="street_sides"]
 position = Vector2(-41, 0)
 script = ExtResource("5_7mycd")
-camera_target = NodePath("../../camaras/camera_targets/target2")
+camera_target = NodePath("../../camaras (obsoleto)/camera_targets/target2")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="street_sides/lado_derecho"]
@@ -95,7 +95,7 @@ car_types = Array[ExtResource("9_dg77c")]([ExtResource("10_ycdy4"), ExtResource(
 wait_time = 5.0
 autostart = true
 
-[node name="QueueManager" type="Node2D" parent="."]
+[node name="QueueManager" type="Node2D" parent="." groups=["QueueManager"]]
 script = ExtResource("11_ycdy4")
 
 [node name="Slot1" type="Marker2D" parent="QueueManager"]
@@ -109,6 +109,83 @@ position = Vector2(771, 560)
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource("2_h2yge")]
 position = Vector2(154, 594)
+
+[node name="CameraController" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+script = ExtResource("14_w48qg")
+player_path = NodePath("../Player")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="DayPanel" type="Panel" parent="UI"]
+custom_minimum_size = Vector2(10, 10)
+offset_right = 200.0
+offset_bottom = 80.0
+script = ExtResource("15_vivmo")
+
+[node name="DayLabel" type="Label" parent="UI/DayPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Día 1"
+
+[node name="TimeLabel" type="Label" parent="UI/DayPanel"]
+layout_mode = 0
+offset_top = 19.0
+offset_right = 108.0
+offset_bottom = 68.0
+text = "Tiempo: 00:00
+"
+
+[node name="MoneyLabel" type="Label" parent="UI/DayPanel"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 40.0
+offset_bottom = 63.0
+text = "Dinero: $0"
+
+[node name="EndDayUI" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("16_2cqfq")
+
+[node name="Background" type="Panel" parent="EndDayUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="VBoxContainer" parent="EndDayUI/Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="EndDayUI/Background/Content"]
+layout_mode = 2
+text = "Fin del día"
+
+[node name="DayLabel" type="Label" parent="EndDayUI/Background/Content"]
+layout_mode = 2
+text = "Día 1"
+
+[node name="MoneyLabel" type="Label" parent="EndDayUI/Background/Content"]
+layout_mode = 2
+text = "Dinero ganado: $0"
+
+[node name="ContinueButton" type="Button" parent="EndDayUI/Background/Content"]
+layout_mode = 2
+text = "Continuar"
 
 [connection signal="body_entered" from="street_sides/lado_izquierdo" to="street_sides/lado_izquierdo" method="_on_body_entered"]
 [connection signal="body_entered" from="street_sides/lado_derecho" to="street_sides/lado_derecho" method="_on_body_entered"]
