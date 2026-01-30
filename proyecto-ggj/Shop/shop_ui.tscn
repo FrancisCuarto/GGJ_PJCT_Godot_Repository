@@ -47,9 +47,19 @@ layout_mode = 2
 text = "Comprar"
 
 [node name="ButtonSalir" type="Button" parent="Panel"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+process_mode = 3
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -57.0
+offset_top = -61.0
+offset_right = 57.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
 text = "Continuar día"
 
 [connection signal="pressed" from="Panel/ButtonSalir" to="." method="_on_button_salir_pressed"]

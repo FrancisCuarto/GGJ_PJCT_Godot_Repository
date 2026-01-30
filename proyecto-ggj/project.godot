@@ -39,6 +39,8 @@ QueueManager=""
 autos=""
 day_transition=""
 shop_ui=""
+day_manager=""
+end_day=""
 
 [input]
 

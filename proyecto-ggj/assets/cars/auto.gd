@@ -174,7 +174,7 @@ func _ready():
 
 	# visual
 	$Sprite2D.texture = car_type.sprite
-	$Sprite2D.flip_h = true
+	$Sprite2D.flip_h = false
 	scale = Vector2(1.0, 1.0)
 	
 

@@ -51,7 +51,11 @@ func _on_continue_pressed():
 	DayManager.iniciar_dia()
 	
 	
-
+func continuar():
+	visible = false
+	get_tree().paused = false
+	DayManager.iniciar_dia()
+	
 	
 
 

@@ -58,7 +58,7 @@ font_size = 48
 font = ExtResource("17_cegan")
 font_size = 48
 
-[node name="Main" type="Node2D" groups=["Player", "auto"]]
+[node name="Main" type="Node2D" groups=["Player", "auto", "day_manager"]]
 script = ExtResource("1_h2yge")
 
 [node name="background" type="Node2D" parent="."]
@@ -209,7 +209,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="EndDayUI" type="CanvasLayer" parent="."]
+[node name="EndDayUI" type="CanvasLayer" parent="." groups=["end_day"]]
 process_mode = 3
 script = ExtResource("16_2cqfq")
 

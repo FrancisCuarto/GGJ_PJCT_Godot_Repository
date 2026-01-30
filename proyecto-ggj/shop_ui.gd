@@ -14,12 +14,20 @@ var mascara_seleccionada: Mask = null
 
 
 func _on_button_salir_pressed():
+	print("boton presionado")
+	#var day_manager = get_tree().get_first_node_in_group("day_manager")
+	#if day_manager:
+		#day_manager.iniciar_dia()
+	
+	#DayManager.iniciar_dia()
 	visible = false
-
-	var day_manager = get_tree().get_first_node_in_group("day_manager")
-	if day_manager:
-		day_manager.iniciar_dia()
-
+	var continuar = get_tree().get_first_node_in_group("end_day")
+	if continuar:
+		continuar.continuar()
+		
+	
+	
+	
 func _ready():
 	visible = false
 	for mask in mascaras_disponibles:

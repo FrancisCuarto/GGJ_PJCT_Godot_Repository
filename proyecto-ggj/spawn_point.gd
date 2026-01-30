@@ -77,7 +77,7 @@ func _on_timer_timeout() -> void:
 	if not DayManager.dia_activo:
 		return
 	var qm = get_node(queue_manager)
-
+	
 	if qm == null:
 		push_error("QueueManager no asignado en SpawnPoint")
 		return

@@ -36,6 +36,12 @@ func remover_auto(auto) -> void:
 func hay_espacio() -> bool:
 	return autos_activos.size() < max_autos
 
+func resetear_dia():
+	for slot in slots:
+		liberar_slot(autos_activos)
+	
+
+
 
 # -----------------------------
 # SLOTS
