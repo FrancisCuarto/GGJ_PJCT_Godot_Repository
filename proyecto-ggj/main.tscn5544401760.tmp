@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cmb4mywi2q15d"]
+[gd_scene load_steps=28 format=3 uid="uid://cmb4mywi2q15d"]
 
 [ext_resource type="Script" uid="uid://b184pciuuwnv2" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cyju4a84tud8p" path="res://player.tscn" id="2_h2yge"]
@@ -12,7 +12,6 @@
 [ext_resource type="Resource" uid="uid://byrt46ir2ddl2" path="res://resources/cars/auto_comun.tres" id="10_ycdy4"]
 [ext_resource type="Resource" uid="uid://d6vvqiyricho" path="res://resources/cars/auto_grande.tres" id="11_w48qg"]
 [ext_resource type="Script" uid="uid://dt22tr88ohcd7" path="res://queue_manager.gd" id="11_ycdy4"]
-[ext_resource type="Resource" uid="uid://drjqhmslhvaeu" path="res://resources/cars/ford_ka.tres" id="12_82xsv"]
 [ext_resource type="Resource" uid="uid://n1n3j56inkr2" path="res://resources/cars/auto_mediano.tres" id="12_w48qg"]
 [ext_resource type="Script" uid="uid://cnhtthp0agawl" path="res://camera_controller.gd" id="14_w48qg"]
 [ext_resource type="Script" uid="uid://djvi564jhcwcy" path="res://day_transition.gd" id="15_074og"]
@@ -20,7 +19,6 @@
 [ext_resource type="Script" uid="uid://qit6gviwssd" path="res://end_day_ui.gd" id="16_2cqfq"]
 [ext_resource type="FontFile" uid="uid://bkp4ybedmvrxb" path="res://assets/fuentes/GrapeSoda.ttf" id="17_cegan"]
 [ext_resource type="Theme" uid="uid://byi6wv5kft13" path="res://resources/themes/main_theme.tres" id="19_cegan"]
-[ext_resource type="PackedScene" uid="uid://dbfw7vlrcbs0o" path="res://Shop/shop_ui.tscn" id="21_getpj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(1205, 494)
@@ -30,33 +28,25 @@ size = Vector2(1174.5, 508)
 
 [sub_resource type="LabelSettings" id="LabelSettings_82xsv"]
 font = ExtResource("17_cegan")
-font_size = 60
-outline_size = 1
-outline_color = Color(0, 0, 0, 1)
+font_size = 42
 
 [sub_resource type="LabelSettings" id="LabelSettings_getpj"]
 font = ExtResource("17_cegan")
 font_size = 32
-outline_size = 1
-outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ryguw"]
 font = ExtResource("17_cegan")
 font_size = 32
-outline_size = 1
-outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_d13ii"]
 font = ExtResource("17_cegan")
-font_size = 180
+font_size = 72
 
 [sub_resource type="LabelSettings" id="LabelSettings_1u8w0"]
 font = ExtResource("17_cegan")
-font_size = 48
 
 [sub_resource type="LabelSettings" id="LabelSettings_0odxb"]
 font = ExtResource("17_cegan")
-font_size = 48
 
 [node name="Main" type="Node2D" groups=["Player", "auto"]]
 script = ExtResource("1_h2yge")
@@ -124,7 +114,7 @@ script = ExtResource("9_kek77")
 car_scene = ExtResource("7_272bh")
 queue_manager = NodePath("../../../QueueManager")
 Player = NodePath("../../../Player")
-car_types = Array[ExtResource("9_dg77c")]([ExtResource("10_ycdy4"), ExtResource("11_w48qg"), ExtResource("12_w48qg"), ExtResource("12_82xsv")])
+car_types = Array[ExtResource("9_dg77c")]([ExtResource("10_ycdy4"), ExtResource("11_w48qg"), ExtResource("12_w48qg")])
 
 [node name="Timer" type="Timer" parent="car_spawner/spawner"]
 wait_time = 5.0
@@ -146,7 +136,7 @@ position = Vector2(771, 560)
 position = Vector2(154, 594)
 
 [node name="CameraController" type="Camera2D" parent="."]
-offset = Vector2(100, -200)
+offset = Vector2(0, -200)
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 script = ExtResource("14_w48qg")
@@ -155,11 +145,11 @@ player_path = NodePath("../Player")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="DayPanel" type="Panel" parent="UI"]
-self_modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2(10, 10)
-offset_left = 20.0
-offset_right = 220.0
-offset_bottom = 100.0
+offset_left = 24.0
+offset_top = 23.0
+offset_right = 224.0
+offset_bottom = 103.0
 script = ExtResource("15_vivmo")
 metadata/_edit_group_ = true
 
@@ -172,42 +162,20 @@ label_settings = SubResource("LabelSettings_82xsv")
 
 [node name="TimeLabel" type="Label" parent="UI/DayPanel"]
 layout_mode = 0
-offset_top = 45.0
+offset_top = 30.0
 offset_right = 166.0
-offset_bottom = 112.0
-text = "Tiempo: 00:00"
+offset_bottom = 97.0
+text = "Tiempo: 00:00
+"
 label_settings = SubResource("LabelSettings_getpj")
 
 [node name="MoneyLabel" type="Label" parent="UI/DayPanel"]
 layout_mode = 0
-offset_top = 70.0
+offset_top = 50.0
 offset_right = 126.0
-offset_bottom = 102.0
+offset_bottom = 82.0
 text = "Dinero: $0"
 label_settings = SubResource("LabelSettings_ryguw")
-
-[node name="DayTransition" type="CanvasLayer" parent="." groups=["day_transition"]]
-process_mode = 3
-script = ExtResource("15_074og")
-
-[node name="Root" type="Control" parent="DayTransition"]
-process_mode = 3
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="FadePanel" type="ColorRect" parent="DayTransition/Root"]
-process_mode = 3
-modulate = Color(0, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="EndDayUI" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -258,16 +226,27 @@ layout_mode = 2
 theme = ExtResource("19_cegan")
 text = "Continuar"
 
-[node name="ShopButton" type="Button" parent="EndDayUI/Background/Content" groups=["ShopUI"]]
+[node name="DayTransition" type="CanvasLayer" parent="." groups=["day_transition"]]
 process_mode = 3
-layout_mode = 2
-theme = ExtResource("19_cegan")
-text = "Ir a la tienda"
+script = ExtResource("15_074og")
 
-[node name="ShopUI" parent="." groups=["shop_ui"] instance=ExtResource("21_getpj")]
-visible = false
+[node name="Root" type="Control" parent="DayTransition"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FadePanel" type="ColorRect" parent="DayTransition/Root"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="body_entered" from="street_sides/lado_izquierdo" to="street_sides/lado_izquierdo" method="_on_body_entered"]
 [connection signal="body_entered" from="street_sides/lado_derecho" to="street_sides/lado_derecho" method="_on_body_entered"]
 [connection signal="timeout" from="car_spawner/spawner/Timer" to="car_spawner/spawner/spawn_point" method="_on_timer_timeout"]
-[connection signal="pressed" from="EndDayUI/Background/Content/ShopButton" to="EndDayUI" method="_on_shop_button_pressed"]

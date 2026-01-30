@@ -13,7 +13,14 @@ func _ready():
 
 
 func _on_dia_finalizado():
+	
 	limpiar_autos_del_dia()
+	
+	var transition = get_tree().get_first_node_in_group("day_transition")
+	if transition:
+		transition.animar_fin_dia()
+		
+	
 	
 		
 	visible = true
@@ -42,3 +49,14 @@ func _on_continue_pressed():
 	visible = false
 	get_tree().paused = false
 	DayManager.iniciar_dia()
+	
+	
+
+	
+
+
+func _on_shop_button_pressed() -> void:
+	var shop = get_tree().get_first_node_in_group("shop_ui")
+	if shop:
+		shop.visible = true
+	pass # Replace with function body.

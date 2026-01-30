@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbfw7vlrcbs0o"]
+
+[ext_resource type="Script" uid="uid://d3i4yf17isby6" path="res://shop_ui.gd" id="1_nnwfn"]
+[ext_resource type="Script" uid="uid://d3wlernwvlht" path="res://resources/mascaras/mask.gd" id="2_nigly"]
+[ext_resource type="Resource" uid="uid://odx6kbr757gd" path="res://resources/mascaras/mascara_messi.tres" id="3_c7tp6"]
+
+[node name="ShopUI" type="CanvasLayer"]
+script = ExtResource("1_nnwfn")
+mascaras_disponibles = Array[ExtResource("2_nigly")]([ExtResource("3_c7tp6"), ExtResource("3_c7tp6")])
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MaskList" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -42.5
+offset_right = 150.0
+offset_bottom = 42.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Preview" type="VBoxContainer" parent="Panel/MaskList"]
+layout_mode = 2
+
+[node name="LabelNombre" type="Label" parent="Panel/MaskList/Preview"]
+layout_mode = 2
+text = "Messi"
+horizontal_alignment = 1
+
+[node name="LabelPrecio" type="Label" parent="Panel/MaskList/Preview"]
+layout_mode = 2
+text = "$100"
+horizontal_alignment = 1
+
+[node name="ButtonComprar" type="Button" parent="Panel/MaskList/Preview"]
+layout_mode = 2
+text = "Comprar"
+
+[node name="ButtonSalir" type="Button" parent="Panel"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Continuar día"
+
+[connection signal="pressed" from="Panel/ButtonSalir" to="." method="_on_button_salir_pressed"]

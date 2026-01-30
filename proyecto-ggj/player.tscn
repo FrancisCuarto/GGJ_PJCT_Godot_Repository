@@ -15,5 +15,9 @@ metadata/_edit_group_ = true
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_onrkg")
 
+[node name="MaskSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -99)
+scale = Vector2(0.52000004, 0.43999955)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_i3pqv")

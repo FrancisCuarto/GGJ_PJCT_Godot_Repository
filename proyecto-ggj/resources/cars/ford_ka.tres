@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CarType" load_steps=3 format=3 uid="uid://drjqhmslhvaeu"]
+
+[ext_resource type="Script" uid="uid://b182i385vct23" path="res://resources/cars/car_type.gd" id="1_0fy5f"]
+[ext_resource type="Texture2D" uid="uid://f0slrb4dxhtr" path="res://assets/cars textures/Ford_Ka_WIP.png" id="2_0fy5f"]
+
+[resource]
+script = ExtResource("1_0fy5f")
+nombre = "Ford Ka"
+speed_normal = 600.0
+speed_lenta = 500.0
+sprite = ExtResource("2_0fy5f")
+tareas_posibles = Array[int]([1, 2])
+metadata/_custom_type_script = "uid://b182i385vct23"

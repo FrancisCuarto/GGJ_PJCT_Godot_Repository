@@ -12,9 +12,9 @@ func _process(delta):
 
 
 	# Tiempo restante
-	var tiempo = int(DayManager.tiempo_restante)
+	var tiempo = int(DayManager.hora_actual)
 	var minutos = tiempo / 60
 	var segundos = tiempo % 60
 
 
-	time_label.text = "Tiempo: %02d:%02d" % [minutos, segundos]
+	time_label.text = DayManager.obtener_hora_formateada()

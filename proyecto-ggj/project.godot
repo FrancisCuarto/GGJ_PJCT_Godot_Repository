@@ -21,6 +21,7 @@ CameraManager="*res://camera_manager.gd"
 DayManager="*res://time/day_manager.gd"
 MoneyManager="*res://economy/money_manager.gd"
 QueueManager="res://queue_manager.gd"
+MaskManager="*res://systems/mask_manager.gd"
 
 [display]
 
@@ -36,6 +37,8 @@ auto=""
 camera=""
 QueueManager=""
 autos=""
+day_transition=""
+shop_ui=""
 
 [input]
 
