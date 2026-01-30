@@ -18,6 +18,8 @@ var esperando_en_slot := false
 var estado := Estado.ESPERANDO
 var queue_manager = null
 var player: Node2D = null
+var dinero_a_pagar := 0
+
 
 
 
@@ -31,6 +33,7 @@ enum Estado {
 	ESPERANDO,
 	LIMPIANDO,
 	ESTACIONADO,
+	ESPERANDO_COBRO,
 	ENOJADO,
 	YENDOSE
 }
@@ -114,16 +117,20 @@ func ir_a_slot(pos: Vector2):
 	
 func irse():
 	estado = Estado.YENDOSE
-
-	# Remove from queue manager if exists
+	paciencia_activa = false
+	label_tarea.visible = false
+	patience_bar.visible = false
+	queue_manager.liberar_slot(self)
+	
 	if queue_manager:
 		queue_manager.remover_auto(self)
 
-	# Free the slot properly using the queue manager
-	if queue_manager and slot_actual:
+	# liberar slot
+	if queue_manager:
 		queue_manager.liberar_slot(self)
 
-	slot_actual = null
+	target_position = global_position + Vector2(2000, 0)
+	current_speed = speed_normal
 
 	# Move off-screen to be removed later
 	target_position = global_position + Vector2(2000, 0)
@@ -159,6 +166,12 @@ func _ready():
 		return
 
 	# stats desde el resource
+	dinero_a_pagar = randi_range(
+	car_type.dinero_min,
+	car_type.dinero_max
+	)
+	print("Este auto va a pagar $", dinero_a_pagar)
+	
 	speed_normal = car_type.speed_normal
 	speed_lenta = car_type.speed_lenta
 	paciencia = car_type.paciencia_max
@@ -203,7 +216,10 @@ func _physics_process(delta):
 	
 	
 
-	
+func cobrar():
+	MoneyManager.agregar_dinero(dinero_a_pagar)
+	print("Auto pagó $", dinero_a_pagar)
+	irse()	
 	
 func mover_hacia_target():
 	var dir = target_position - global_position
@@ -220,6 +236,8 @@ func mover_hacia_target():
 			
 			
 func al_llegar_al_slot():
+	CameraManager.trigger_reactive()
+
 	paciencia_activa = true
 	esperando_en_slot = true
 
@@ -257,10 +275,11 @@ var jugador_cerca := false
 func _on_interaction_area_body_entered(body):
 	if body.is_in_group("Player"):
 		jugador_cerca = true
-		player = body
-		if estado == Estado.ESPERANDO:
-			label_interactuar.visible = true
-			print("Player entered interaction area")
+	if body.is_in_group("Player") and (
+		estado == Estado.ESPERANDO
+		or estado == Estado.ESPERANDO_COBRO
+	):
+		label_interactuar.visible = true
 
 
 func _on_interaction_area_body_exited(body):
@@ -268,59 +287,52 @@ func _on_interaction_area_body_exited(body):
 		jugador_cerca = false
 		player = null
 		label_interactuar.visible = false
-		print("Player exited interaction area")
+	print("salio")
+	
+	
+func iniciar_limpieza():
+	print("Iniciando minijuego de limpieza")
+	var escena = preload("res://minigames/limpieza/limpieza_minigame.tscn")
+	var minijuego = escena.instantiate()
+	print(minijuego)
+	get_tree().current_scene.add_child(minijuego)
+	get_tree().paused = true
+
+	var root = minijuego.get_node("Root UI")
+	root.connect("terminado", Callable(self, "_on_limpieza_terminada"))
+	
+func _on_limpieza_terminada(exito: bool) -> void:
+	print("Resultado limpieza:", exito)
+
+	get_tree().paused = false
+
+	if exito:
+		tarea_completada()
+		
+	else:
+		paciencia -= 3
+		irse_enojado()
+	
+func tarea_completada():
+	estado = Estado.ESPERANDO_COBRO
+
+	# reiniciar paciencia para el cobro
+	paciencia = patience_bar.max_value
+	patience_bar.value = paciencia
+	paciencia_activa = true
+
+	label_tarea.text = "COBRAR"
+	label_tarea.modulate = Color.YELLOW
+
+	print("Tarea completada, esperando cobro")
 	
 func interactuar():
-	if estado != Estado.ESPERANDO:
-		return
+	match estado:
+		Estado.ESPERANDO:
+			match tarea:
+				Tarea.LIMPIAR:
+					iniciar_limpieza()
+				# después agregamos ESTACIONAR, etc.
 
-	set_service(true) # frena +  paciencia
-
-	match tarea:
-		Tarea.LIMPIAR:
-			iniciar_limpieza()
-		Tarea.ESTACIONAR:
-			iniciar_estacionamiento()
-		Tarea.PAGAR:
-			iniciar_pago()
-		Tarea.NADA:
-			irse_enojado()
-
-func set_service(in_servicio: bool):
-	if in_servicio:
-		# Stop the car and start service
-		estado = Estado.LIMPIANDO
-		current_speed = 0
-		velocity = Vector2.ZERO
-		# Change appearance to indicate service state
-		$Sprite2D.modulate = Color(0.7, 0.7, 1.0)  # Light blue tint
-		label_interactuar.text = "Servicio..."
-		print("Car is now in service mode - being cleaned")
-	else:
-		# Resume normal operation
-		estado = Estado.ESPERANDO
-		current_speed = speed_lenta
-		# Restore normal appearance
-		$Sprite2D.modulate = Color.WHITE
-		label_interactuar.text = "Presioná E"
-
-func iniciar_limpieza():
-	print("Starting cleaning service for car")
-	label_interactuar.text = "Limpiando..."
-	# For now, just complete the cleaning task and make the car leave
-	await get_tree().create_timer(2.0).timeout  # Simulate cleaning time
-	irse()
-
-func iniciar_estacionamiento():
-	print("Starting parking service for car")
-	label_interactuar.text = "Estacionando..."
-	# For now, just complete the parking task and make the car leave
-	await get_tree().create_timer(2.0).timeout  # Simulate parking time
-	irse()
-
-func iniciar_pago():
-	print("Starting payment service for car")
-	label_interactuar.text = "Pagando..."
-	# For now, just complete the payment task and make the car leave
-	await get_tree().create_timer(2.0).timeout  # Simulate payment time
-	irse()
+		Estado.ESPERANDO_COBRO:
+			cobrar()

@@ -15,6 +15,14 @@ run/main_scene="uid://cmb4mywi2q15d"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+CameraManager="*res://camera_manager.gd"
+DayManager="*res://time/day_manager.gd"
+MoneyManager="*res://economy/money_manager.gd"
+QueueManager="res://queue_manager.gd"
+MaskManager="*res://systems/mask_manager.gd"
+
 [display]
 
 window/size/viewport_width=1280
@@ -27,6 +35,10 @@ window/stretch/mode="canvas_items"
 Player="Jugador"
 auto=""
 camera=""
+QueueManager=""
+autos=""
+day_transition=""
+shop_ui=""
 
 [input]
 

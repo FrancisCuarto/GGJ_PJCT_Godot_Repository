@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://llr8clerxhyn"]
+[gd_scene load_steps=8 format=3 uid="uid://llr8clerxhyn"]
 
 [ext_resource type="Script" uid="uid://buhndf7viivg6" path="res://assets/cars/auto.gd" id="1_po63d"]
+[ext_resource type="Theme" uid="uid://byi6wv5kft13" path="res://resources/themes/main_theme.tres" id="2_ko1h0"]
 [ext_resource type="Texture2D" uid="uid://l60nlkuxvhrl" path="res://assets/cars textures/Fiat_UNO_Grande_Azul.png" id="2_po63d"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_po63d"]
-outline_size = 10
+outline_size = 7
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o38vp"]
@@ -17,7 +18,7 @@ size = Vector2(138, 163)
 outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
-[node name="auto" type="CharacterBody2D" groups=["auto"]]
+[node name="auto" type="CharacterBody2D" groups=["auto", "autos"]]
 scale = Vector2(0.5, 0.5)
 collision_layer = 2
 collision_mask = 8
@@ -29,6 +30,7 @@ offset_top = -128.0
 offset_right = 16.0
 offset_bottom = -105.0
 scale = Vector2(1.6179938, 1.4228282)
+theme = ExtResource("2_ko1h0")
 text = "TEXTO"
 label_settings = SubResource("LabelSettings_po63d")
 
@@ -64,6 +66,7 @@ offset_top = -70.0
 offset_right = 177.0
 offset_bottom = -47.0
 scale = Vector2(1.1599964, 0.9199996)
+theme = ExtResource("2_ko1h0")
 text = "Presioná E"
 label_settings = SubResource("LabelSettings_ko1h0")
 horizontal_alignment = 1
