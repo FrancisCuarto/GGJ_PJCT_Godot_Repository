@@ -11,6 +11,7 @@ extends CharacterBody2D
 @onready var screen_notifier = $ScreenNotifier
 @onready var audio_motor := $AudioMotor
 @onready var audio_motor_start := $AudioMotorStart
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 #@onready var audio_bocina := $AudioBocina
 #@onready var audio_enojo := $AudioEnojo
 
@@ -198,10 +199,13 @@ func _ready():
 	speed_lenta = car_type.speed_lenta
 	paciencia = car_type.paciencia_max
 
-	# 🎨 Visual
-	$Sprite2D.texture = car_type.sprite
-	$Sprite2D.flip_h = false
-	scale = Vector2.ONE
+	# 🎨 VISUAL (AnimatedSprite2D)
+	if car_type.sprite_frames:
+		sprite.sprite_frames = car_type.sprite_frames
+		sprite.scale = car_type.sprite_scale
+		sprite.play(car_type.anim_idle)
+	else:
+		push_warning("CarType sin sprite_frames")
 
 	# 🧠 UI
 	patience_bar.max_value = paciencia
@@ -230,6 +234,7 @@ func _physics_process(delta):
 	
 
 func cobrar():
+	$AudioStreamPlayer2D.play()
 	MoneyManager.agregar_dinero(dinero_a_pagar)
 	print("Auto pagó $", dinero_a_pagar)
 	irse()	
@@ -242,12 +247,22 @@ func mover_hacia_target():
 		if not motor_encendido:
 			arrancar_motor()
 			motor_encendido = true
+			
+		if sprite.animation != car_type.anim_move:
+			sprite.play(car_type.anim_move)
+			
 	else:
 		# llegó al marker
 		velocity = Vector2.ZERO
 
 		if estado == Estado.ESPERANDO and not paciencia_activa:
 			al_llegar_al_slot()
+		
+		if sprite.animation != car_type.anim_idle:
+			sprite.play(car_type.anim_idle)
+			
+		if estado == Estado.ESPERANDO and not paciencia_activa:
+			al_llegar_al_slot
 			
 			
 			
@@ -257,6 +272,7 @@ func al_llegar_al_slot():
 	velocity = Vector2.ZERO
 	audio_motor.pitch_scale = 0.8
 	CameraManager.trigger_reactive()
+	sprite.play(car_type.anim_idle)
 
 	paciencia_activa = true
 	esperando_en_slot = true

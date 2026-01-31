@@ -2,15 +2,16 @@
 
 [ext_resource type="Script" uid="uid://b182i385vct23" path="res://resources/cars/car_type.gd" id="1_7yu8o"]
 [ext_resource type="AudioStream" uid="uid://ctns1g53fmu60" path="res://sounds/car_sounds/Car_engine_better.wav" id="1_npoq7"]
-[ext_resource type="Texture2D" uid="uid://doh1p2fdbqv7p" path="res://assets/cars textures/Fiat_UNO_Grande_Amarillo.png" id="2_lbher"]
+[ext_resource type="SpriteFrames" uid="uid://xrvf07sv6evh" path="res://assets/cars/new_sprite_frames.tres" id="3_npoq7"]
 
 [resource]
 script = ExtResource("1_7yu8o")
 nombre = "Auto Grande"
 motor_loop = ExtResource("1_npoq7")
 audio_motor = ExtResource("1_npoq7")
+sprite_frames = ExtResource("3_npoq7")
+sprite_scale = Vector2(3, 3)
 speed_normal = 500.0
 speed_lenta = 350.0
-sprite = ExtResource("2_lbher")
 tareas_posibles = Array[int]([1, 0])
 metadata/_custom_type_script = "uid://b182i385vct23"

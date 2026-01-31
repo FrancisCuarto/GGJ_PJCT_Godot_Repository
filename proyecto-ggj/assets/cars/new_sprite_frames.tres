@@ -1,0 +1,38 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://xrvf07sv6evh"]
+
+[ext_resource type="Texture2D" uid="uid://ou44blt08fp4" path="res://assets/cars textures/F-K_bordo_pos0.png" id="1_8gtdw"]
+[ext_resource type="Texture2D" uid="uid://dmilrradtnuwm" path="res://assets/cars textures/F-K_bordo_pos1.png" id="2_ph7wg"]
+[ext_resource type="Texture2D" uid="uid://fnpihjg5iba2" path="res://assets/cars textures/F-K_bordo_pos2.png" id="3_6sjro"]
+[ext_resource type="Texture2D" uid="uid://dv11fvbbd72ms" path="res://assets/cars textures/F-K_bordo_pos-1.png" id="4_xud3i"]
+[ext_resource type="Texture2D" uid="uid://d362u0brmlc55" path="res://assets/cars textures/F-K_bordo_pos-2.png" id="5_fpbma"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8gtdw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8gtdw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ph7wg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6sjro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xud3i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fpbma")
+}],
+"loop": true,
+"name": &"move",
+"speed": 30.0
+}]

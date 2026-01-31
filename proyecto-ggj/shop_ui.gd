@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var nombre = $Panel/MaskList/Preview/LabelNombre
 @onready var precio = $Panel/MaskList/Preview/LabelPrecio
 @onready var boton = $Panel/MaskList/Preview/ButtonComprar
+@onready var icono = $Panel/MaskList/Preview/IconoMascara
 
 var mascara_seleccionada: Mask = null
 
@@ -40,6 +41,14 @@ func seleccionar(mask: Mask):
 
 	nombre.text = mask.nombre
 	precio.text = "$" + str(mask.precio)
+	
+	# 👇 MOSTRAR IMAGEN
+	if mask.icono:
+		icono.texture = mask.icono
+		icono.visible = true
+	else:
+		icono.texture = null
+		icono.visible = false
 
 	if mask in MaskManager.mascaras_compradas:
 		boton.text = "Equipar"

@@ -8,7 +8,7 @@ const BLOQUE_HORA := 0.5 # 30 minutos
 
 var acumulador_tiempo := 0.0
 
-@export var duracion_dia_real := 100.0 # segundos reales (3 minutos)
+@export var duracion_dia_real := 5.0 # segundos reales (3 minutos)
 signal dia_finalizado
 
 # Horario laboral
