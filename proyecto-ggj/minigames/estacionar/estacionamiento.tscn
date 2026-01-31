@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b40bfkpvy137a"]
+
+[ext_resource type="Script" uid="uid://caohb6p11wybn" path="res://minigames/estacionar/estacionamiento.gd" id="1_ooysw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_otoo2"]
+
+[node name="Estacionamiento" type="Area2D"]
+process_mode = 3
+modulate = Color(0.3254902, 0.7607843, 0, 1)
+script = ExtResource("1_ooysw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+process_mode = 3
+scale = Vector2(12.440002, 19.2)
+shape = SubResource("RectangleShape2D_otoo2")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+process_mode = 3
+scale = Vector2(0.080385834, 0.05208333)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -39,8 +39,8 @@ func limpiar_autos_del_dia():
 
 	for auto in autos:
 		auto.queue_free()
-		
-	var qm = get_tree().get_first_node_in_group("queue_manager")
+	
+	var qm = get_tree().get_first_node_in_group("QueueManager")
 	if qm:
 		qm.resetear_dia()
 		
@@ -51,7 +51,11 @@ func _on_continue_pressed():
 	DayManager.iniciar_dia()
 	
 	
-
+func continuar():
+	visible = false
+	get_tree().paused = false
+	DayManager.iniciar_dia()
+	
 	
 
 
