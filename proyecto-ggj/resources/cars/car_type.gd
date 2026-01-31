@@ -16,6 +16,7 @@ class_name CarType
 # Visual
 @export var sprite: Texture2D
 
+
 # Tareas posibles (usa el enum Tarea del auto)
 @export var tareas_posibles: Array[int] = []
 

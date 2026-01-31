@@ -37,8 +37,10 @@ func hay_espacio() -> bool:
 	return autos_activos.size() < max_autos
 
 func resetear_dia():
-	for slot in slots:
-		liberar_slot(autos_activos)
+	# Simplemente limpiamos la lista de autos activos.
+	# Los nodos de los autos ya son eliminados por end_day_ui.gd.
+	autos_activos.clear()
+	print("los espacios estan vacios")
 	
 
 

@@ -72,7 +72,7 @@ label_settings = SubResource("LabelSettings_ko1h0")
 horizontal_alignment = 1
 
 [node name="ScreenNotifier" type="VisibleOnScreenNotifier2D" parent="."]
-scale = Vector2(30.520002, 1)
+scale = Vector2(7.4799995, 1)
 rect = Rect2(-100, -100, 200, 200)
 
 [connection signal="body_entered" from="interaction_area" to="." method="_on_interaction_area_body_entered"]

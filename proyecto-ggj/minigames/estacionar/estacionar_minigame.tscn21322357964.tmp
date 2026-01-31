@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://duobpqhmor3q8"]
+
+[ext_resource type="Texture2D" uid="uid://bvxd8r4iecpsn" path="res://backgrounds/fondo_prueba_minijuego_estacionamiento.png" id="1_jc52t"]
+[ext_resource type="Script" uid="uid://beonn6qrp3yfj" path="res://minigames/estacionar/estacionar_minigame.gd" id="1_ljcp2"]
+[ext_resource type="PackedScene" uid="uid://b40bfkpvy137a" path="res://minigames/estacionar/estacionamiento.tscn" id="2_b56jt"]
+
+[node name="estacionar_minigame" type="CanvasLayer" node_paths=PackedStringArray("slots")]
+script = ExtResource("1_ljcp2")
+slots = [NodePath("ParkingSlots/slot1"), NodePath("ParkingSlots/slot2"), NodePath("ParkingSlots/slot3"), NodePath("ParkingSlots/slot4")]
+scena_estacionamiento = ExtResource("2_b56jt")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_jc52t")
+
+[node name="ParkingSlots" type="Node2D" parent="."]
+
+[node name="slot1" type="Marker2D" parent="ParkingSlots"]
+position = Vector2(1034, 80)
+
+[node name="slot2" type="Marker2D" parent="ParkingSlots"]
+position = Vector2(765, 80)
+
+[node name="slot3" type="Marker2D" parent="ParkingSlots"]
+position = Vector2(515, 80)
+
+[node name="slot4" type="Marker2D" parent="ParkingSlots"]
+position = Vector2(266, 80)

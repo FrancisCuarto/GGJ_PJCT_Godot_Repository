@@ -290,24 +290,47 @@ func iniciar_limpieza():
 	print("Iniciando minijuego de limpieza")
 	var escena = preload("res://minigames/limpieza/limpieza_minigame.tscn")
 	var minijuego = escena.instantiate()
-	print(minijuego)
 	get_tree().current_scene.add_child(minijuego)
 	get_tree().paused = true
 
+	# Conectamos la señal 'terminado' del minijuego a nuestra función de callback
 	var root = minijuego.get_node("Root UI")
 	root.connect("terminado", Callable(self, "_on_limpieza_terminada"))
+
+func iniciar_estacionamiento():
+	print("Iniciando minijuego de ESTACIONAMIENTO")
+	# Cargamos la escena principal del minijuego, no el área individual
+	var escena = preload("res://minigames/estacionar/estacionar_minigame.tscn")
+	var minijuego = escena.instantiate()
+	get_tree().current_scene.add_child(minijuego)
+	get_tree().paused = true
 	
+	# Conectamos la señal 'minijuego_terminado' a nuestra nueva función de callback
+	
+	var root = minijuego.get_node("estacionar_minigame")
+	root.connect("minijuego_terminado", Callable(self, "_on_estacionamiento_terminado"))
+	
+
+
 func _on_limpieza_terminada(exito: bool) -> void:
 	print("Resultado limpieza:", exito)
-
 	get_tree().paused = false
 
 	if exito:
 		tarea_completada()
-		
 	else:
 		paciencia -= 3
-		irse_enojado()
+		# irse_enojado() # Podríamos querer un castigo menor
+
+func _on_estacionamiento_terminado(exito: bool) -> void:
+	print("Resultado estacionamiento:", exito)
+	get_tree().paused = false
+
+	if exito:
+		tarea_completada()
+	else:
+		# Aquí podrías poner una penalización si el minijuego de estacionar tuviera una condición de fracaso
+		paciencia -= 5 
 	
 func tarea_completada():
 	estado = Estado.ESPERANDO_COBRO
@@ -328,6 +351,8 @@ func interactuar():
 			match tarea:
 				Tarea.LIMPIAR:
 					iniciar_limpieza()
+				Tarea.ESTACIONAR:
+					iniciar_estacionamiento()
 				# después agregamos ESTACIONAR, etc.
 
 		Estado.ESPERANDO_COBRO:
