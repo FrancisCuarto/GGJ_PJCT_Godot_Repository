@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbfw7vlrcbs0o"]
+[gd_scene load_steps=6 format=3 uid="uid://dbfw7vlrcbs0o"]
 
 [ext_resource type="Script" uid="uid://d3i4yf17isby6" path="res://shop_ui.gd" id="1_nnwfn"]
 [ext_resource type="Script" uid="uid://d3wlernwvlht" path="res://resources/mascaras/mask.gd" id="2_nigly"]
 [ext_resource type="Resource" uid="uid://odx6kbr757gd" path="res://resources/mascaras/mascara_messi.tres" id="3_c7tp6"]
+[ext_resource type="Resource" uid="uid://cterteoa6qpxw" path="res://resources/mascaras/mascara_comandantefort.tres" id="4_c7tp6"]
+[ext_resource type="Texture2D" uid="uid://y1qai2vn2afo" path="res://backgrounds/fondo_tienda.png" id="5_jvf0h"]
 
 [node name="ShopUI" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_nnwfn")
-mascaras_disponibles = Array[ExtResource("2_nigly")]([ExtResource("3_c7tp6"), ExtResource("3_c7tp6")])
+mascaras_disponibles = Array[ExtResource("2_nigly")]([ExtResource("3_c7tp6"), ExtResource("4_c7tp6")])
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 15
@@ -14,6 +17,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="fondo" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_jvf0h")
 
 [node name="MaskList" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
@@ -32,6 +44,10 @@ grow_vertical = 2
 [node name="Preview" type="VBoxContainer" parent="Panel/MaskList"]
 layout_mode = 2
 
+[node name="IconoMascara" type="TextureRect" parent="Panel/MaskList/Preview"]
+layout_mode = 2
+stretch_mode = 5
+
 [node name="LabelNombre" type="Label" parent="Panel/MaskList/Preview"]
 layout_mode = 2
 text = "Messi"
@@ -41,10 +57,6 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "$100"
 horizontal_alignment = 1
-
-[node name="testlabel" type="Label" parent="Panel/MaskList/Preview"]
-layout_mode = 2
-text = "100"
 
 [node name="ButtonComprar" type="Button" parent="Panel/MaskList/Preview"]
 layout_mode = 2
@@ -66,5 +78,4 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Continuar día"
 
-[connection signal="pressed" from="Panel/MaskList/Preview/ButtonComprar" to="." method="_on_button_comprar_pressed"]
 [connection signal="pressed" from="Panel/ButtonSalir" to="." method="_on_button_salir_pressed"]

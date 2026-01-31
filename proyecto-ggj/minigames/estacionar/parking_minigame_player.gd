@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 	# 2. Aplicamos la rotación
 	# Solo permitimos girar si el auto se está moviendo (hacia adelante o atrás)
 	if velocity.length() > 10.0:
-		rotation += steer_input * rotation_speed * delta
+		rotation += steer_input * rotation_speed * delta 
 
 	# 3. Calculamos la aceleración y la aplicamos
 	var acceleration_vector = Vector2.UP.rotated(rotation) * acceleration_input * engine_power

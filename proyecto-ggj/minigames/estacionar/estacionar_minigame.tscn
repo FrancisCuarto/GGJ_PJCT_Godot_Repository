@@ -1,18 +1,18 @@
 [gd_scene load_steps=6 format=3 uid="uid://duobpqhmor3q8"]
 
-[ext_resource type="Texture2D" uid="uid://bvxd8r4iecpsn" path="res://backgrounds/fondo_prueba_minijuego_estacionamiento.png" id="1_jc52t"]
 [ext_resource type="Script" uid="uid://beonn6qrp3yfj" path="res://minigames/estacionar/estacionar_minigame.gd" id="1_ljcp2"]
 [ext_resource type="PackedScene" uid="uid://b40bfkpvy137a" path="res://minigames/estacionar/estacionamiento.tscn" id="2_b56jt"]
 [ext_resource type="PackedScene" uid="uid://civff26bq1cu7" path="res://minigames/estacionar/estacionamiento_minigame_autoestatico.tscn" id="3_pi8ja"]
 [ext_resource type="PackedScene" uid="uid://m50bf7lngs8x" path="res://minigames/estacionar/parking_minigame_player.tscn" id="4_f8fri"]
+[ext_resource type="Texture2D" uid="uid://c6rnui4emscrl" path="res://assets/minigame_textures/estacionamiento_textures/CALLE_ESTA_.png" id="5_f8fri"]
 
 [node name="estacionar_minigame" type="CanvasLayer" node_paths=PackedStringArray("slots")]
 process_mode = 3
+physics_interpolation_mode = 1
 script = ExtResource("1_ljcp2")
 slots = [NodePath("ParkingSlots/slot1"), NodePath("ParkingSlots/slot2"), NodePath("ParkingSlots/slot3"), NodePath("ParkingSlots/slot4")]
 scena_estacionamiento = ExtResource("2_b56jt")
 auto_estatico = ExtResource("3_pi8ja")
-player = ExtResource("4_f8fri")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 process_mode = 3
@@ -21,27 +21,34 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_jc52t")
+texture = ExtResource("5_f8fri")
 
 [node name="ParkingSlots" type="Node2D" parent="."]
 process_mode = 3
 
 [node name="slot1" type="Marker2D" parent="ParkingSlots"]
 process_mode = 3
-position = Vector2(1034, 80)
+position = Vector2(749, 151)
 
 [node name="slot2" type="Marker2D" parent="ParkingSlots"]
 process_mode = 3
-position = Vector2(765, 80)
+position = Vector2(570, 156)
 
 [node name="slot3" type="Marker2D" parent="ParkingSlots"]
 process_mode = 3
-position = Vector2(515, 80)
+position = Vector2(380, 154)
 
 [node name="slot4" type="Marker2D" parent="ParkingSlots"]
 process_mode = 3
-position = Vector2(266, 80)
+position = Vector2(180, 149)
 
-[node name="PlayerSpawn" type="Marker2D" parent="."]
-process_mode = 3
-position = Vector2(625, 611)
+[node name="ParkingMinigamePlayer" parent="." instance=ExtResource("4_f8fri")]
+position = Vector2(158, 594)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(0, 0.7135449, 0.2963363, 1)
+offset_left = 582.0
+offset_top = 557.0
+offset_right = 782.0
+offset_bottom = 584.0
+show_percentage = false
