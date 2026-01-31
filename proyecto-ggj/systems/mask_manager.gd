@@ -19,3 +19,5 @@ func comprar_mascara(mask: Mask) -> bool:
 func equipar_mascara(mask: Mask):
 	if mask in mascaras_compradas:
 		mascara_equipada = mask
+	if mask.desbloquea_minijuego != "":
+		MiniGameManager.desbloquear(mask.desbloquea_minijuego)

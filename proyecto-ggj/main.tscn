@@ -1,7 +1,7 @@
 [gd_scene load_steps=30 format=3 uid="uid://cmb4mywi2q15d"]
 
 [ext_resource type="Script" uid="uid://b184pciuuwnv2" path="res://main.gd" id="1_h2yge"]
-[ext_resource type="Texture2D" uid="uid://jo4mvia0ijj5" path="res://backgrounds/fondo2.png" id="2_getpj"]
+[ext_resource type="Texture2D" uid="uid://ll7skkn03pof" path="res://backgrounds/Fondo_Lineart_Weno.png" id="2_getpj"]
 [ext_resource type="PackedScene" uid="uid://cyju4a84tud8p" path="res://player.tscn" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://cs3hs2pxnu23p" path="res://lado_izquierdo.gd" id="4_lquwl"]
 [ext_resource type="Script" uid="uid://de2iki58n2p6e" path="res://lado_derecho.gd" id="5_7mycd"]
@@ -65,7 +65,7 @@ script = ExtResource("1_h2yge")
 
 [node name="TestBackgroundImage" type="Sprite2D" parent="background"]
 texture_repeat = 2
-position = Vector2(1567.0001, 208.00002)
+position = Vector2(1567.0001, 207.00002)
 scale = Vector2(2.0399978, 2.11)
 texture = ExtResource("2_getpj")
 region_enabled = true

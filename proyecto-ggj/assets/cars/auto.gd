@@ -53,6 +53,7 @@ enum Tarea {
 	ESTACIONAR, 
 	LIMPIAR,
 	PAGAR,
+	MESSI,
 	NADA
 }
 
@@ -71,7 +72,7 @@ func actualizar_color_paciencia():
 		patience_bar.modulate = Color.RED
 #--------------------------------------------------------------
 
-func asignar_tarea_random():
+"""func asignar_tarea_random():
 	if label_tarea == null:
 		return
 	if car_type.tareas_posibles.is_empty():
@@ -92,7 +93,48 @@ func asignar_tarea_random():
 			label_tarea.modulate = Color.GREEN
 		Tarea.PAGAR:
 			label_tarea.modulate = Color.YELLOW
-	print("Auto", self, "tarea asignada:", Tarea.keys()[tarea])
+	print("Auto", self, "tarea asignada:", Tarea.keys()[tarea])"""
+	
+	
+func asignar_tarea_random():
+	if label_tarea == null:
+		return
+
+	if car_type.tareas_posibles.is_empty():
+		tarea = Tarea.NADA
+		return
+
+	var tareas_validas: Array[int] = []
+
+	for t in car_type.tareas_posibles:
+		match t:
+			Tarea.MESSI:
+				# 👉 solo puede entrar si está desbloqueado
+				if MiniGameManager.esta_desbloqueado("messi_minigame"):
+					# 👉 probabilidad de aparición
+					if randf() < 0.2: # 20%
+						tareas_validas.append(t)
+			_:
+				tareas_validas.append(t)
+
+	if tareas_validas.is_empty():
+		tarea = Tarea.NADA
+		return
+
+	tarea = tareas_validas.pick_random()
+
+	label_tarea.text = Tarea.keys()[tarea]
+
+	match tarea:
+		Tarea.LIMPIAR:
+			label_tarea.modulate = Color.CYAN
+		Tarea.ESTACIONAR:
+			label_tarea.modulate = Color.GREEN
+		Tarea.PAGAR:
+			label_tarea.modulate = Color.YELLOW
+		Tarea.MESSI:
+			label_tarea.modulate = Color.ORANGE
+
 
 #------------------------------------------------------------------
 #ELIMINA EL AUTO CUANDO LA PACIENCIA SE ACABA
@@ -357,6 +399,25 @@ func iniciar_estacionamiento():
 	minijuego.connect("minijuego_terminado", Callable(self, "_on_estacionamiento_terminado"))
 	
 
+func iniciar_messi_minijuego():
+	var escena = preload("res://minigames/messi/messi_minigame.tscn")
+	var minijuego = escena.instantiate()
+	get_tree().current_scene.add_child(minijuego)
+	get_tree().paused = true
+
+	minijuego.connect(
+		"minijuego_terminado",
+		Callable(self, "_on_messi_minijuego_terminado")
+	)
+
+func _on_messi_minijuego_terminado(exito: bool):
+	get_tree().paused = false
+
+	if exito:
+		tarea_completada()
+	else:
+		paciencia -= 5
+
 
 func _on_limpieza_terminada(exito: bool) -> void:
 	print("Resultado limpieza:", exito)
@@ -396,9 +457,11 @@ func interactuar():
 		Estado.ESPERANDO:
 			match tarea:
 				Tarea.LIMPIAR:
-					iniciar_limpieza()
+					iniciar_messi_minijuego()
 				Tarea.ESTACIONAR:
-					iniciar_estacionamiento()
+					iniciar_messi_minijuego()
+				Tarea.MESSI:
+					iniciar_messi_minijuego()
 				# después agregamos ESTACIONAR, etc.
 
 		Estado.ESPERANDO_COBRO:

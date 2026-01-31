@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbgcb0pr3l1y7"]
+
+[ext_resource type="Script" uid="uid://djwbngbo5lgj3" path="res://minigames/messi/messi_minigame.gd" id="1_c78ks"]
+[ext_resource type="Texture2D" uid="uid://cbgkgqnjlyh3v" path="res://backgrounds/LA_BANDA_MA_LOCA.png" id="1_ws4pa"]
+[ext_resource type="Script" uid="uid://d1t6q7gde17ln" path="res://pelota.gd" id="2_c78ks"]
+[ext_resource type="Texture2D" uid="uid://dupo1tb0m6jl5" path="res://minigames/messi/PELOTA_FUTBOL.png" id="3_8wlv6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yyvxv"]
+radius = 73.24616
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xv5u"]
+
+[node name="MessiMinigame" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_c78ks")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ws4pa")
+
+[node name="Pelota" type="Area2D" parent="."]
+position = Vector2(583, 0)
+script = ExtResource("2_c78ks")
+velocidad = 800.0
+aceleracion = 1000.0
+fuerza_rebote = 500.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Pelota"]
+texture = ExtResource("3_8wlv6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pelota"]
+position = Vector2(1, -10)
+shape = SubResource("CircleShape2D_yyvxv")
+
+[node name="Piso" type="Area2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Piso"]
+offset_left = -15.0
+offset_top = 697.0
+offset_right = 25.0
+offset_bottom = 737.0
+scale = Vector2(32.76, 1)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Piso"]
+position = Vector2(641, 710)
+scale = Vector2(67.96, 0.8399998)
+shape = SubResource("RectangleShape2D_7xv5u")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(7.412136e-06, 0.63499784, 0.84024477, 1)
+offset_left = 31.0
+offset_top = 27.0
+offset_right = 231.0
+offset_bottom = 57.0
+show_percentage = false
+
+[connection signal="area_entered" from="Pelota" to="Pelota" method="_on_area_entered"]
