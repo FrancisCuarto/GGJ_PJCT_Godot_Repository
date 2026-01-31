@@ -9,9 +9,16 @@ class_name CarType
 
 #Sonido
 @export var motor_loop: AudioStream
-@export var motor_volumen := -8.0
+@export var motor_volumen := 8.0
 @export var bocina: AudioStream
 @export var sonido_enojo: AudioStream
+@export var motor_start_sounds: Array[AudioStream] = []
+@export var motor_start_volumen := 4.0
+@export	var audio_motor: AudioStream
+@export var sprite_frames: SpriteFrames
+@export var anim_idle := "idle"
+@export var anim_move := "move"
+@export var sprite_scale := Vector2.ONE
 
 # Movimiento
 @export var speed_normal := 400.0

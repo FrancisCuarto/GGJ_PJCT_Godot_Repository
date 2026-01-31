@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://m50bf7lngs8x"]
 
 [ext_resource type="Script" uid="uid://clhp713qkgkxy" path="res://minigames/estacionar/parking_minigame_player.gd" id="1_u84qa"]
-[ext_resource type="Texture2D" uid="uid://cqa884rd6nlng" path="res://assets/minigame_textures/estacionamiento_textures/topview_car_textures/auto_top_azul.png" id="2_u84qa"]
+[ext_resource type="Texture2D" uid="uid://dnkp32arhu2i3" path="res://assets/minigame_textures/estacionamiento_textures/topview_car_textures/auto_top_azul.png" id="2_u84qa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u84qa"]
 

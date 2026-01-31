@@ -1,8 +1,8 @@
 [gd_scene load_steps=30 format=3 uid="uid://cmb4mywi2q15d"]
 
 [ext_resource type="Script" uid="uid://b184pciuuwnv2" path="res://main.gd" id="1_h2yge"]
+[ext_resource type="Texture2D" uid="uid://jo4mvia0ijj5" path="res://backgrounds/fondo2.png" id="2_getpj"]
 [ext_resource type="PackedScene" uid="uid://cyju4a84tud8p" path="res://player.tscn" id="2_h2yge"]
-[ext_resource type="Texture2D" uid="uid://t21wfioxd66t" path="res://backgrounds/new_test_background.png" id="2_kek77"]
 [ext_resource type="Script" uid="uid://cs3hs2pxnu23p" path="res://lado_izquierdo.gd" id="4_lquwl"]
 [ext_resource type="Script" uid="uid://de2iki58n2p6e" path="res://lado_derecho.gd" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://im8fxoj1u3bv" path="res://camara_1.gd" id="6_4c57u"]
@@ -65,11 +65,11 @@ script = ExtResource("1_h2yge")
 
 [node name="TestBackgroundImage" type="Sprite2D" parent="background"]
 texture_repeat = 2
-position = Vector2(1574, 299)
-scale = Vector2(0.8047615, 0.8843924)
-texture = ExtResource("2_kek77")
+position = Vector2(1567.0001, 208.00002)
+scale = Vector2(2.0399978, 2.11)
+texture = ExtResource("2_getpj")
 region_enabled = true
-region_rect = Rect2(0, 0, 4017.4421, 1024)
+region_rect = Rect2(0, 0, 1912.3906, 513.6385)
 
 [node name="camaras (obsoleto)" type="Node2D" parent="."]
 
@@ -265,7 +265,6 @@ theme = ExtResource("19_cegan")
 text = "Ir a la tienda"
 
 [node name="ShopUI" parent="." groups=["shop_ui"] instance=ExtResource("21_getpj")]
-visible = false
 
 [connection signal="body_entered" from="street_sides/lado_izquierdo" to="street_sides/lado_izquierdo" method="_on_body_entered"]
 [connection signal="body_entered" from="street_sides/lado_derecho" to="street_sides/lado_derecho" method="_on_body_entered"]

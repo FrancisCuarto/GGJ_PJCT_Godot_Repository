@@ -1,11 +1,18 @@
-[gd_resource type="Resource" script_class="CarType" load_steps=3 format=3 uid="uid://drjqhmslhvaeu"]
+[gd_resource type="Resource" script_class="CarType" load_steps=7 format=3 uid="uid://drjqhmslhvaeu"]
 
 [ext_resource type="Script" uid="uid://b182i385vct23" path="res://resources/cars/car_type.gd" id="1_0fy5f"]
+[ext_resource type="AudioStream" uid="uid://ctns1g53fmu60" path="res://sounds/car_sounds/Car_engine_better.wav" id="1_lfok2"]
 [ext_resource type="Texture2D" uid="uid://dwy4iwyrbkwik" path="res://assets/cars textures/Ford_Ka_RESIZED.png" id="2_0fy5f"]
+[ext_resource type="AudioStream" uid="uid://chxxw8xcofhy7" path="res://sounds/car_sounds/Car_engine_start_8.wav" id="2_aj8uc"]
+[ext_resource type="AudioStream" uid="uid://r0coxhfc8wh2" path="res://sounds/car_sounds/Car_engine_start_7.wav" id="3_1rogq"]
+[ext_resource type="AudioStream" uid="uid://b1q7r80qnfggr" path="res://sounds/car_sounds/Car_engine_start_6.wav" id="4_1pnhv"]
 
 [resource]
 script = ExtResource("1_0fy5f")
 nombre = "Ford Ka"
+motor_loop = ExtResource("1_lfok2")
+motor_start_sounds = Array[AudioStream]([ExtResource("2_aj8uc"), ExtResource("3_1rogq"), ExtResource("4_1pnhv")])
+audio_motor = ExtResource("1_lfok2")
 speed_normal = 600.0
 speed_lenta = 500.0
 sprite = ExtResource("2_0fy5f")

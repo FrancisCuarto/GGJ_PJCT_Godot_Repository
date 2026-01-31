@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://civff26bq1cu7"]
 
-[ext_resource type="Texture2D" uid="uid://b4df8a1jehuai" path="res://assets/minigame_textures/estacionamiento_textures/topview_car_textures/auto_top_rojo.png" id="1_vxr1y"]
+[ext_resource type="Texture2D" uid="uid://bwya07etw7vso" path="res://assets/minigame_textures/estacionamiento_textures/topview_car_textures/auto_top_rojo.png" id="1_vxr1y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pvorj"]
 

@@ -9,6 +9,11 @@ extends CharacterBody2D
 @onready var patience_bar = $PatienceBar
 @onready var label_interactuar = $LabelInteractuar
 @onready var screen_notifier = $ScreenNotifier
+@onready var audio_motor := $AudioMotor
+@onready var audio_motor_start := $AudioMotorStart
+#@onready var audio_bocina := $AudioBocina
+#@onready var audio_enojo := $AudioEnojo
+
 var paciencia_activa := false
 var current_speed: float
 var stoped := 0
@@ -19,6 +24,8 @@ var estado := Estado.ESPERANDO
 var queue_manager = null
 var player: Node2D = null
 var dinero_a_pagar := 0
+var motor_start_elegido: AudioStream = null
+var motor_encendido := false
 
 
 
@@ -91,6 +98,8 @@ func asignar_tarea_random():
 func irse_enojado():
 	if estado == Estado.YENDOSE:
 		return
+	arrancar_motor()
+	estado = Estado.YENDOSE
 
 	paciencia_activa = false
 	label_tarea.visible = false
@@ -116,6 +125,8 @@ func ir_a_slot(pos: Vector2):
 	current_speed = speed_lenta
 	
 func irse():
+	arrancar_motor()
+	audio_motor.pitch_scale = 1.1
 	estado = Estado.YENDOSE
 	paciencia_activa = false
 	label_tarea.visible = false
@@ -129,7 +140,7 @@ func irse():
 	if queue_manager:
 		queue_manager.liberar_slot(self)
 
-	target_position = global_position + Vector2(2000, 0)
+	target_position = global_position + Vector2(5000, 0)
 	current_speed = speed_normal
 
 	# después camina y se borra fuera de pantalla
@@ -155,30 +166,44 @@ func _process(delta):
 			irse_enojado()
 	
 	
-
 func _ready():
 	if car_type == null:
 		push_error("Auto sin CarType asignado")
 		return
 
-	# stats desde el resource
+	# 🎲 Elegir sonido de encendido random (una sola vez)
+	if not car_type.motor_start_sounds.is_empty():
+		motor_start_elegido = car_type.motor_start_sounds.pick_random()
+
+	# 🔊 Audio motor start
+	if audio_motor_start and motor_start_elegido:
+		audio_motor_start.stream = motor_start_elegido
+		audio_motor_start.volume_db = car_type.motor_start_volumen
+
+	# 🔊 Audio motor loop
+	if audio_motor and car_type.motor_loop:
+		audio_motor.stream = car_type.motor_loop
+		audio_motor.volume_db = car_type.motor_volumen
+
+		if audio_motor.stream is AudioStreamWAV:
+			audio_motor.stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
+
+	# 📊 Stats
 	dinero_a_pagar = randi_range(
-	car_type.dinero_min,
-	car_type.dinero_max
+		car_type.dinero_min,
+		car_type.dinero_max
 	)
-	print("Este auto va a pagar $", dinero_a_pagar)
-	
+
 	speed_normal = car_type.speed_normal
 	speed_lenta = car_type.speed_lenta
 	paciencia = car_type.paciencia_max
 
-	# visual
+	# 🎨 Visual
 	$Sprite2D.texture = car_type.sprite
 	$Sprite2D.flip_h = false
-	scale = Vector2(1.0, 1.0)
-	
+	scale = Vector2.ONE
 
-	# UI
+	# 🧠 UI
 	patience_bar.max_value = paciencia
 	patience_bar.value = paciencia
 	patience_bar.visible = false
@@ -187,19 +212,11 @@ func _ready():
 
 	current_speed = speed_normal
 	target_position = global_position
-	
-	
-	
-	
-	
-	target_position = global_position
-	current_speed = speed_normal
-	patience_bar.max_value = paciencia
-	patience_bar.value = paciencia
-	patience_bar.visible = false
-	label_interactuar.visible = false
 	paciencia_activa = false
-	label_tarea.visible = false
+
+
+
+
 
 func _physics_process(delta):
 	match estado:
@@ -222,6 +239,9 @@ func mover_hacia_target():
 	
 	if dir.length() > 5:
 		velocity = dir.normalized() * current_speed
+		if not motor_encendido:
+			arrancar_motor()
+			motor_encendido = true
 	else:
 		# llegó al marker
 		velocity = Vector2.ZERO
@@ -232,6 +252,10 @@ func mover_hacia_target():
 			
 			
 func al_llegar_al_slot():
+	apagar_motor()
+	motor_encendido = false
+	velocity = Vector2.ZERO
+	audio_motor.pitch_scale = 0.8
 	CameraManager.trigger_reactive()
 
 	paciencia_activa = true
@@ -365,6 +389,23 @@ func interactuar():
 			cobrar()
 			
 			
+#AUDIO
+func arrancar_motor():
+	print("ARRANCAR MOTOR")
+	print("motor_start_elegido:", motor_start_elegido)
+	print("audio_motor_start:", audio_motor_start)
+
+	if audio_motor_start and motor_start_elegido:
+		audio_motor_start.play()
+		print("PLAY motor start")
+
+	if audio_motor:
+		audio_motor.play()
+		print("PLAY motor loop")
+
+func apagar_motor():
+	if audio_motor and audio_motor.playing:
+		audio_motor.stop()
 
 	
 	
