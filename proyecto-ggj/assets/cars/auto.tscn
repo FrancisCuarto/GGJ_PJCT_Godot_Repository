@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://llr8clerxhyn"]
+[gd_scene load_steps=9 format=3 uid="uid://llr8clerxhyn"]
 
 [ext_resource type="Script" uid="uid://buhndf7viivg6" path="res://assets/cars/auto.gd" id="1_po63d"]
 [ext_resource type="Theme" uid="uid://byi6wv5kft13" path="res://resources/themes/main_theme.tres" id="2_ko1h0"]
 [ext_resource type="Texture2D" uid="uid://l60nlkuxvhrl" path="res://assets/cars textures/Fiat_UNO_Grande_Azul.png" id="2_po63d"]
+[ext_resource type="AudioStream" uid="uid://ctns1g53fmu60" path="res://sounds/car_sounds/Car_engine_better.wav" id="4_0vose"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_po63d"]
 outline_size = 7
@@ -74,6 +75,9 @@ horizontal_alignment = 1
 [node name="ScreenNotifier" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(7.4799995, 1)
 rect = Rect2(-100, -100, 200, 200)
+
+[node name="SonidoMotor" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_0vose")
 
 [connection signal="body_entered" from="interaction_area" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="interaction_area" to="." method="_on_interaction_area_body_exited"]

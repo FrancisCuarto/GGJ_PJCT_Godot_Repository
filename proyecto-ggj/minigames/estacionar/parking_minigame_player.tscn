@@ -1,19 +1,22 @@
 [gd_scene load_steps=4 format=3 uid="uid://m50bf7lngs8x"]
 
-[ext_resource type="Texture2D" uid="uid://xhn1kvhtkdf1" path="res://assets/minigame_textures/estacionamiento_textures/images.png" id="1_t61bn"]
 [ext_resource type="Script" uid="uid://clhp713qkgkxy" path="res://minigames/estacionar/parking_minigame_player.gd" id="1_u84qa"]
+[ext_resource type="Texture2D" uid="uid://cqa884rd6nlng" path="res://assets/minigame_textures/estacionamiento_textures/topview_car_textures/auto_top_azul.png" id="2_u84qa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u84qa"]
 
 [node name="ParkingMinigamePlayer" type="CharacterBody2D" groups=["parking_player"]]
 process_mode = 3
+rotation = 1.5707964
 script = ExtResource("1_u84qa")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 process_mode = 3
-texture = ExtResource("1_t61bn")
+position = Vector2(6.993822e-07, 16)
+texture = ExtResource("2_u84qa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 process_mode = 3
-scale = Vector2(6.08, 14.24)
+scale = Vector2(5.039999, 9.16)
 shape = SubResource("RectangleShape2D_u84qa")

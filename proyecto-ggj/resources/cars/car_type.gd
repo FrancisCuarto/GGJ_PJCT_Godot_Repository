@@ -4,6 +4,15 @@ class_name CarType
 
 @export var nombre := "Auto Genérico"
 
+
+
+
+#Sonido
+@export var motor_loop: AudioStream
+@export var motor_volumen := -8.0
+@export var bocina: AudioStream
+@export var sonido_enojo: AudioStream
+
 # Movimiento
 @export var speed_normal := 400.0
 @export var speed_lenta := 250.0

@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_fp877")
 nombre = "Mascara de Messi"
+precio = 103
 descripcion = "Mascara de messi"
 icono = ExtResource("1_xhumk")
 sprite = ExtResource("1_xhumk")

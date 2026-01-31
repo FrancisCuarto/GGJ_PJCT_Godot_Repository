@@ -4,67 +4,118 @@ class_name Estacionamiento
 # --- Señales ---
 signal carro_estacionado(carro)
 signal carro_se_fue(carro)
-signal carro_perfectamente_estacionado(carro) # La nueva señal para el éxito
+signal carro_perfectamente_estacionado(carro)
 
 # --- Estado ---
 var is_occupied: bool = false
-var car_parked: PlayerCar = null # Usamos el class_name que definimos en el jugador
+var car_parked: PlayerCar = null
 var has_parked_successfully: bool = false
 
-# Referencia al CollisionShape2D de este mismo nodo.
-# Asegúrate de que tu CollisionShape2D se llame "CollisionShape2D" y sea hijo de este Area2D.
+
+
+
+
+
 @onready var parking_spot_shape: CollisionShape2D = $CollisionShape2D
 
+func _ready() -> void:
+	# Log para confirmar que el área de estacionamiento se carga en la escena.
+	print("Área de estacionamiento '", self.name, "' inicializada.")
+
 func _physics_process(_delta: float) -> void:
-	# Si hay un auto en el área y aún no hemos registrado un estacionamiento perfecto...
-	if car_parked and not has_parked_successfully:
+	# Si ya se estacionó perfectamente, no necesitamos hacer más chequeos.
+	if has_parked_successfully:
+		return
+   
+	# Usamos get_overlapping_bodies() para una detección más directa y robusta que las señales.
+	var bodies = get_overlapping_bodies()
+	var current_car_inside: PlayerCar = null
+	
+	for body in bodies:
+		if body is PlayerCar:
+			current_car_inside = body
+			break # Encontramos un auto, es suficiente.
+
+	# Detectamos si un auto acaba de entrar o salir comparando con el estado anterior.
+	var car_just_entered = current_car_inside and not car_parked
+	var car_just_exited = not current_car_inside and car_parked
+
+	if car_just_entered:
+		is_occupied = true
+		car_parked = current_car_inside
+		has_parked_successfully = false # Reseteamos el éxito para el nuevo auto.
+		emit_signal("carro_estacionado", car_parked)
+		print("Auto [", car_parked.name, "] ha entrado al área ", self.name)
+	elif car_just_exited:
+		is_occupied = false
+		emit_signal("carro_se_fue", car_parked)
+		print("Auto [", car_parked.name, "] ha salido del área ", self.name)
+		car_parked = null
+	
+	# Si hay un auto dentro, continuamos chequeando si ha logrado el estacionamiento perfecto.
+	if car_parked:
 		check_if_perfectly_parked()
 
 func check_if_perfectly_parked():
-	# 1. Verificamos que tanto el parking como el auto tengan sus nodos de colisión listos
+	# 1. Verificaciones de seguridad para evitar errores si algo no está listo.
 	if not is_instance_valid(parking_spot_shape) or not parking_spot_shape.shape:
 		return
-	if not is_instance_valid(car_parked) or not is_instance_valid(car_parked.car_collider) or not car_parked.car_collider.shape:
+	if not is_instance_valid(car_parked) or not "car_collider" in car_parked or not is_instance_valid(car_parked.car_collider) or not car_parked.car_collider.shape:
 		return
 
-	# 2. Obtenemos los rectángulos de las formas de colisión
+	# 2. Obtenemos los rectángulos de las formas de colisión.
 	var parking_rect := parking_spot_shape.shape.get_rect()
 	var car_rect := car_parked.car_collider.shape.get_rect()
 	
-	# 3. Transformamos los rectángulos a coordenadas del mundo (globales)
+	# 3. Transformamos los rectángulos a coordenadas globales.
 	var global_parking_rect := parking_spot_shape.global_transform * parking_rect
 	var global_car_rect := car_parked.car_collider.global_transform * car_rect
 	
-	# --- INICIO DE DEPURACIÓN ---
-	print("--- Chequeando Estacionamiento ---")
-	print("Parking Rect Global: ", global_parking_rect)
-	print("Car Rect Global: ", global_car_rect)
-	print("¿Parking encierra a Car?: ", global_parking_rect.encloses(global_car_rect))
-	print("----------------------------------")
-	# --- FIN DE DEPURACIÓN ---
+	var intersection = global_parking_rect.intersection(global_car_rect)
 	
-	# 4. LA MAGIA: Comprobamos si el rectángulo del parking encierra completamente al del auto
+	var car_area = global_car_rect.size.x * global_car_rect.size.y
+	var intersection_area = intersection.size.x * intersection.size.y
+
+	var progreso = clamp(intersection_area / car_area, 0.0, 1.0)
+
+
+	
+	# 4. Comprobamos si el rectángulo del parking encierra completamente al del auto.
 	if global_parking_rect.encloses(global_car_rect):
-		has_parked_successfully = true # Marcamos como éxito para no repetir la señal
+		has_parked_successfully = true # Marcamos como éxito para no repetir la señal.
 		emit_signal("carro_perfectamente_estacionado", car_parked)
 		print("¡ÉXITO! Auto perfectamente estacionado en: ", self.name)
+		
+		
 
+# Las funciones originales _on_body_entered y _on_body_exited ya no son necesarias
+# porque la lógica ahora está centralizada en _physics_process.
+func calcular_progreso(car: PlayerCar) -> float:
+	if not is_instance_valid(car):
+		return 0.0
 
-func _on_body_entered(body: Node2D) -> void:
-	# Comprobamos que el cuerpo que entra sea un PlayerCar y que el lugar no esté ya ocupado
-	if body is PlayerCar and not is_occupied:
-		is_occupied = true
-		car_parked = body
-		has_parked_successfully = false # Reseteamos el estado de éxito
-		emit_signal("carro_estacionado", car_parked)
-		print("Un auto ha entrado al área ", self.name)
+	if not is_instance_valid(parking_spot_shape):
+		return 0.0
+	if parking_spot_shape.shape == null:
+		return 0.0
+	if not is_instance_valid(car.car_collider):
+		return 0.0
+	if car.car_collider.shape == null:
+		return 0.0
 
+	var parking_rect = parking_spot_shape.shape.get_rect()
+	var car_rect = car.car_collider.shape.get_rect()
 
-func _on_body_exited(body: Node2D) -> void:
-	# Si el auto que sale es el que teníamos registrado...
-	if body == car_parked:
-		is_occupied = false
-		car_parked = null
-		has_parked_successfully = false # Reseteamos el estado
-		emit_signal("carro_se_fue", body)
-		print("El auto ha salido del área ", self.name)
+	var global_parking = parking_spot_shape.global_transform * parking_rect
+	var global_car = car.car_collider.global_transform * car_rect
+
+	var intersection = global_parking.intersection(global_car)
+	if intersection == Rect2():
+		return 0.0
+
+	var car_area = global_car.size.x * global_car.size.y
+	if car_area <= 0.0:
+		return 0.0
+
+	var intersection_area = intersection.size.x * intersection.size.y
+	return clamp(intersection_area / car_area, 0.0, 1.0)

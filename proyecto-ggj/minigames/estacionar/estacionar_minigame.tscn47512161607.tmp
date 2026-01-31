@@ -44,11 +44,3 @@ position = Vector2(180, 149)
 
 [node name="ParkingMinigamePlayer" parent="." instance=ExtResource("4_f8fri")]
 position = Vector2(158, 594)
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-modulate = Color(0, 0.7135449, 0.2963363, 1)
-offset_left = 582.0
-offset_top = 557.0
-offset_right = 782.0
-offset_bottom = 584.0
-show_percentage = false

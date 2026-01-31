@@ -7,5 +7,5 @@
 script = ExtResource("1_0150o")
 nombre = "Auto_comun"
 sprite = ExtResource("2_3m3xf")
-tareas_posibles = Array[int]([1, 2, 0])
+tareas_posibles = Array[int]([1, 0])
 metadata/_custom_type_script = "uid://b182i385vct23"

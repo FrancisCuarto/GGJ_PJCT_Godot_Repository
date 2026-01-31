@@ -219,7 +219,7 @@ func cobrar():
 	
 func mover_hacia_target():
 	var dir = target_position - global_position
-
+	
 	if dir.length() > 5:
 		velocity = dir.normalized() * current_speed
 	else:
@@ -293,6 +293,12 @@ func iniciar_limpieza():
 	get_tree().current_scene.add_child(minijuego)
 	get_tree().paused = true
 
+#Test
+
+	
+
+
+
 	# Conectamos la señal 'terminado' del minijuego a nuestra función de callback
 	var root = minijuego.get_node("Root UI")
 	root.connect("terminado", Callable(self, "_on_limpieza_terminada"))
@@ -307,8 +313,8 @@ func iniciar_estacionamiento():
 	
 	# Conectamos la señal 'minijuego_terminado' a nuestra nueva función de callback
 	
-	var root = minijuego.get_node("estacionar_minigame")
-	root.connect("minijuego_terminado", Callable(self, "_on_estacionamiento_terminado"))
+	
+	minijuego.connect("minijuego_terminado", Callable(self, "_on_estacionamiento_terminado"))
 	
 
 
@@ -323,7 +329,7 @@ func _on_limpieza_terminada(exito: bool) -> void:
 		# irse_enojado() # Podríamos querer un castigo menor
 
 func _on_estacionamiento_terminado(exito: bool) -> void:
-	print("Resultado estacionamiento:", exito)
+	print("AUTO: señal recibida. Exito =", exito)
 	get_tree().paused = false
 
 	if exito:
@@ -357,3 +363,8 @@ func interactuar():
 
 		Estado.ESPERANDO_COBRO:
 			cobrar()
+			
+			
+
+	
+	
