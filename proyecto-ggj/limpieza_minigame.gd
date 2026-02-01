@@ -54,7 +54,7 @@ func posicion_aleatoria() -> Vector2:
 	var area_size = $Parabrisas/ManchaLayer.size
 	var mancha_size = mancha_scene.instantiate().size
 
-	var margen := 400.0
+	var margen := 200.0
 
 	return Vector2(
 		randf_range(

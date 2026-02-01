@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://clbvkpdc8aokv"
+path="res://.godot/imported/Pelota5.wav-1811c81eb2e02dd69ebeea5dde6d616b.sample"
+
+[deps]
+
+source_file="res://sounds/minigame sounds/messi minigame/Pelota5.wav"
+dest_files=["res://.godot/imported/Pelota5.wav-1811c81eb2e02dd69ebeea5dde6d616b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

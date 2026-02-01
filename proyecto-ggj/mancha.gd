@@ -24,7 +24,7 @@ func _on_mouse_entered():
 		emit_signal("limpiada")
 
 func _process(delta):
-	var rect = get_rect().grow(12)
+	var rect = get_rect().grow(0)
 	if rect.has_point(get_local_mouse_position()):
 		modulate.a -= fuerza * delta * 5
 		

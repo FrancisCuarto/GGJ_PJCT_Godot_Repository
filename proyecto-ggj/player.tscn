@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cyju4a84tud8p"]
+[gd_scene load_steps=23 format=3 uid="uid://cyju4a84tud8p"]
 
 [ext_resource type="Script" uid="uid://1tmqyv1id2ox" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="AudioStream" uid="uid://jgtswm5llt3k" path="res://sounds/player_sounds/Piña_4.wav" id="2_bwjto"]
@@ -14,6 +14,12 @@
 [ext_resource type="AudioStream" uid="uid://b7wqv2h6ojvn2" path="res://sounds/player_sounds/Piña_9.wav" id="6_q13i1"]
 [ext_resource type="AudioStream" uid="uid://dv45ffqlug3b" path="res://sounds/player_sounds/Piña_10.wav" id="7_pylmc"]
 [ext_resource type="Texture2D" uid="uid://bcvu76gret58r" path="res://assets/mask_textures/messi.png" id="8_dw050"]
+[ext_resource type="AudioStream" uid="uid://bgq77k7hwbp0l" path="res://sounds/player_sounds/Step_1.wav" id="8_pbfsw"]
+[ext_resource type="AudioStream" uid="uid://v6bk7kv8f65q" path="res://sounds/player_sounds/Step_2.wav" id="9_5tmop"]
+[ext_resource type="AudioStream" uid="uid://dp6h8boqay80a" path="res://sounds/player_sounds/Step_3.wav" id="10_7ahtn"]
+[ext_resource type="AudioStream" uid="uid://krap4tf3g5sl" path="res://sounds/player_sounds/Step_4.wav" id="11_7lmhl"]
+[ext_resource type="AudioStream" uid="uid://cej03dhr0u82i" path="res://sounds/player_sounds/Step_5.wav" id="12_dx0e4"]
+[ext_resource type="AudioStream" uid="uid://b32116bwychbw" path="res://sounds/player_sounds/Step_6.wav" id="13_jm5j8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n7ghd"]
 animations = [{
@@ -75,6 +81,7 @@ height = 210.0
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_onrkg")
 sonidos_golpe = Array[AudioStream]([ExtResource("2_bwjto"), ExtResource("3_606se"), ExtResource("4_u1c27"), ExtResource("5_op7ga"), ExtResource("6_q13i1"), ExtResource("7_pylmc")])
+sonidos_pasos = Array[AudioStream]([ExtResource("8_pbfsw"), ExtResource("9_5tmop"), ExtResource("10_7ahtn"), ExtResource("11_7lmhl"), ExtResource("12_dx0e4"), ExtResource("13_jm5j8")])
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -99,3 +106,6 @@ current = true
 
 [node name="AudioGolpe" type="AudioStreamPlayer2D" parent="."]
 volume_db = 9.674
+
+[node name="Pasos" type="AudioStreamPlayer2D" parent="."]
+volume_db = 13.302
