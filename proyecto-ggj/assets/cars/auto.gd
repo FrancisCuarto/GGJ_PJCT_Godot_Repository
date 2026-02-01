@@ -72,29 +72,7 @@ func actualizar_color_paciencia():
 		patience_bar.modulate = Color.RED
 #--------------------------------------------------------------
 
-"""func asignar_tarea_random():
-	if label_tarea == null:
-		return
-	if car_type.tareas_posibles.is_empty():
-		tarea = Tarea.NADA
-		return
-		
-#Toma la tarea del resource car_type
-	tarea = car_type.tareas_posibles.pick_random()
-	
-	label_tarea.text = Tarea.keys()[tarea]
-	
-	
-	#CAMBIA EL COLOR DEL TEXTO SEGUN LA TAREA
-	match tarea:
-		Tarea.LIMPIAR:
-			label_tarea.modulate = Color.CYAN
-		Tarea.ESTACIONAR:
-			label_tarea.modulate = Color.GREEN
-		Tarea.PAGAR:
-			label_tarea.modulate = Color.YELLOW
-	print("Auto", self, "tarea asignada:", Tarea.keys()[tarea])"""
-	
+
 	
 func asignar_tarea_random():
 	if label_tarea == null:
@@ -461,9 +439,9 @@ func interactuar():
 		Estado.ESPERANDO:
 			match tarea:
 				Tarea.LIMPIAR:
-					iniciar_messi_minijuego()
+					iniciar_limpieza()
 				Tarea.ESTACIONAR:
-					iniciar_messi_minijuego()
+					iniciar_estacionamiento()
 				Tarea.MESSI:
 					iniciar_messi_minijuego()
 				# después agregamos ESTACIONAR, etc.

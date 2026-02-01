@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cg7jjolw8kx3r"
+path="res://.godot/imported/Cumbia 8bit mejorada.mp3-5db9b65303bdf8f415290de49089c64d.mp3str"
+
+[deps]
+
+source_file="res://sounds/music/Cumbia 8bit mejorada.mp3"
+dest_files=["res://.godot/imported/Cumbia 8bit mejorada.mp3-5db9b65303bdf8f415290de49089c64d.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbgcb0pr3l1y7"]
+[gd_scene load_steps=8 format=3 uid="uid://bbgcb0pr3l1y7"]
 
 [ext_resource type="Script" uid="uid://djwbngbo5lgj3" path="res://minigames/messi/messi_minigame.gd" id="1_c78ks"]
 [ext_resource type="Texture2D" uid="uid://cbgkgqnjlyh3v" path="res://backgrounds/LA_BANDA_MA_LOCA.png" id="1_ws4pa"]
 [ext_resource type="Script" uid="uid://d1t6q7gde17ln" path="res://pelota.gd" id="2_c78ks"]
 [ext_resource type="Texture2D" uid="uid://dupo1tb0m6jl5" path="res://minigames/messi/PELOTA_FUTBOL.png" id="3_8wlv6"]
+[ext_resource type="AudioStream" uid="uid://dtah8hfv35cp8" path="res://sounds/minigame sounds/messi minigame/Quilombo.wav" id="5_8wlv6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yyvxv"]
 radius = 73.24616
@@ -25,7 +26,6 @@ texture = ExtResource("1_ws4pa")
 [node name="Pelota" type="Area2D" parent="."]
 position = Vector2(583, 0)
 script = ExtResource("2_c78ks")
-velocidad = 800.0
 aceleracion = 1000.0
 fuerza_rebote = 500.0
 metadata/_edit_group_ = true
@@ -40,6 +40,7 @@ shape = SubResource("CircleShape2D_yyvxv")
 [node name="Piso" type="Area2D" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="Piso"]
+z_index = -1
 offset_left = -15.0
 offset_top = 697.0
 offset_right = 25.0
@@ -59,5 +60,9 @@ offset_top = 27.0
 offset_right = 231.0
 offset_bottom = 57.0
 show_percentage = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_8wlv6")
+autoplay = true
 
 [connection signal="area_entered" from="Pelota" to="Pelota" method="_on_area_entered"]

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://d3wlernwvlht" path="res://resources/mascaras/mask.gd" id="2_nigly"]
 [ext_resource type="Resource" uid="uid://odx6kbr757gd" path="res://resources/mascaras/mascara_messi.tres" id="3_c7tp6"]
 [ext_resource type="Resource" uid="uid://cterteoa6qpxw" path="res://resources/mascaras/mascara_comandantefort.tres" id="4_c7tp6"]
-[ext_resource type="Texture2D" uid="uid://y1qai2vn2afo" path="res://backgrounds/fondo_tienda.png" id="5_jvf0h"]
+[ext_resource type="Texture2D" uid="uid://cnk446c5noj5n" path="res://backgrounds/TIENDA_FONDO.png" id="5_jvf0h"]
 
 [node name="ShopUI" type="CanvasLayer"]
 process_mode = 3

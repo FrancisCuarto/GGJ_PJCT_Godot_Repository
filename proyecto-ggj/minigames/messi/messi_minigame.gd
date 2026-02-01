@@ -17,6 +17,13 @@ func _ready():
 
 	progress_bar.value = 0
 
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	Input.set_custom_mouse_cursor(
+		preload("res://assets/minigame_textures/texturas/BOTAA_FUTBOL.png"),
+		Input.CURSOR_ARROW,
+		Vector2(32, 10) # centro del trapo
+	)
+
 
 func _on_rebote():
 	progreso += PROGRESO_POR_REBOTE

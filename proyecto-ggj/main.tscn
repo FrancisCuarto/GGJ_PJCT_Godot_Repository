@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cmb4mywi2q15d"]
+[gd_scene load_steps=31 format=3 uid="uid://cmb4mywi2q15d"]
 
 [ext_resource type="Script" uid="uid://b184pciuuwnv2" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://ll7skkn03pof" path="res://backgrounds/Fondo_Lineart_Weno.png" id="2_getpj"]
@@ -21,6 +21,7 @@
 [ext_resource type="FontFile" uid="uid://bkp4ybedmvrxb" path="res://assets/fuentes/GrapeSoda.ttf" id="17_cegan"]
 [ext_resource type="Theme" uid="uid://byi6wv5kft13" path="res://resources/themes/main_theme.tres" id="19_cegan"]
 [ext_resource type="PackedScene" uid="uid://dbfw7vlrcbs0o" path="res://Shop/shop_ui.tscn" id="21_getpj"]
+[ext_resource type="AudioStream" uid="uid://cg7jjolw8kx3r" path="res://sounds/music/Cumbia 8bit mejorada.mp3" id="22_ryguw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(1205, 494)
@@ -265,6 +266,10 @@ theme = ExtResource("19_cegan")
 text = "Ir a la tienda"
 
 [node name="ShopUI" parent="." groups=["shop_ui"] instance=ExtResource("21_getpj")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_ryguw")
+autoplay = true
 
 [connection signal="body_entered" from="street_sides/lado_izquierdo" to="street_sides/lado_izquierdo" method="_on_body_entered"]
 [connection signal="body_entered" from="street_sides/lado_derecho" to="street_sides/lado_derecho" method="_on_body_entered"]
