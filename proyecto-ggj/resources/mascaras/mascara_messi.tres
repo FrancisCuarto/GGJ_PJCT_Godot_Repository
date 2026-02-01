@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="Mask" load_steps=3 format=3 uid="uid://odx6kbr757gd"]
 
 [ext_resource type="Script" uid="uid://d3wlernwvlht" path="res://resources/mascaras/mask.gd" id="1_fp877"]
-[ext_resource type="Texture2D" uid="uid://bcvu76gret58r" path="res://assets/mask_textures/messi.png" id="1_xhumk"]
+[ext_resource type="Texture2D" uid="uid://cslei2dsfj0tu" path="res://assets/mask_textures/AHRE.png" id="1_xhumk"]
 
 [resource]
 script = ExtResource("1_fp877")
-desbloquea_minijuego = "messi_minigame"
-nombre = "Mascara de Messi"
-precio = 103
-descripcion = "Mascara de messi"
+desbloquea_minijuego = "Mascara Adriel"
+nombre = "Mascara de Adriel"
+precio = 6000
+descripcion = "De parte de trukini"
 icono = ExtResource("1_xhumk")
 sprite = ExtResource("1_xhumk")
 metadata/_custom_type_script = "uid://d3wlernwvlht"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cmb4mywi2q15d"]
+[gd_scene load_steps=52 format=3 uid="uid://cmb4mywi2q15d"]
 
 [ext_resource type="Script" uid="uid://b184pciuuwnv2" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cyju4a84tud8p" path="res://player.tscn" id="2_h2yge"]
@@ -38,6 +38,13 @@
 [ext_resource type="Texture2D" uid="uid://xleppb6k0q7w" path="res://UI assets/INTERFAZ_CAPA 2_ INVENTARIO FONDO.png" id="26_0rl1p"]
 [ext_resource type="Texture2D" uid="uid://dpuxtqc68nst2" path="res://UI assets/playerstate/TRAPITO_CARA_CANCHERO.png" id="27_jq2sk"]
 [ext_resource type="Texture2D" uid="uid://dbwlyfcctrcj8" path="res://backgrounds/FIN DE DIA.png" id="36_b1qrp"]
+[ext_resource type="AudioStream" uid="uid://ca12ckx5ssx3i" path="res://sounds/system/Victoria.wav" id="37_come4"]
+[ext_resource type="Script" uid="uid://d3wlernwvlht" path="res://resources/mascaras/mask.gd" id="39_0n3wm"]
+[ext_resource type="Resource" uid="uid://odx6kbr757gd" path="res://resources/mascaras/mascara_messi.tres" id="40_qnost"]
+[ext_resource type="Resource" uid="uid://cterteoa6qpxw" path="res://resources/mascaras/mascara_comandantefort.tres" id="41_wnkbs"]
+[ext_resource type="Resource" uid="uid://bsabmxaap7j42" path="res://resources/mascaras/mascara_ghibli.tres" id="42_f6a44"]
+[ext_resource type="Resource" uid="uid://ibagknp0ac74" path="res://resources/mascaras/mascara_jason.tres" id="43_0cbny"]
+[ext_resource type="Resource" uid="uid://c1qlwcyuwpcpr" path="res://resources/mascaras/mascara_adriel.tres" id="44_hrvbo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6jrf"]
 
@@ -399,13 +406,16 @@ theme_override_colors/font_hover_color = Color(0.85490197, 0.8, 0.16078432, 1)
 text = "Ir a la tienda"
 flat = true
 
+[node name="SonidoFinDIa" type="AudioStreamPlayer2D" parent="EndDayUI"]
+stream = ExtResource("37_come4")
+volume_db = 24.0
+
 [node name="ShopUI" parent="." groups=["shop_ui"] instance=ExtResource("21_getpj")]
-visible = false
+mascaras_disponibles = Array[ExtResource("39_0n3wm")]([ExtResource("40_qnost"), ExtResource("41_wnkbs"), ExtResource("42_f6a44"), ExtResource("43_0cbny"), ExtResource("44_hrvbo")])
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("22_ryguw")
-volume_db = -80.0
 autoplay = true
 
 [connection signal="timeout" from="car_spawner/spawner/Timer" to="car_spawner/spawner/spawn_point" method="_on_timer_timeout"]

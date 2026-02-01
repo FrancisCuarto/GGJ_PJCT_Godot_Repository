@@ -17,8 +17,9 @@ extends CharacterBody2D
 
 const ICONO_LIMPIAR     := preload("res://assets/cars textures/Icons/BURBUJA_LIMPIEZA.png")
 const ICONO_ESTACIONAR := preload("res://assets/cars textures/Icons/CONO.png")
-const ICONO_MESSI      := preload("res://assets/cars textures/Icons/ATENCION.png")
+const ICONO_MESSI      := preload("res://minigames/messi/PELOTA_FUTBOL.png")
 const ICONO_COBRAR     := preload("res://assets/cars textures/Icons/MONEDA.png")
+
 
 #@onready var audio_bocina := $AudioBocina
 #@onready var audio_enojo := $AudioEnojo
@@ -172,7 +173,7 @@ func irse_enojado():
 	if queue_manager:
 		queue_manager.liberar_slot(self)
 
-	target_position = global_position + Vector2(2000, 0)
+	target_position = global_position + Vector2(10000, 0)
 	current_speed = speed_normal
 	
 	

@@ -6,7 +6,7 @@ extends CanvasLayer
 signal minijuego_terminado(exito: bool)
 
 var progreso := 300
-const PROGRESO_POR_REBOTE := 150
+const PROGRESO_POR_REBOTE := 135
 
 
 func _process(delta):

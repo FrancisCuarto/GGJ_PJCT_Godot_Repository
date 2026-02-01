@@ -6,7 +6,7 @@ extends Node
 # -----------------------------
 
 
-var dinero_total := 5000
+var dinero_total := 50000
 var dinero_del_dia := 0
 
 

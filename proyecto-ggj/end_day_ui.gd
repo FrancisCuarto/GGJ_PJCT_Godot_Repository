@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var day_label = $FondoFinDia/Content/TitleLabel
 @onready var money_label = $FondoFinDia/Content/MoneyLabel
 @onready var continue_button = $FondoFinDia/Content/ContinueButton
+@onready var audio_fin_dia: AudioStreamPlayer2D = $SonidoFinDIa
 
 @onready var fondo: TextureRect = $FondoFinDia
 
@@ -51,7 +52,7 @@ func _on_dia_finalizado():
 
 	day_label.text = "Día %d finalizado" % (DayManager.dia_actual)
 	money_label.text = "Dinero ganado: $%d" % MoneyManager.dinero_del_dia
-
+	audio_fin_dia.play()
 
 func limpiar_autos_del_dia():
 	print("Limpieza total de autos")

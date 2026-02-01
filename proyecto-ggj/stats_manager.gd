@@ -3,16 +3,17 @@ extends Node
 # -----------------------------
 # ESTADÍSTICAS BASE
 # -----------------------------
+@export var vida_max := 100
+@export var estamina_max := 100
+@export var carisma_max := 100
 
-@onready var vida_max := 100
-@onready var estamina_max := 100
-@onready var carisma_max := 50.0
+@onready var vida := 100
+@onready var estamina := 100
+@onready var carisma := 50.0
 
 
 
-var vida := vida_max
-var estamina := estamina_max
-var carisma := carisma_max
+
 
 # -----------------------------
 # CICLO DEL DÍA

@@ -4,11 +4,11 @@ extends Node
 # CONFIGURACIÓN
 # -----------------------------
 # Avance por bloques
-const BLOQUE_HORA := 0.1 # 30 minutos
+const BLOQUE_HORA := 0.5 # 30 minutos
 
 var acumulador_tiempo := 0.0
 
-@export var duracion_dia_real := 20.0 # segundos reales (3 minutos)
+@export var duracion_dia_real := 15.0 # segundos reales (3 minutos)
 signal dia_finalizado
 
 # Horario laboral

@@ -33,7 +33,7 @@ texture = ExtResource("2_onrkg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("15_u1c27")
-animation = &"idle"
+animation = &"walk"
 
 [node name="MaskSprite" type="Sprite2D" parent="."]
 position = Vector2(-50, -81)

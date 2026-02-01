@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://bbgcb0pr3l1y7"]
 
 [ext_resource type="Script" uid="uid://djwbngbo5lgj3" path="res://minigames/messi/messi_minigame.gd" id="1_c78ks"]
-[ext_resource type="Texture2D" uid="uid://cbgkgqnjlyh3v" path="res://backgrounds/LA_BANDA_MA_LOCA.png" id="1_ws4pa"]
+[ext_resource type="Texture2D" uid="uid://djsgu0jtq1uxv" path="res://backgrounds/LA_BANDA_MA_LOCA_CORRECION.png" id="2_bbn6r"]
 [ext_resource type="Script" uid="uid://d1t6q7gde17ln" path="res://pelota.gd" id="2_c78ks"]
 [ext_resource type="AudioStream" uid="uid://biytsaw2g41c7" path="res://sounds/minigame sounds/messi minigame/Pelota1.wav" id="2_rlgft"]
 [ext_resource type="Texture2D" uid="uid://dupo1tb0m6jl5" path="res://minigames/messi/PELOTA_FUTBOL.png" id="3_8wlv6"]
@@ -29,7 +29,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_ws4pa")
+texture = ExtResource("2_bbn6r")
 
 [node name="Pelota" type="Area2D" parent="."]
 process_mode = 3
