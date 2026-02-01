@@ -1,7 +1,66 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyju4a84tud8p"]
+[gd_scene load_steps=11 format=3 uid="uid://cyju4a84tud8p"]
 
 [ext_resource type="Script" uid="uid://1tmqyv1id2ox" path="res://player.gd" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://2dckux5r1c8g" path="res://Player/Trapito Grande Boceto.png" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://bvya4ulj22qh5" path="res://Player/Puchito Uy quieto.png" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://t51k0jjqdgf4" path="res://Player/Puchito Piña.png" id="3_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://dsat8bvsilyjs" path="res://Player/Puchito Run 2.png" id="3_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://dihpsbp4gggq3" path="res://Player/Puchito Run.png" id="4_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://ci4xdj6jtccyy" path="res://Player/Puchito Walk 2.png" id="5_dw050"]
+[ext_resource type="Texture2D" uid="uid://cqyo7sgbt7xgk" path="res://Player/Puchito Walk.png" id="6_b26j0"]
+[ext_resource type="Texture2D" uid="uid://bcvu76gret58r" path="res://assets/mask_textures/messi.png" id="8_dw050"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n7ghd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_onrkg")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1jxqw")
+}],
+"loop": true,
+"name": &"pegar",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2hs0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dw050")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_b26j0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1jxqw")
+}],
+"loop": true,
+"name": &"run",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_dw050")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2hs0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_b26j0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1jxqw")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3pqv"]
 radius = 26.0
@@ -12,14 +71,23 @@ script = ExtResource("1_onrkg")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_onrkg")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n7ghd")
+animation = &"idle"
+
 [node name="MaskSprite" type="Sprite2D" parent="."]
-position = Vector2(0, -99)
-scale = Vector2(0.52000004, 0.43999955)
+position = Vector2(-14.000001, -81)
+scale = Vector2(0.8, 0.677)
+texture = ExtResource("8_dw050")
+offset = Vector2(20, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_i3pqv")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 current = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

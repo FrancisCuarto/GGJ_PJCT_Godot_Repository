@@ -7,4 +7,4 @@ extends Panel
 func _process(delta):
 	# Día actual
 	day_label.text = "Día %d" % DayManager.dia_actual
-	money_label.text = "Dinero: $%d" % MoneyManager.dinero_total
+	money_label.text = "%d" % MoneyManager.dinero_total

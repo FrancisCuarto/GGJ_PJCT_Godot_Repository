@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://caacje6vy46kj"]
+[gd_scene load_steps=3 format=3 uid="uid://caacje6vy46kj"]
 
 [ext_resource type="Script" uid="uid://7pujmnurpata" path="res://systems/main_menu.gd" id="1_a7oru"]
+[ext_resource type="AudioStream" uid="uid://dqoecnilfk11m" path="res://sounds/music/menu ggj 2026.wav" id="2_vq1cu"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_a7oru")
@@ -40,5 +41,9 @@ text = "Opciones"
 [node name="ButtonSalir" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Salir"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_vq1cu")
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/ButtonJugar" to="." method="_on_button_jugar_pressed"]

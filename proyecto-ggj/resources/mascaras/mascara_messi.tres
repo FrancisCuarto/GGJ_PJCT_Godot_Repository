@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_fp877")
+desbloquea_minijuego = "messi_minigame"
 nombre = "Mascara de Messi"
 precio = 103
 descripcion = "Mascara de messi"

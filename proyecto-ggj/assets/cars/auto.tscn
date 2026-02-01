@@ -39,7 +39,7 @@ label_settings = SubResource("LabelSettings_po63d")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("3_ko1h0")
-animation = &"move"
+animation = &"ferrari_idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4.007082, 11.000002)

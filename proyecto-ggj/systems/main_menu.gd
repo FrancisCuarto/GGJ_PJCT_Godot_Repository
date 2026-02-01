@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var btn_continuar = $VBoxContainer/ButtonContinuar
 @onready var btn_opciones = $VBoxContainer/ButtonOpciones
 @onready var btn_salir = $VBoxContainer/ButtonSalir
+@export var sonido_golpe :Array[AudioStream] = []
 
 func _ready():
 	btn_jugar.pressed.connect(_on_jugar)
