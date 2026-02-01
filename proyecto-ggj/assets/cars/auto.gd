@@ -387,18 +387,15 @@ func iniciar_messi_minijuego():
 	get_tree().current_scene.add_child(minijuego)
 	get_tree().paused = true
 
-	minijuego.connect(
-		"minijuego_terminado",
-		Callable(self, "_on_messi_minijuego_terminado")
-	)
+	minijuego.connect("minijuego_terminado",Callable(self, "_on_messi_minijuego_terminado"))
 
-func _on_messi_minijuego_terminado(exito: bool):
+func _on_messi_minijuego_terminado(exito: bool) -> void:
 	get_tree().paused = false
 
 	if exito:
 		tarea_completada()
 	else:
-		paciencia -= 5
+		irse()
 
 
 func _on_limpieza_terminada(exito: bool) -> void:
@@ -439,9 +436,9 @@ func interactuar():
 		Estado.ESPERANDO:
 			match tarea:
 				Tarea.LIMPIAR:
-					iniciar_limpieza()
+					iniciar_messi_minijuego()
 				Tarea.ESTACIONAR:
-					iniciar_estacionamiento()
+					iniciar_messi_minijuego()
 				Tarea.MESSI:
 					iniciar_messi_minijuego()
 				# después agregamos ESTACIONAR, etc.
