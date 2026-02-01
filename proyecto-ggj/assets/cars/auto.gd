@@ -261,7 +261,12 @@ func cobrar():
 	$AudioStreamPlayer2D.play()
 	MoneyManager.agregar_dinero(dinero_a_pagar)
 	print("Auto pagó $", dinero_a_pagar)
+	# ⭐ AUMENTAR CARISMA
+	StatsManager.ganar_carisma(1)
+	
 	irse()	
+	
+	
 	
 func mover_hacia_target():
 	var dir = target_position - global_position

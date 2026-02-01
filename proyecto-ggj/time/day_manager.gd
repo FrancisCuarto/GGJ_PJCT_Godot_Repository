@@ -37,7 +37,7 @@ func _ready():
 # -----------------------------
 
 func iniciar_dia():
-
+	
 	MoneyManager.iniciar_dia()
 
 	print("Inicia el día ", dia_actual)

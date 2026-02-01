@@ -1,5 +1,9 @@
 extends Node
 
+
+
+
+
 var mascaras_compradas: Array[Mask] = []
 var mascara_equipada: Mask = null
 

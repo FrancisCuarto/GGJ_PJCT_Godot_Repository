@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cmb4mywi2q15d"]
+[gd_scene load_steps=34 format=3 uid="uid://cmb4mywi2q15d"]
 
 [ext_resource type="Script" uid="uid://b184pciuuwnv2" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://ll7skkn03pof" path="res://backgrounds/Fondo_Lineart_Weno.png" id="2_getpj"]
@@ -21,13 +21,9 @@
 [ext_resource type="FontFile" uid="uid://bkp4ybedmvrxb" path="res://assets/fuentes/GrapeSoda.ttf" id="17_cegan"]
 [ext_resource type="Texture2D" uid="uid://bx5mcy11g53h5" path="res://UI assets/INTERFAZ_CAPA 1_FONDOR RELOJ.png" id="18_d13ii"]
 [ext_resource type="Theme" uid="uid://byi6wv5kft13" path="res://resources/themes/main_theme.tres" id="19_cegan"]
-[ext_resource type="Texture2D" uid="uid://bj22fjj2s6k7y" path="res://UI assets/INTERFAZ_CAPA 2_ ESTADISTICA_FONDO.png" id="19_xuqvo"]
 [ext_resource type="Texture2D" uid="uid://ty4si2iorvud" path="res://UI assets/RELOJ  AGU 3 (1).png" id="20_0odxb"]
-[ext_resource type="Script" uid="uid://sgrkxjbnqik0" path="res://stats_ui.gd" id="20_kq58d"]
 [ext_resource type="Script" uid="uid://coke4dp5logfx" path="res://aguja.gd" id="20_lswn8"]
-[ext_resource type="Texture2D" uid="uid://eubywjyaakcb" path="res://UI assets/INTERFAZ_CAPA 3_ ESTADISTICA_MARCO.png" id="20_qsp4k"]
 [ext_resource type="PackedScene" uid="uid://dbfw7vlrcbs0o" path="res://Shop/shop_ui.tscn" id="21_getpj"]
-[ext_resource type="Texture2D" uid="uid://dygf4p1rg14om" path="res://UI assets/INTERFAZ_CAPA 2.5_ ESTADISTICA_ICONOS.png" id="21_kq58d"]
 [ext_resource type="AudioStream" uid="uid://cg7jjolw8kx3r" path="res://sounds/music/Cumbia 8bit mejorada.mp3" id="22_ryguw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
@@ -202,60 +198,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("18_d13ii")
-
-[node name="Capa1" type="TextureRect" parent="UI/PanelBase"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("19_xuqvo")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/PanelBase/Capa1"]
-layout_mode = 0
-offset_left = 320.0
-offset_top = 556.0
-offset_right = 580.0
-offset_bottom = 691.0
-theme_override_constants/separation = 16
-script = ExtResource("20_kq58d")
-
-[node name="Vida" type="ProgressBar" parent="UI/PanelBase/Capa1/VBoxContainer"]
-modulate = Color(0.66719395, 0, 0.14129505, 1)
-layout_mode = 2
-theme = ExtResource("19_cegan")
-value = 100.0
-
-[node name="Estamina" type="ProgressBar" parent="UI/PanelBase/Capa1/VBoxContainer"]
-modulate = Color(0.92941177, 0.90588236, 0.101960786, 1)
-layout_mode = 2
-theme = ExtResource("19_cegan")
-value = 100.0
-
-[node name="Carisma" type="ProgressBar" parent="UI/PanelBase/Capa1/VBoxContainer"]
-modulate = Color(0.9585933, 0.00079512, 0.9652894, 1)
-layout_mode = 2
-theme = ExtResource("19_cegan")
-value = 50.0
-
-[node name="Capa2" type="TextureRect" parent="UI/PanelBase/Capa1"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("20_qsp4k")
-
-[node name="Capa3" type="TextureRect" parent="UI/PanelBase/Capa1"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("21_kq58d")
 
 [node name="Reloj" type="Control" parent="UI"]
 layout_mode = 3

@@ -1,11 +1,13 @@
 extends Node
-""""class_name SaveManager"""
 
 
-"""SaveManager.guardar()
-SaveManager.cargar()
-SaveManager.hay_partida()
 
+#SaveManager.guardar()
+#SaveManager.cargar()
+#SaveManager.hay_partida()
+
+var mascaras_compradas := MaskManager.mascaras_compradas
+var mascara_equipada := MaskManager.mascara_equipada
 
 const SAVE_PATH := "user://savegame.json"
 
@@ -79,4 +81,4 @@ func cargar_desde_save(ids_compradas: Array, id_equipada: String):
 			mascaras_compradas.append(mask)
 
 	if id_equipada != "":
-		mascara_equipada = obtener_mascara_por_id(id_equipada)"""
+		mascara_equipada = obtener_mascara_por_id(id_equipada)
