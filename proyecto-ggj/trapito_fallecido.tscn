@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4t1aw2ygbik0"]
+
+[ext_resource type="Texture2D" uid="uid://b01gn1d2ivgfo" path="res://assets/trapito/FIN DEL JUEGO FONDO.png" id="1_1igyd"]
+[ext_resource type="Theme" uid="uid://byi6wv5kft13" path="res://resources/themes/main_theme.tres" id="2_e7ygj"]
+[ext_resource type="Script" path="res://trapito_fallecido.gd" id="3_script"]
+
+[node name="TRAPITO_FALLECIDO" type="Node2D"]
+script = ExtResource("3_script")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_1igyd")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 263.0
+offset_top = 49.0
+offset_right = 463.0
+offset_bottom = 81.0
+theme = ExtResource("2_e7ygj")
+text = "FIN DEL JUEGO "
+
+[node name="si" type="Label" parent="."]
+offset_left = 237.0
+offset_top = 325.0
+offset_right = 277.0
+offset_bottom = 357.0
+theme = ExtResource("2_e7ygj")
+text = "SI"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 431.0
+offset_top = 328.0
+offset_right = 471.0
+offset_bottom = 360.0
+theme = ExtResource("2_e7ygj")
+text = "NO"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 283.0
+offset_top = 260.0
+offset_right = 431.0
+offset_bottom = 292.0
+theme = ExtResource("2_e7ygj")
+text = "CONTINUAR"

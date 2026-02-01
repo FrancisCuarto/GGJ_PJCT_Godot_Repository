@@ -18,6 +18,7 @@ var attack_timer = 0.0
 
 # Hitbox
 var hitbox: Area2D
+var stats
 
 func _ready():
 	# Initialize StatsManager as a component
@@ -54,7 +55,7 @@ func _physics_process(delta):
 	
 	# Handle Attack
 	if Input.is_action_just_pressed("ui_accept") and not is_attacking: # Spacebar or Enter
-		attack()
+		start_attack()
 
 	# Get the input direction and handle height/width movement
 	var direction_x = Input.get_axis("left", "right")
@@ -137,3 +138,7 @@ func _on_death():
 	print("Trapito Died!")
 	set_physics_process(false)
 	modulate = Color(0.2, 0.2, 0.2)
+	
+	# Wait a bit before showing game over
+	await get_tree().create_timer(1.0).timeout
+	get_tree().change_scene_to_file("res://trapito_fallecido.tscn")

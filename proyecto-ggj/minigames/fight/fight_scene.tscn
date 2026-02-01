@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhos3fc5215ee"]
+[gd_scene load_steps=12 format=3 uid="uid://dhos3fc5215ee"]
 
 [ext_resource type="Texture2D" uid="uid://nyepemdajd53" path="res://backgrounds/test_background4.png" id="1_00nlr"]
 [ext_resource type="Script" uid="uid://b67457phq2y8l" path="res://minigames/fight/trapito.gd" id="1_trapito"]
-[ext_resource type="Texture2D" uid="uid://bx5mcy11g53h5" path="res://UI assets/INTERFAZ_CAPA 1_FONDOR RELOJ.png" id="2_7kgfk"]
 [ext_resource type="Script" uid="uid://c1enwawrjy3yd" path="res://minigames/fight/policia.gd" id="2_policia"]
 [ext_resource type="Texture2D" uid="uid://bx5mcy11g53h5" path="res://UI assets/INTERFAZ_CAPA 1_FONDOR RELOJ.png" id="3_2smfs"]
 [ext_resource type="Texture2D" uid="uid://bdokf8tb85v4i" path="res://assets/trapito/TRAPITO_NORMAL.png" id="3_trapito_tex"]
@@ -53,7 +52,7 @@ offset_right = 602.0
 offset_bottom = 339.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_7kgfk")
+texture = ExtResource("3_2smfs")
 
 [node name="Trapito" type="CharacterBody2D" parent="."]
 position = Vector2(300, 400)
@@ -100,7 +99,7 @@ offset_right = 320.0
 offset_bottom = 47.0
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(-46, 415)
+position = Vector2(-70, 246)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]

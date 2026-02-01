@@ -49,9 +49,9 @@ func _physics_process(delta):
 		
 		# Flip sprite to face player
 		if direction.x < 0:
-			sprite.flip_h = true
-		else:
 			sprite.flip_h = false
+		else:
+			sprite.flip_h = true
 			
 		if distance > ATTACK_RANGE:
 			velocity = direction * SPEED
