@@ -1,0 +1,61 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://57ojseoufvpb"]
+
+[ext_resource type="Texture2D" uid="uid://bvya4ulj22qh5" path="res://Player/Puchito Uy quieto.png" id="1_y3d61"]
+[ext_resource type="Texture2D" uid="uid://t51k0jjqdgf4" path="res://Player/Puchito Piña.png" id="2_nuu2u"]
+[ext_resource type="Texture2D" uid="uid://dsat8bvsilyjs" path="res://Player/Puchito Run 2.png" id="3_07r6c"]
+[ext_resource type="Texture2D" uid="uid://ci4xdj6jtccyy" path="res://Player/Puchito Walk 2.png" id="4_vifeg"]
+[ext_resource type="Texture2D" uid="uid://cqyo7sgbt7xgk" path="res://Player/Puchito Walk.png" id="5_yqjog"]
+[ext_resource type="Texture2D" uid="uid://dihpsbp4gggq3" path="res://Player/Puchito Run.png" id="6_fehnl"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_y3d61")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nuu2u")
+}],
+"loop": true,
+"name": &"pegar",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_07r6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vifeg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yqjog")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_fehnl")
+}],
+"loop": true,
+"name": &"run",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_vifeg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_07r6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yqjog")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_fehnl")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
