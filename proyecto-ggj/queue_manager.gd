@@ -34,7 +34,12 @@ func remover_auto(auto) -> void:
 
 
 func hay_espacio() -> bool:
-	return autos_activos.size() < max_autos
+	# Priorizamos la disponibilidad de slots (sectores) reales.
+	# "Máximo 1 por cada sector"
+	for slot in slots:
+		if not _slot_ocupado(slot):
+			return true
+	return false
 
 func resetear_dia():
 	# Simplemente limpiamos la lista de autos activos.
