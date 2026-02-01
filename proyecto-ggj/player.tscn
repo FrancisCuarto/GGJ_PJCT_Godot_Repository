@@ -98,3 +98,4 @@ shape = SubResource("CapsuleShape2D_i3pqv")
 current = true
 
 [node name="AudioGolpe" type="AudioStreamPlayer2D" parent="."]
+volume_db = 9.674

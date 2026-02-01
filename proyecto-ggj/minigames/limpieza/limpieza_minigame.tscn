@@ -76,5 +76,3 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_2ekaa")
 process_mode = 3
 z_index = 100
 anchors_preset = 0
-
-[node name="AudioLimpiar" type="AudioStreamPlayer2D" parent="Root UI"]
