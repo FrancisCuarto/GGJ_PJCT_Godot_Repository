@@ -2,6 +2,10 @@ extends Control
 
 @onready var label: Label = $Label
 @onready var trapito_rect: TextureRect = $Background/trapito_cabeza_inicio
+@onready var nombre_juego: TextureRect = $Background/nombre_juego
+# o Label, si fuera Label:
+# @onready var nombre_juego: Label = $Background/nombre_juego
+
 
 const SMOKE_TEXTURE = preload("res://assets/inicio/HUMO.png")
 var smoke_rect: TextureRect
@@ -70,6 +74,15 @@ func _transition_to_menu() -> void:
 	
 	# Label fades
 	tween.tween_property(label, "modulate:a", 0.0, 0.5)
+	# Título "PUCHITO" se desvanece
+	if nombre_juego:
+		tween.tween_property(
+			nombre_juego,
+			"modulate:a",
+			0.0,
+			0.8
+		)
+
 	
 	# Trapito moves to the right ("walks")
 	if trapito_rect:

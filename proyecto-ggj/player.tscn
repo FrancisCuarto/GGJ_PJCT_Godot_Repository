@@ -1,16 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://cyju4a84tud8p"]
+[gd_scene load_steps=18 format=3 uid="uid://cyju4a84tud8p"]
 
 [ext_resource type="Script" uid="uid://1tmqyv1id2ox" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="AudioStream" uid="uid://jgtswm5llt3k" path="res://sounds/player_sounds/Piña_4.wav" id="2_bwjto"]
 [ext_resource type="Texture2D" uid="uid://bvya4ulj22qh5" path="res://Player/Puchito Uy quieto.png" id="2_onrkg"]
-[ext_resource type="Texture2D" uid="uid://t51k0jjqdgf4" path="res://Player/Puchito Piña.png" id="3_1jxqw"]
-[ext_resource type="Texture2D" uid="uid://dsat8bvsilyjs" path="res://Player/Puchito Run 2.png" id="3_2hs0m"]
 [ext_resource type="AudioStream" uid="uid://bbh2r52b1fr8h" path="res://sounds/player_sounds/Piña_6.wav" id="3_606se"]
-[ext_resource type="Texture2D" uid="uid://dihpsbp4gggq3" path="res://Player/Puchito Run.png" id="4_1jxqw"]
 [ext_resource type="AudioStream" uid="uid://b3oxqxsu7rftg" path="res://sounds/player_sounds/Piña_7.wav" id="4_u1c27"]
-[ext_resource type="Texture2D" uid="uid://ci4xdj6jtccyy" path="res://Player/Puchito Walk 2.png" id="5_dw050"]
 [ext_resource type="AudioStream" uid="uid://djbg2gtnev2xu" path="res://sounds/player_sounds/Piña_8.wav" id="5_op7ga"]
-[ext_resource type="Texture2D" uid="uid://cqyo7sgbt7xgk" path="res://Player/Puchito Walk.png" id="6_b26j0"]
 [ext_resource type="AudioStream" uid="uid://b7wqv2h6ojvn2" path="res://sounds/player_sounds/Piña_9.wav" id="6_q13i1"]
 [ext_resource type="AudioStream" uid="uid://dv45ffqlug3b" path="res://sounds/player_sounds/Piña_10.wav" id="7_pylmc"]
 [ext_resource type="Texture2D" uid="uid://bcvu76gret58r" path="res://assets/mask_textures/messi.png" id="8_dw050"]
@@ -20,59 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://krap4tf3g5sl" path="res://sounds/player_sounds/Step_4.wav" id="11_7lmhl"]
 [ext_resource type="AudioStream" uid="uid://cej03dhr0u82i" path="res://sounds/player_sounds/Step_5.wav" id="12_dx0e4"]
 [ext_resource type="AudioStream" uid="uid://b32116bwychbw" path="res://sounds/player_sounds/Step_6.wav" id="13_jm5j8"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_n7ghd"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_onrkg")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_1jxqw")
-}],
-"loop": true,
-"name": &"pegar",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_2hs0m")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_dw050")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_b26j0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_1jxqw")
-}],
-"loop": true,
-"name": &"run",
-"speed": 15.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_dw050")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_2hs0m")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_b26j0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_1jxqw")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://57ojseoufvpb" path="res://systems/player.tres" id="15_u1c27"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3pqv"]
 radius = 26.0
@@ -89,7 +32,7 @@ visible = false
 texture = ExtResource("2_onrkg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_n7ghd")
+sprite_frames = ExtResource("15_u1c27")
 animation = &"idle"
 
 [node name="MaskSprite" type="Sprite2D" parent="."]

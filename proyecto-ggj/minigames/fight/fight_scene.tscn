@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://dhos3fc5215ee"]
+[gd_scene load_steps=10 format=3 uid="uid://dhos3fc5215ee"]
 
 [ext_resource type="Texture2D" uid="uid://nyepemdajd53" path="res://backgrounds/test_background4.png" id="1_00nlr"]
 [ext_resource type="Script" uid="uid://b67457phq2y8l" path="res://minigames/fight/trapito.gd" id="1_trapito"]
+[ext_resource type="Texture2D" uid="uid://bx5mcy11g53h5" path="res://UI assets/INTERFAZ_CAPA 1_FONDOR RELOJ.png" id="2_7kgfk"]
 [ext_resource type="Script" uid="uid://c1enwawrjy3yd" path="res://minigames/fight/policia.gd" id="2_policia"]
 [ext_resource type="Texture2D" uid="uid://bx5mcy11g53h5" path="res://UI assets/INTERFAZ_CAPA 1_FONDOR RELOJ.png" id="3_2smfs"]
 [ext_resource type="Texture2D" uid="uid://bdokf8tb85v4i" path="res://assets/trapito/TRAPITO_NORMAL.png" id="3_trapito_tex"]
+[ext_resource type="SpriteFrames" uid="uid://57ojseoufvpb" path="res://systems/player.tres" id="4_2smfs"]
 [ext_resource type="Texture2D" uid="uid://bsctdr8p5miqy" path="res://assets/policia/POLICIA_NORMAL.png" id="4_policia_tex"]
 [ext_resource type="Script" uid="uid://daa7rs5hspjtl" path="res://minigames/fight/fight_manager.gd" id="5_manager"]
 
@@ -22,33 +24,47 @@ size = Vector2(1550, 20)
 [node name="FightScene" type="Node2D"]
 script = ExtResource("5_manager")
 
-[node name="BackGround" type="ColorRect" parent="."]
-offset_right = 1152.0
-offset_bottom = 648.0
-
-[node name="TextureRect" type="TextureRect" parent="BackGround"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("1_00nlr")
-
-[node name="Node2D" type="Node2D" parent="BackGround"]
-position = Vector2(435.47107, 96.65405)
-
-[node name="TextureRect2" type="TextureRect" parent="BackGround"]
-layout_mode = 1
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_2smfs")
+
+[node name="BackGround" type="ColorRect" parent="Control"]
+layout_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="Control/BackGround"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_00nlr")
+
+[node name="Node2D" type="Node2D" parent="Control/BackGround"]
+position = Vector2(435.47107, 96.65405)
+
+[node name="TextureRect2" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 602.0
+offset_bottom = 339.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7kgfk")
 
 [node name="Trapito" type="CharacterBody2D" parent="."]
 position = Vector2(300, 400)
 script = ExtResource("1_trapito")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Trapito"]
+sprite_frames = ExtResource("4_2smfs")
+animation = &"idle"
+
 [node name="Sprite2D" type="Sprite2D" parent="Trapito"]
+visible = false
 texture = ExtResource("3_trapito_tex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trapito"]

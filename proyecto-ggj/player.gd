@@ -85,14 +85,7 @@ func _physics_process(delta: float) -> void:
 	
 	actualizar_mascara()
 
-	#if dir > 0:
-		#mask_sprite.position = mask_offset_base + Vector2(-10, 0)
-	#else:
-		#mask_sprite.position = mask_offset_base + Vector2(20, 0)
-	#if dir == 0 and mask_sprite.flip_h:
-		#mask_sprite.position = mask_offset_base + Vector2(20,0)
-	#elif dir == 0 and !mask_sprite.flip_h:
-		#mask_sprite.position = mask_offset_base + Vector2(0,0)
+	
 	
 	
 func _process(_delta):
