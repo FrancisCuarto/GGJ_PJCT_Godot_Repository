@@ -5,6 +5,9 @@ extends CanvasLayer
 var tween: Tween
 
 
+
+
+
 func _ready():
 	print("DayTransition READY")
 	if fade_panel == null:
@@ -13,7 +16,8 @@ func _ready():
 
 	# Arranca siempre en negro
 	fade_panel.modulate.a = 1.0
-
+	
+	
 
 func animar_fin_dia():
 	if tween:

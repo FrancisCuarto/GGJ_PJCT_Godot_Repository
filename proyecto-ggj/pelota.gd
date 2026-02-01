@@ -3,6 +3,9 @@ extends Area2D
 @export var velocidad_horizontal_max := 300.0
 @export var aceleracion := 40.0
 @export var fuerza_rebote := 350.0
+@export var sonidos_pelota: Array[AudioStream] = []
+@onready var audio_pelota: AudioStreamPlayer2D = $"../SonidoPelota"
+
 
 var velocity := Vector2.ZERO
 var activa := true
@@ -16,6 +19,15 @@ func _ready():
 	screen_size = get_viewport_rect().size 
 	# Asegura que randf_range sea realmente aleatorio
 	randomize() 
+
+
+func reproducir_sonido_pelota():
+	if sonidos_pelota.is_empty():
+		return
+
+	var sonido: AudioStream = sonidos_pelota.pick_random()
+	audio_pelota.stream = sonido
+	audio_pelota.play()
 
 func _physics_process(delta):
 	if not activa:
@@ -50,7 +62,7 @@ func _input_event(viewport, event, shape_idx):
 		# Aumentar dificultad progresivamente
 		fuerza_rebote += 50.0
 		aceleracion += 20.0
-		
+		reproducir_sonido_pelota()
 		emit_signal("reboto")
 		
 func _on_area_entered(area):

@@ -1,15 +1,37 @@
 extends CanvasLayer
 
 
-@onready var day_label = $Background/Content/DayLabel
-@onready var money_label = $Background/Content/MoneyLabel
-@onready var continue_button = $Background/Content/ContinueButton
+@onready var day_label = $FondoFinDia/Content/TitleLabel
+@onready var money_label = $FondoFinDia/Content/MoneyLabel
+@onready var continue_button = $FondoFinDia/Content/ContinueButton
+
+@onready var fondo: TextureRect = $FondoFinDia
+
+var tween = Tween
+
 
 
 func _ready():
 	visible = false
 	DayManager.connect("dia_finalizado", Callable(self, "_on_dia_finalizado"))
 	continue_button.pressed.connect(_on_continue_pressed)
+	
+	# Arranca completamente negro
+	fondo.modulate = Color(0, 0, 0, 1)
+
+	# Creamos el tween
+	tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+
+	# Negro → imagen normal
+	tween.tween_property(
+		fondo,
+		"modulate",
+		Color(1, 1, 1, 1),
+		0.8
+	)
+
 
 
 func _on_dia_finalizado():
@@ -56,7 +78,7 @@ func continuar():
 	get_tree().paused = false
 	DayManager.iniciar_dia()
 	
-	
+
 
 
 func _on_shop_button_pressed() -> void:

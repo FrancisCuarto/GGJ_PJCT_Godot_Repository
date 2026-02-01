@@ -10,6 +10,8 @@ var mask_offset_base: Vector2
 var tiempo_frenado := 0.0
 @export var sonidos_golpe: Array[AudioStream] = []
 @onready var audio_golpe: AudioStreamPlayer2D = $AudioGolpe
+@export var sonidos_pasos: Array[AudioStream] = []
+@onready var audio_pasos: AudioStreamPlayer2D = $Pasos
 
 
 
@@ -75,6 +77,7 @@ func _physics_process(delta: float) -> void:
 	if dir != 0:
 		sprite.flip_h = dir < 0
 		animated_sprite.flip_h = dir > 0
+		reproducir_pasos()
 	
 	if Input.is_action_pressed("pegar"):
 		animated_sprite.play("pegar")
@@ -93,6 +96,7 @@ func _physics_process(delta: float) -> void:
 	
 	
 func _process(_delta):
+	StatsManager.iniciar_stats()
 	if MaskManager.mascara_equipada:
 		mask_sprite.texture = MaskManager.mascara_equipada.sprite
 	else:
@@ -114,3 +118,15 @@ func reproducir_golpe():
 	var sonido: AudioStream = sonidos_golpe.pick_random()
 	audio_golpe.stream = sonido
 	audio_golpe.play()
+	
+func reproducir_pasos():
+	if sonidos_pasos.is_empty():
+		return
+
+	# 🚫 Si ya está sonando un paso, no hacemos nada
+	if audio_pasos.playing:
+		return
+
+	var sonido: AudioStream = sonidos_pasos.pick_random()
+	audio_pasos.stream = sonido
+	audio_pasos.play()

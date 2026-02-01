@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cmb4mywi2q15d"]
+[gd_scene load_steps=45 format=3 uid="uid://cmb4mywi2q15d"]
 
 [ext_resource type="Script" uid="uid://b184pciuuwnv2" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cyju4a84tud8p" path="res://player.tscn" id="2_h2yge"]
@@ -8,10 +8,14 @@
 [ext_resource type="Script" uid="uid://b182i385vct23" path="res://resources/cars/car_type.gd" id="9_dg77c"]
 [ext_resource type="Script" uid="uid://1el8yswkxm25" path="res://spawn_point.gd" id="9_kek77"]
 [ext_resource type="Resource" uid="uid://byrt46ir2ddl2" path="res://resources/cars/auto_comun.tres" id="10_ycdy4"]
+[ext_resource type="Resource" uid="uid://clea1jooro78y" path="res://resources/cars/fordkaGris.tres" id="11_0rl1p"]
 [ext_resource type="Resource" uid="uid://d6vvqiyricho" path="res://resources/cars/auto_grande.tres" id="11_w48qg"]
 [ext_resource type="Script" uid="uid://dt22tr88ohcd7" path="res://queue_manager.gd" id="11_ycdy4"]
 [ext_resource type="Resource" uid="uid://drjqhmslhvaeu" path="res://resources/cars/ford_ka.tres" id="12_82xsv"]
+[ext_resource type="Resource" uid="uid://cfgcujg3aywv2" path="res://resources/cars/FiatUnoRosa.tres" id="12_facbu"]
+[ext_resource type="Resource" uid="uid://7l3upap0clqg" path="res://resources/cars/fordkaNegro.tres" id="12_ok6jj"]
 [ext_resource type="Resource" uid="uid://n1n3j56inkr2" path="res://resources/cars/auto_mediano.tres" id="12_w48qg"]
+[ext_resource type="Resource" uid="uid://bw7ny6rychuqm" path="res://resources/cars/fordkaNaranja.tres" id="14_b1qrp"]
 [ext_resource type="Script" uid="uid://cnhtthp0agawl" path="res://camera_controller.gd" id="14_w48qg"]
 [ext_resource type="Script" uid="uid://djvi564jhcwcy" path="res://day_transition.gd" id="15_074og"]
 [ext_resource type="Script" uid="uid://cixuwqch04vd" path="res://day_ui.gd" id="15_vivmo"]
@@ -33,6 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://bnte8ahf5bksx" path="res://UI assets/INTERFAZ_CAPA 3_ INVENTARIO MARCO.png" id="25_4k2k6"]
 [ext_resource type="Texture2D" uid="uid://xleppb6k0q7w" path="res://UI assets/INTERFAZ_CAPA 2_ INVENTARIO FONDO.png" id="26_0rl1p"]
 [ext_resource type="Texture2D" uid="uid://dpuxtqc68nst2" path="res://UI assets/playerstate/TRAPITO_CARA_CANCHERO.png" id="27_jq2sk"]
+[ext_resource type="Texture2D" uid="uid://dbwlyfcctrcj8" path="res://backgrounds/FIN DE DIA.png" id="36_b1qrp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6jrf"]
 
@@ -119,7 +124,7 @@ script = ExtResource("9_kek77")
 car_scene = ExtResource("7_272bh")
 queue_manager = NodePath("../../../QueueManager")
 Player = NodePath("../../../Player")
-car_types = Array[ExtResource("9_dg77c")]([ExtResource("10_ycdy4"), ExtResource("11_w48qg"), ExtResource("12_w48qg"), ExtResource("12_82xsv")])
+car_types = Array[ExtResource("9_dg77c")]([ExtResource("10_ycdy4"), ExtResource("11_w48qg"), ExtResource("12_w48qg"), ExtResource("12_82xsv"), ExtResource("11_0rl1p"), ExtResource("12_facbu"), ExtResource("12_ok6jj"), ExtResource("14_b1qrp")])
 
 [node name="Timer" type="Timer" parent="car_spawner/spawner"]
 wait_time = 5.0
@@ -336,63 +341,72 @@ grow_vertical = 2
 process_mode = 3
 script = ExtResource("16_2cqfq")
 
-[node name="Background" type="Panel" parent="EndDayUI"]
+[node name="FondoFinDia" type="TextureRect" parent="EndDayUI"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("36_b1qrp")
 
-[node name="Content" type="VBoxContainer" parent="EndDayUI/Background"]
+[node name="Content" type="VBoxContainer" parent="EndDayUI/FondoFinDia"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -388.5
+offset_top = -186.0
+offset_right = 388.5
+offset_bottom = 186.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="TitleLabel" type="Label" parent="EndDayUI/Background/Content"]
+[node name="TitleLabel" type="Label" parent="EndDayUI/FondoFinDia/Content"]
 layout_mode = 2
 text = "Fin del día"
 label_settings = SubResource("LabelSettings_d13ii")
 horizontal_alignment = 1
 
-[node name="DayLabel" type="Label" parent="EndDayUI/Background/Content"]
+[node name="DayLabel" type="Label" parent="EndDayUI/FondoFinDia/Content"]
 layout_mode = 2
 text = "Día 1"
 label_settings = SubResource("LabelSettings_1u8w0")
 horizontal_alignment = 1
 
-[node name="MoneyLabel" type="Label" parent="EndDayUI/Background/Content"]
+[node name="MoneyLabel" type="Label" parent="EndDayUI/FondoFinDia/Content"]
 layout_mode = 2
 text = "Dinero ganado: $0"
 label_settings = SubResource("LabelSettings_0odxb")
 horizontal_alignment = 1
 
-[node name="ContinueButton" type="Button" parent="EndDayUI/Background/Content"]
+[node name="ContinueButton" type="Button" parent="EndDayUI/FondoFinDia/Content"]
 layout_mode = 2
 theme = ExtResource("19_cegan")
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_hover_color = Color(0.85490197, 0.8, 0.16078432, 1)
 text = "Continuar"
+flat = true
 
-[node name="ShopButton" type="Button" parent="EndDayUI/Background/Content" groups=["ShopUI"]]
+[node name="ShopButton" type="Button" parent="EndDayUI/FondoFinDia/Content" groups=["ShopUI"]]
 process_mode = 3
 layout_mode = 2
 theme = ExtResource("19_cegan")
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_hover_color = Color(0.85490197, 0.8, 0.16078432, 1)
 text = "Ir a la tienda"
+flat = true
 
 [node name="ShopUI" parent="." groups=["shop_ui"] instance=ExtResource("21_getpj")]
+visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("22_ryguw")
+volume_db = -80.0
 autoplay = true
 
 [connection signal="timeout" from="car_spawner/spawner/Timer" to="car_spawner/spawner/spawn_point" method="_on_timer_timeout"]
-[connection signal="pressed" from="EndDayUI/Background/Content/ShopButton" to="EndDayUI" method="_on_shop_button_pressed"]
+[connection signal="pressed" from="EndDayUI/FondoFinDia/Content/ShopButton" to="EndDayUI" method="_on_shop_button_pressed"]

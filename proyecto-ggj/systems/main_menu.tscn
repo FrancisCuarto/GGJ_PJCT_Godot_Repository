@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://caacje6vy46kj"]
+[gd_scene load_steps=4 format=3 uid="uid://caacje6vy46kj"]
 
 [ext_resource type="Script" uid="uid://7pujmnurpata" path="res://systems/main_menu.gd" id="1_a7oru"]
+[ext_resource type="Theme" uid="uid://byi6wv5kft13" path="res://resources/themes/main_theme.tres" id="2_nhn05"]
 [ext_resource type="AudioStream" uid="uid://dqoecnilfk11m" path="res://sounds/music/menu ggj 2026.wav" id="2_vq1cu"]
 
 [node name="MainMenu" type="CanvasLayer"]
@@ -28,19 +29,43 @@ layout_mode = 2
 
 [node name="ButtonJugar" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_nhn05")
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_pressed_color = Color(0.49019608, 0.39215687, 0.21176471, 1)
+theme_override_colors/font_hover_color = Color(0.8627451, 0.7019608, 0.105882354, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.48988283, 0.39253855, 0.21360224, 1)
 text = "Nueva partida"
+flat = true
 
 [node name="ButtonContinuar" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_nhn05")
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_pressed_color = Color(0.49019608, 0.39215687, 0.21176471, 1)
+theme_override_colors/font_hover_color = Color(0.8627451, 0.7019608, 0.105882354, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.49019608, 0.39215687, 0.21176471, 1)
 text = "Continuar"
+flat = true
 
 [node name="ButtonOpciones" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_nhn05")
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_pressed_color = Color(0.49019608, 0.39215687, 0.21176471, 1)
+theme_override_colors/font_hover_color = Color(0.8627451, 0.7019608, 0.105882354, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.49019608, 0.39215687, 0.21176471, 1)
 text = "Opciones"
+flat = true
 
 [node name="ButtonSalir" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_nhn05")
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_pressed_color = Color(0.49019608, 0.39215687, 0.21176471, 1)
+theme_override_colors/font_hover_color = Color(0.8627451, 0.7019608, 0.105882354, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.49019608, 0.39215687, 0.21176471, 1)
 text = "Salir"
+flat = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_vq1cu")
