@@ -8,6 +8,15 @@ extends CharacterBody2D
 @onready var animated_sprite := $AnimatedSprite2D
 var mask_offset_base: Vector2
 var tiempo_frenado := 0.0
+@export var sonidos_golpe: Array[AudioStream] = []
+@onready var audio_golpe: AudioStreamPlayer2D = $AudioGolpe
+
+
+
+
+
+@export var mask_offset_right := Vector2(60, 0)
+@export var mask_offset_left := Vector2(20, 0)
 
 
 @onready var sprite := $Sprite2D
@@ -18,6 +27,8 @@ var tiempo_frenado := 0.0
 
 func _ready():
 	mask_offset_base = mask_sprite.position
+	actualizar_mascara()
+
 
 
 
@@ -67,13 +78,16 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("pegar"):
 		animated_sprite.play("pegar")
+		reproducir_golpe()
 	
-	if dir > 0:
-		mask_sprite.position = mask_offset_base + Vector2(10, 0)
-	else:
-		mask_sprite.position = mask_offset_base + Vector2(-20, 0)
+	actualizar_mascara()
+
+	#if dir > 0:
+		#mask_sprite.position = mask_offset_base + Vector2(-10, 0)
+	#else:
+		#mask_sprite.position = mask_offset_base + Vector2(20, 0)
 	#if dir == 0 and mask_sprite.flip_h:
-		#mask_sprite.position = mask_offset_base + Vector2(-20,0)
+		#mask_sprite.position = mask_offset_base + Vector2(20,0)
 	#elif dir == 0 and !mask_sprite.flip_h:
 		#mask_sprite.position = mask_offset_base + Vector2(0,0)
 	
@@ -83,3 +97,20 @@ func _process(_delta):
 		mask_sprite.texture = MaskManager.mascara_equipada.sprite
 	else:
 		mask_sprite.texture = null
+
+
+func actualizar_mascara():
+	if sprite.flip_h:
+		# Mirando a la izquierda
+		mask_sprite.position = mask_offset_base + mask_offset_left
+	else:
+		# Mirando a la derecha
+		mask_sprite.position = mask_offset_base + mask_offset_right
+
+func reproducir_golpe():
+	if sonidos_golpe.is_empty():
+		return
+
+	var sonido: AudioStream = sonidos_golpe.pick_random()
+	audio_golpe.stream = sonido
+	audio_golpe.play()

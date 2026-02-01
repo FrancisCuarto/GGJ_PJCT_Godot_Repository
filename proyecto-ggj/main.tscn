@@ -311,7 +311,6 @@ texture = ExtResource("20_0odxb")
 
 [node name="DayTransition" type="CanvasLayer" parent="." groups=["day_transition"]]
 process_mode = 3
-visible = false
 script = ExtResource("15_074og")
 
 [node name="Root" type="Control" parent="DayTransition"]
@@ -335,7 +334,6 @@ grow_vertical = 2
 
 [node name="EndDayUI" type="CanvasLayer" parent="." groups=["end_day"]]
 process_mode = 3
-visible = false
 script = ExtResource("16_2cqfq")
 
 [node name="Background" type="Panel" parent="EndDayUI"]
@@ -390,7 +388,6 @@ theme = ExtResource("19_cegan")
 text = "Ir a la tienda"
 
 [node name="ShopUI" parent="." groups=["shop_ui"] instance=ExtResource("21_getpj")]
-visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3

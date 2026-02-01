@@ -7,6 +7,8 @@ signal terminado(exito: bool)
 @export var mancha_scene: PackedScene
 @export var min_manchas := 5
 @export var max_manchas := 7
+@export var sonidos_limpiar: Array[AudioStream] = []
+@onready var audio_limpiar: AudioStreamPlayer2D = $AudioLimpiar
 
 
 
@@ -26,6 +28,14 @@ func _ready():
 	)
 	spawnear_manchas()
 	manchas = $Parabrisas/ManchaLayer.get_children()
+
+func reproducir_limpiar():
+	if sonidos_limpiar.is_empty():
+		return
+
+	var sonido: AudioStream = sonidos_limpiar.pick_random()
+	audio_limpiar.stream = sonido
+	audio_limpiar.play()
 
 
 func spawnear_manchas():
