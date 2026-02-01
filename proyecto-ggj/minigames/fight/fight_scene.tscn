@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhos3fc5215ee"]
+[gd_scene load_steps=11 format=3 uid="uid://dhos3fc5215ee"]
 
 [ext_resource type="Texture2D" uid="uid://nyepemdajd53" path="res://backgrounds/test_background4.png" id="1_00nlr"]
 [ext_resource type="Script" uid="uid://b67457phq2y8l" path="res://minigames/fight/trapito.gd" id="1_trapito"]
 [ext_resource type="Script" uid="uid://c1enwawrjy3yd" path="res://minigames/fight/policia.gd" id="2_policia"]
+[ext_resource type="Texture2D" uid="uid://bx5mcy11g53h5" path="res://UI assets/INTERFAZ_CAPA 1_FONDOR RELOJ.png" id="3_2smfs"]
 [ext_resource type="Texture2D" uid="uid://bdokf8tb85v4i" path="res://assets/trapito/TRAPITO_NORMAL.png" id="3_trapito_tex"]
 [ext_resource type="Texture2D" uid="uid://bsctdr8p5miqy" path="res://assets/policia/POLICIA_NORMAL.png" id="4_policia_tex"]
+[ext_resource type="Script" uid="uid://daa7rs5hspjtl" path="res://minigames/fight/fight_manager.gd" id="5_manager"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_trapito"]
 radius = 59.0
@@ -14,7 +16,11 @@ height = 220.0
 radius = 65.0
 height = 212.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00nlr"]
+size = Vector2(1550, 20)
+
 [node name="FightScene" type="Node2D"]
+script = ExtResource("5_manager")
 
 [node name="BackGround" type="ColorRect" parent="."]
 offset_right = 1152.0
@@ -28,6 +34,15 @@ texture = ExtResource("1_00nlr")
 
 [node name="Node2D" type="Node2D" parent="BackGround"]
 position = Vector2(435.47107, 96.65405)
+
+[node name="TextureRect2" type="TextureRect" parent="BackGround"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_2smfs")
 
 [node name="Trapito" type="CharacterBody2D" parent="."]
 position = Vector2(300, 400)
@@ -52,3 +67,26 @@ shape = SubResource("CapsuleShape2D_policia")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 324)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(800, 282)
+shape = SubResource("RectangleShape2D_00nlr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 320.0
+offset_bottom = 47.0
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(-46, 415)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(800, 282)
+shape = SubResource("RectangleShape2D_00nlr")

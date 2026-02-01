@@ -2,50 +2,75 @@ extends CharacterBody2D
 
 const SPEED = 200.0
 const ATTACK_DURATION = 0.5
+const DAMAGE = 10
 
 @onready var sprite = $Sprite2D
 @onready var collision_shape = $CollisionShape2D
 
-# Load textures
+# Stats Manager Component
+var stats: Node
+
+# Textures
 var texture_normal = preload("res://assets/trapito/TRAPITO_NORMAL.png")
 var texture_attack = preload("res://assets/trapito/TRAPITO_PIÑA.png")
 
+# Attack State
 var is_attacking = false
 var attack_timer = 0.0
 
+# Hitbox
+var hitbox: Area2D
+
 func _ready():
-	# Initial setup
+	# Initialize StatsManager as a component
+	var stats_script = load("res://stats_manager.gd")
+	stats = stats_script.new()
+	add_child(stats)
+	stats.iniciar_stats()
+	stats.connect("on_health_changed", _on_health_changed)
+	stats.connect("on_death", _on_death)
+	
 	sprite.texture = texture_normal
 	
-	# SETUP FOR FUTURE ANIMATIONS:
-	# To add more frames, replace the simple texture swap with an AnimatedSprite2D.
-	# 1. Add an AnimatedSprite2D node to the scene.
-	# 2. Create a SpriteFrames resource.
-	# 3. Add animations (e.g., "idle", "run", "attack").
-	# 4. In code, use `animated_sprite.play("animation_name")`.
+	# Create Hitbox programmatically
+	hitbox = Area2D.new()
+	hitbox.name = "Hitbox"
+	var hitbox_shape = CollisionShape2D.new()
+	var shape = CircleShape2D.new()
+	shape.radius = 50
+	hitbox_shape.shape = shape
+	hitbox.add_child(hitbox_shape)
+	add_child(hitbox)
+	
+	# Hitbox settings
+	hitbox.monitoring = false # Disabled by default
+	hitbox.monitorable = false
+	hitbox.position = Vector2(50, 0) # Offset to the right (arm)
+	hitbox.connect("body_entered", _on_hitbox_body_entered)
 
 func _physics_process(delta):
 	if is_attacking:
 		attack_timer -= delta
 		if attack_timer <= 0:
-			is_attacking = false
-			sprite.texture = texture_normal
+			end_attack()
 	
-	# Handle Attack
-	if Input.is_action_just_pressed("ui_accept") and not is_attacking: # Spacebar or Enter
-		attack()
-
-	# Get the input direction and handle height/width movement
+	# Input Handling
+	if Input.is_action_just_pressed("ui_accept") and not is_attacking:
+		start_attack()
+	
+	# Movement
 	var direction_x = Input.get_axis("ui_left", "ui_right")
 	var direction_y = Input.get_axis("ui_up", "ui_down")
 	
 	if direction_x:
 		velocity.x = direction_x * SPEED
-		# Flip sprite based on direction
+		# Flip sprite and hitbox
 		if direction_x < 0:
 			sprite.flip_h = true
+			hitbox.position.x = -50
 		else:
 			sprite.flip_h = false
+			hitbox.position.x = 50
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		
@@ -56,8 +81,45 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func attack():
+func start_attack():
 	is_attacking = true
 	attack_timer = ATTACK_DURATION
 	sprite.texture = texture_attack
-	# If you want to spawn a hitbox or deal damage, do it here.
+	
+	# Enable Hitbox
+	hitbox.monitoring = true
+	
+func end_attack():
+	is_attacking = false
+	sprite.texture = texture_normal
+	hitbox.monitoring = false
+
+func _on_hitbox_body_entered(body):
+	if body == self:
+		return
+		
+	if body.has_method("get_stats"):
+		var enemy_stats = body.get_stats()
+		if enemy_stats and enemy_stats.has_method("take_damage"):
+			enemy_stats.take_damage(DAMAGE)
+			print("Hit enemy! Damage: ", DAMAGE)
+	# Also check if body has the component directly or via a wrapper
+	elif body.has_node("StatsManager"): # Dynamic check
+		body.get_node("StatsManager").take_damage(DAMAGE)
+		print("Hit enemy node! Damage: ", DAMAGE)
+
+# Stats Manager Interface
+func get_stats():
+	return stats
+
+func _on_health_changed(current, max_val):
+	print("Trapito Health: ", current, "/", max_val)
+	# Feedback: Flash Red
+	modulate = Color(1, 0, 0)
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", Color(1, 1, 1), 0.2)
+
+func _on_death():
+	print("Trapito Died!")
+	set_physics_process(false)
+	modulate = Color(0.2, 0.2, 0.2)
