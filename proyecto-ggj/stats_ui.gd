@@ -4,7 +4,11 @@ extends Control
 @onready var estamina_bar = $Estamina
 @onready var carisma_bar = $Carisma
 
+
+
+
 func _ready():
+	await get_tree().process_frame
 	actualizar_stats()
 
 func _process(delta):

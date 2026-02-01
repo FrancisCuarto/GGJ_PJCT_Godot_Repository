@@ -1,10 +1,8 @@
-[gd_scene load_steps=38 format=3 uid="uid://cmb4mywi2q15d"]
+[gd_scene load_steps=34 format=3 uid="uid://cmb4mywi2q15d"]
 
 [ext_resource type="Script" uid="uid://b184pciuuwnv2" path="res://main.gd" id="1_h2yge"]
-[ext_resource type="Texture2D" uid="uid://ll7skkn03pof" path="res://backgrounds/Fondo_Lineart_Weno.png" id="2_getpj"]
 [ext_resource type="PackedScene" uid="uid://cyju4a84tud8p" path="res://player.tscn" id="2_h2yge"]
-[ext_resource type="Script" uid="uid://cs3hs2pxnu23p" path="res://lado_izquierdo.gd" id="4_lquwl"]
-[ext_resource type="Script" uid="uid://de2iki58n2p6e" path="res://lado_derecho.gd" id="5_7mycd"]
+[ext_resource type="Texture2D" uid="uid://xco4etlbtqx3" path="res://backgrounds/fondo_final.png" id="2_qsp4k"]
 [ext_resource type="Script" uid="uid://im8fxoj1u3bv" path="res://camara_1.gd" id="6_4c57u"]
 [ext_resource type="PackedScene" uid="uid://llr8clerxhyn" path="res://assets/cars/auto.tscn" id="7_272bh"]
 [ext_resource type="Script" uid="uid://b182i385vct23" path="res://resources/cars/car_type.gd" id="9_dg77c"]
@@ -30,28 +28,18 @@
 [ext_resource type="Texture2D" uid="uid://dygf4p1rg14om" path="res://UI assets/INTERFAZ_CAPA 2.5_ ESTADISTICA_ICONOS.png" id="21_kq58d"]
 [ext_resource type="AudioStream" uid="uid://cg7jjolw8kx3r" path="res://sounds/music/Cumbia 8bit mejorada.mp3" id="22_ryguw"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
-size = Vector2(1205, 494)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
-size = Vector2(1174.5, 508)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6jrf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_82xsv"]
 font = ExtResource("17_cegan")
 font_size = 60
-outline_size = 1
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_getpj"]
-font = ExtResource("17_cegan")
-font_size = 32
-outline_size = 1
+outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ryguw"]
 font = ExtResource("17_cegan")
 font_size = 32
-outline_size = 1
+outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_d13ii"]
@@ -73,11 +61,11 @@ script = ExtResource("1_h2yge")
 
 [node name="TestBackgroundImage" type="Sprite2D" parent="background"]
 texture_repeat = 2
-position = Vector2(1567.0001, 207.00002)
+position = Vector2(1567.0001, 180)
 scale = Vector2(2.0399978, 2.11)
-texture = ExtResource("2_getpj")
+texture = ExtResource("2_qsp4k")
 region_enabled = true
-region_rect = Rect2(0, 0, 1912.3906, 513.6385)
+region_rect = Rect2(0, 0, 3840, 513.6385)
 
 [node name="camaras (obsoleto)" type="Node2D" parent="."]
 
@@ -97,34 +85,27 @@ position = Vector2(554, 390)
 position = Vector2(1806, 390)
 
 [node name="street_sides" type="Node2D" parent="."]
-visible = false
 
-[node name="lado_izquierdo" type="Area2D" parent="street_sides"]
-position = Vector2(-21, 0)
-script = ExtResource("4_lquwl")
-camera_target = NodePath("../../camaras (obsoleto)/camera_targets/target1")
-metadata/_edit_group_ = true
+[node name="StaticBody2D" type="StaticBody2D" parent="street_sides"]
+position = Vector2(5315, 432)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="street_sides/lado_izquierdo"]
-position = Vector2(568.5, 452)
-shape = SubResource("RectangleShape2D_h2yge")
-debug_color = Color(0.62568676, 0.5254878, 0.24051675, 0.41960785)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="street_sides/StaticBody2D"]
+position = Vector2(11, -36.999996)
+scale = Vector2(2.76, 43.760006)
+shape = SubResource("RectangleShape2D_a6jrf")
 
-[node name="lado_derecho" type="Area2D" parent="street_sides"]
-position = Vector2(-41, 0)
-script = ExtResource("5_7mycd")
-camera_target = NodePath("../../camaras (obsoleto)/camera_targets/target2")
-metadata/_edit_group_ = true
+[node name="StaticBody2D2" type="StaticBody2D" parent="street_sides"]
+position = Vector2(-2021, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="street_sides/lado_derecho"]
-position = Vector2(1780.25, 459)
-shape = SubResource("RectangleShape2D_1bvp3")
-debug_color = Color(0.86415935, 0.3492322, 0.21470326, 0.41960785)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="street_sides/StaticBody2D2"]
+position = Vector2(-113, 431.99994)
+scale = Vector2(2.76, 43.760006)
+shape = SubResource("RectangleShape2D_a6jrf")
 
 [node name="car_spawner" type="Node2D" parent="."]
 
 [node name="spawner" type="Node2D" parent="car_spawner"]
-position = Vector2(-550, 568)
+position = Vector2(-3219, 568)
 metadata/_edit_group_ = true
 
 [node name="spawn_point" type="Marker2D" parent="car_spawner/spawner"]
@@ -164,11 +145,12 @@ player_path = NodePath("../Player")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="DayPanel" type="Panel" parent="UI"]
-self_modulate = Color(0, 0, 0, 1)
+self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(10, 10)
-offset_left = 20.0
-offset_right = 220.0
-offset_bottom = 100.0
+offset_left = 61.0
+offset_top = 38.0
+offset_right = 261.0
+offset_bottom = 138.0
 script = ExtResource("15_vivmo")
 metadata/_edit_group_ = true
 
@@ -178,14 +160,6 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "Día 1"
 label_settings = SubResource("LabelSettings_82xsv")
-
-[node name="TimeLabel" type="Label" parent="UI/DayPanel"]
-layout_mode = 0
-offset_top = 45.0
-offset_right = 166.0
-offset_bottom = 112.0
-text = "Tiempo: 00:00"
-label_settings = SubResource("LabelSettings_getpj")
 
 [node name="MoneyLabel" type="Label" parent="UI/DayPanel"]
 layout_mode = 0
@@ -237,7 +211,6 @@ value = 100.0
 modulate = Color(0.9585933, 0.00079512, 0.9652894, 1)
 layout_mode = 2
 theme = ExtResource("19_cegan")
-value = 50.0
 
 [node name="Capa2" type="TextureRect" parent="UI/PanelBase/Capa1"]
 layout_mode = 1
@@ -358,10 +331,9 @@ text = "Ir a la tienda"
 visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("22_ryguw")
 autoplay = true
 
-[connection signal="body_entered" from="street_sides/lado_izquierdo" to="street_sides/lado_izquierdo" method="_on_body_entered"]
-[connection signal="body_entered" from="street_sides/lado_derecho" to="street_sides/lado_derecho" method="_on_body_entered"]
 [connection signal="timeout" from="car_spawner/spawner/Timer" to="car_spawner/spawner/spawn_point" method="_on_timer_timeout"]
 [connection signal="pressed" from="EndDayUI/Background/Content/ShopButton" to="EndDayUI" method="_on_shop_button_pressed"]

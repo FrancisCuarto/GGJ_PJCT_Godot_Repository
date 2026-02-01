@@ -30,6 +30,7 @@ var dia_activo := false
 
 func _ready():
 	await get_tree().process_frame
+	StatsManager.iniciar_stats()
 	iniciar_dia()
 
 # -----------------------------
@@ -38,6 +39,7 @@ func _ready():
 
 func iniciar_dia():
 	
+	StatsManager.iniciar_dia()
 	MoneyManager.iniciar_dia()
 
 	print("Inicia el día ", dia_actual)

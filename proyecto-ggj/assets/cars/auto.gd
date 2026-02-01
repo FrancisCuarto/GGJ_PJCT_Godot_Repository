@@ -12,6 +12,14 @@ extends CharacterBody2D
 @onready var audio_motor := $AudioMotor
 @onready var audio_motor_start := $AudioMotorStart
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var textura_tarea: TextureRect = $TexturaTarea
+
+
+const ICONO_LIMPIAR     := preload("res://assets/cars textures/Icons/BURBUJA_LIMPIEZA.png")
+const ICONO_ESTACIONAR := preload("res://assets/cars textures/Icons/CONO.png")
+const ICONO_MESSI      := preload("res://assets/cars textures/Icons/ATENCION.png")
+const ICONO_COBRAR     := preload("res://assets/cars textures/Icons/MONEDA.png")
+
 #@onready var audio_bocina := $AudioBocina
 #@onready var audio_enojo := $AudioEnojo
 
@@ -52,7 +60,6 @@ enum Estado {
 enum Tarea {
 	ESTACIONAR, 
 	LIMPIAR,
-	PAGAR,
 	MESSI,
 	NADA
 }
@@ -108,12 +115,40 @@ func asignar_tarea_random():
 			label_tarea.modulate = Color.CYAN
 		Tarea.ESTACIONAR:
 			label_tarea.modulate = Color.GREEN
-		Tarea.PAGAR:
-			label_tarea.modulate = Color.YELLOW
 		Tarea.MESSI:
 			label_tarea.modulate = Color.ORANGE
 
+	
 
+
+func actualizar_icono_tarea():
+	if not textura_tarea:
+		return
+
+	match estado:
+		Estado.ESPERANDO:
+			match tarea:
+				Tarea.LIMPIAR:
+					textura_tarea.texture = ICONO_LIMPIAR
+					textura_tarea.visible = true
+
+				Tarea.ESTACIONAR:
+					textura_tarea.texture = ICONO_ESTACIONAR
+					textura_tarea.visible = true
+
+				Tarea.MESSI:
+					textura_tarea.texture = ICONO_MESSI
+					textura_tarea.visible = true
+
+				_:
+					textura_tarea.visible = false
+
+		Estado.ESPERANDO_COBRO:
+			textura_tarea.texture = ICONO_COBRAR
+			textura_tarea.visible = true
+
+		_:
+			textura_tarea.visible = false
 #------------------------------------------------------------------
 #ELIMINA EL AUTO CUANDO LA PACIENCIA SE ACABA
 func irse_enojado():
@@ -125,8 +160,9 @@ func irse_enojado():
 	paciencia_activa = false
 	label_tarea.visible = false
 	patience_bar.visible = false
-
+	textura_tarea.visible = false
 	estado = Estado.YENDOSE
+	textura_tarea.visible = false
 
 	# 🔑 ACÁ ESTÁ LA CLAVE
 	if queue_manager:
@@ -146,6 +182,7 @@ func ir_a_slot(pos: Vector2):
 	current_speed = speed_lenta
 	
 func irse():
+	textura_tarea.visible = false
 	arrancar_motor()
 	audio_motor.pitch_scale = 1.1
 	estado = Estado.YENDOSE
@@ -165,7 +202,7 @@ func irse():
 	current_speed = speed_normal
 
 	# Move off-screen to be removed later
-	target_position = global_position + Vector2(2000, 0)
+	target_position = global_position + Vector2(10000, 0)
 	current_speed = speed_normal
 
 	# después camina y se borra fuera de pantalla
@@ -232,11 +269,16 @@ func _ready():
 		push_warning("CarType sin sprite_frames")
 
 	# 🧠 UI
+	
 	patience_bar.max_value = paciencia
 	patience_bar.value = paciencia
 	patience_bar.visible = false
 	label_interactuar.visible = false
 	label_tarea.visible = false
+	textura_tarea.visible = false
+
+
+	
 
 	current_speed = speed_normal
 	target_position = global_position
@@ -302,6 +344,7 @@ func al_llegar_al_slot():
 	audio_motor.pitch_scale = 0.8
 	CameraManager.trigger_reactive()
 	sprite.play(car_type.anim_idle)
+	actualizar_icono_tarea()
 
 	paciencia_activa = true
 	esperando_en_slot = true
@@ -312,15 +355,17 @@ func al_llegar_al_slot():
 
 	# inicializar paciencia
 	patience_bar.value = paciencia
+	actualizar_icono_tarea()
 
 	print("Auto detenido en slot. Tarea:", Tarea.keys()[tarea])
-
+	
 func entrar_en_espera():
 	paciencia_activa = true
 
 	# UI
 	label_tarea.visible = true
 	patience_bar.visible = true
+	textura_tarea.visible = true
 
 	# Debug opcional
 	print("Auto", self, "entró en espera con tarea:", Tarea.keys()[tarea])
@@ -433,6 +478,8 @@ func tarea_completada():
 
 	label_tarea.text = "COBRAR"
 	label_tarea.modulate = Color.YELLOW
+	
+	actualizar_icono_tarea()
 
 	print("Tarea completada, esperando cobro")
 	
@@ -441,9 +488,9 @@ func interactuar():
 		Estado.ESPERANDO:
 			match tarea:
 				Tarea.LIMPIAR:
-					iniciar_messi_minijuego()
+					iniciar_limpieza()
 				Tarea.ESTACIONAR:
-					iniciar_messi_minijuego()
+					iniciar_estacionamiento()
 				Tarea.MESSI:
 					iniciar_messi_minijuego()
 				# después agregamos ESTACIONAR, etc.

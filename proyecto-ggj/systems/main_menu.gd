@@ -20,7 +20,7 @@ func _on_jugar():
 	get_tree().change_scene_to_file("res://main.tscn")
 
 func _on_continuar():
-	#SaveManager.cargar()
+	SaveManager.cargar()
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 func _on_opciones():

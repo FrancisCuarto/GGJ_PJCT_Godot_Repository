@@ -18,7 +18,7 @@ func hay_partida() -> bool:
 func guardar():
 	var data := {
 		"dia": DayManager.dia_actual,
-		"dinero": MoneyManager.dinero,
+		"dinero": MoneyManager.dinero_total,
 		"mascaras_compradas": MaskManager.obtener_ids_compradas(),
 		"mascara_equipada": MaskManager.obtener_id_equipada()
 	}
@@ -55,30 +55,3 @@ func cargar():
 	)
 
 	print("Partida cargada")
-
-
-
-func obtener_ids_compradas() -> Array[String]:
-	var ids := []
-	for mask in mascaras_compradas:
-		ids.append(mask.id)
-	return ids
-
-
-func obtener_id_equipada() -> String:
-	if mascara_equipada:
-		return mascara_equipada.id
-	return ""
-
-
-func cargar_desde_save(ids_compradas: Array, id_equipada: String):
-	mascaras_compradas.clear()
-	mascara_equipada = null
-
-	for id in ids_compradas:
-		var mask = obtener_mascara_por_id(id)
-		if mask:
-			mascaras_compradas.append(mask)
-
-	if id_equipada != "":
-		mascara_equipada = obtener_mascara_por_id(id_equipada)

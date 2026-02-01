@@ -4,9 +4,11 @@ extends Node
 # ESTADÍSTICAS BASE
 # -----------------------------
 
-@export var vida_max := 100
-@export var estamina_max := 100
-@export var carisma_max := 100
+@onready var vida_max := 100
+@onready var estamina_max := 100
+@onready var carisma_max := 50.0
+
+
 
 var vida := vida_max
 var estamina := estamina_max
@@ -18,7 +20,15 @@ var carisma := carisma_max
 
 func iniciar_dia():
 	# La estamina se regenera al comenzar el día
+	carisma = carisma_max 
 	estamina = estamina_max
+	
+
+func iniciar_stats():
+	print("INIT STATS | carisma_max:", carisma_max)
+	vida = vida_max
+	estamina = estamina_max
+	carisma = carisma_max
 
 func finalizar_dia():
 	# Vida y carisma persisten, no se tocan

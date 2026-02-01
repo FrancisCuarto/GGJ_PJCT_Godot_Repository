@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://llr8clerxhyn"]
+[gd_scene load_steps=10 format=3 uid="uid://llr8clerxhyn"]
 
 [ext_resource type="Script" uid="uid://buhndf7viivg6" path="res://assets/cars/auto.gd" id="1_po63d"]
 [ext_resource type="Theme" uid="uid://byi6wv5kft13" path="res://resources/themes/main_theme.tres" id="2_ko1h0"]
 [ext_resource type="SpriteFrames" uid="uid://xrvf07sv6evh" path="res://assets/cars/new_sprite_frames.tres" id="3_ko1h0"]
 [ext_resource type="AudioStream" uid="uid://mtipmt5qcsq2" path="res://sounds/system/Coin_1.wav" id="4_0vose"]
+[ext_resource type="Texture2D" uid="uid://b0uld35ig8w7t" path="res://assets/cars textures/Icons/ATENCION.png" id="5_astwd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_po63d"]
 outline_size = 7
@@ -64,10 +65,10 @@ value = 15.0
 show_percentage = false
 
 [node name="LabelInteractuar" type="Label" parent="."]
-offset_left = -162.0
-offset_top = -292.0
-offset_right = -81.0
-offset_bottom = -269.0
+offset_left = 140.0
+offset_top = -146.0
+offset_right = 221.0
+offset_bottom = -123.0
 scale = Vector2(3, 3)
 theme = ExtResource("2_ko1h0")
 text = "Presioná E"
@@ -87,11 +88,12 @@ stream = ExtResource("4_0vose")
 volume_db = 11.907
 
 [node name="TexturaTarea" type="TextureRect" parent="."]
-offset_left = 68.0
+offset_left = -26.0
 offset_top = -416.00003
-offset_right = 308.0
+offset_right = 214.0
 offset_bottom = -176.00003
 scale = Vector2(1.8, 1.8)
+texture = ExtResource("5_astwd")
 
 [connection signal="body_entered" from="interaction_area" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="interaction_area" to="." method="_on_interaction_area_body_exited"]

@@ -10,7 +10,16 @@ enum CameraState {
 @export var player_path: NodePath
 var player: Node2D = null
 
-@export var base_zoom := Vector2(1, 1)
+@export var limite_izq := -1450.0
+@export var limite_der := 4500.0
+
+
+	
+
+
+
+
+@export var base_zoom := Vector2(0.8, 0.8)
 @export var reactive_zoom := Vector2(0.95, 0.95)
 @export var event_zoom := Vector2(0.9, 0.9)
 
@@ -36,6 +45,7 @@ func _ready():
 func _process(delta):
 	_update_state(delta)
 	_update_zoom(delta)
+	
 
 func _update_state(delta):
 	if current_state == CameraState.REACTIVA:
@@ -74,3 +84,6 @@ func is_locked() -> bool:
 func _physics_process(delta):
 	if player:
 		global_position = player.global_position 
+	var pos = global_position
+	pos.x = clamp(pos.x, limite_izq, limite_der)
+	global_position = pos
