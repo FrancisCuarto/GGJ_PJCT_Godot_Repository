@@ -89,7 +89,6 @@ func _physics_process(delta: float) -> void:
 	
 	
 func _process(_delta):
-	StatsManager.iniciar_stats()
 	if MaskManager.mascara_equipada:
 		mask_sprite.texture = MaskManager.mascara_equipada.sprite
 	else:

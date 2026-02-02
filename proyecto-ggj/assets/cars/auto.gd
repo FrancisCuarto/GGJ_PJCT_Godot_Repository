@@ -97,8 +97,9 @@ func asignar_tarea_random():
 			Tarea.MESSI:
 				# 👉 solo puede entrar si está desbloqueado
 				if MiniGameManager.esta_desbloqueado("messi_minigame"):
+					print("messi minigame desbloqueado")
 					# 👉 probabilidad de aparición
-					if randf() < 0.2: # 20%
+					if randf() < 100: # 20%
 						tareas_validas.append(t)
 			_:
 				tareas_validas.append(t)

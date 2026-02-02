@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://cmb4mywi2q15d"]
+[gd_scene load_steps=51 format=3 uid="uid://cmb4mywi2q15d"]
 
 [ext_resource type="Script" uid="uid://b184pciuuwnv2" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cyju4a84tud8p" path="res://player.tscn" id="2_h2yge"]
@@ -63,10 +63,6 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_d13ii"]
 font = ExtResource("17_cegan")
 font_size = 180
-
-[sub_resource type="LabelSettings" id="LabelSettings_1u8w0"]
-font = ExtResource("17_cegan")
-font_size = 48
 
 [sub_resource type="LabelSettings" id="LabelSettings_0odxb"]
 font = ExtResource("17_cegan")
@@ -323,6 +319,7 @@ texture = ExtResource("20_0odxb")
 
 [node name="DayTransition" type="CanvasLayer" parent="." groups=["day_transition"]]
 process_mode = 3
+visible = false
 script = ExtResource("15_074og")
 
 [node name="Root" type="Control" parent="DayTransition"]
@@ -346,6 +343,7 @@ grow_vertical = 2
 
 [node name="EndDayUI" type="CanvasLayer" parent="." groups=["end_day"]]
 process_mode = 3
+visible = false
 script = ExtResource("16_2cqfq")
 
 [node name="FondoFinDia" type="TextureRect" parent="EndDayUI"]
@@ -377,12 +375,6 @@ text = "Fin del día"
 label_settings = SubResource("LabelSettings_d13ii")
 horizontal_alignment = 1
 
-[node name="DayLabel" type="Label" parent="EndDayUI/FondoFinDia/Content"]
-layout_mode = 2
-text = "Día 1"
-label_settings = SubResource("LabelSettings_1u8w0")
-horizontal_alignment = 1
-
 [node name="MoneyLabel" type="Label" parent="EndDayUI/FondoFinDia/Content"]
 layout_mode = 2
 text = "Dinero ganado: $0"
@@ -411,6 +403,7 @@ stream = ExtResource("37_come4")
 volume_db = 24.0
 
 [node name="ShopUI" parent="." groups=["shop_ui"] instance=ExtResource("21_getpj")]
+visible = false
 mascaras_disponibles = Array[ExtResource("39_0n3wm")]([ExtResource("40_qnost"), ExtResource("41_wnkbs"), ExtResource("42_f6a44"), ExtResource("43_0cbny"), ExtResource("44_hrvbo")])
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

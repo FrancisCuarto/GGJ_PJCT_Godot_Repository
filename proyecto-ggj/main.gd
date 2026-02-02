@@ -1,6 +1,8 @@
 extends Node2D
+
 @onready var music: AudioStreamPlayer = $AudioStreamPlayer
 var tween = Tween
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,6 +11,8 @@ func _ready() -> void:
 	music.play()
 	fade_in_musica()
 	
+
+			
 
 
 func fade_in_musica():
@@ -19,7 +23,7 @@ func fade_in_musica():
 	music_tween.tween_property(
 		music,
 		"volume_db",
-		6.0,   # volumen final (ajustalo a gusto)
+		0.0,   # volumen final (ajustalo a gusto)
 		5.0     # duración del fade
 	)
 

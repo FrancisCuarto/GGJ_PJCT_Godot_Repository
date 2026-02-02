@@ -9,7 +9,7 @@ extends Node
 
 @onready var vida := 100
 @onready var estamina := 100
-@onready var carisma := 50.0
+@onready var carisma := 50
 
 
 
@@ -21,7 +21,6 @@ extends Node
 
 func iniciar_dia():
 	# La estamina se regenera al comenzar el día
-	carisma = carisma_max 
 	estamina = estamina_max
 	
 
@@ -29,7 +28,7 @@ func iniciar_stats():
 	print("INIT STATS | carisma_max:", carisma_max)
 	vida = vida_max
 	estamina = estamina_max
-	carisma = carisma_max
+	carisma = 50
 
 func finalizar_dia():
 	# Vida y carisma persisten, no se tocan

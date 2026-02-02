@@ -29,6 +29,7 @@ MaskManager="*res://systems/mask_manager.gd"
 SaveManager="*res://systems/save_manager.gd"
 MiniGameManager="*res://mini_game_manager.gd"
 StatsManager="*res://stats_manager.gd"
+ConsumablesManager="*res://consumables_manager.gd"
 
 [display]
 

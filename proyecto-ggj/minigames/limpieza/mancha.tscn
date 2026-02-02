@@ -31,6 +31,6 @@ texturas = Array[Texture2D]([ExtResource("2_1y80h"), ExtResource("3_jxil0"), Ext
 sonidos_limpiar = Array[AudioStream]([ExtResource("6_vnrrk"), ExtResource("7_wstc6"), ExtResource("8_6mvmj"), ExtResource("9_0qlm8"), ExtResource("10_h464n"), ExtResource("11_5yo0h"), ExtResource("12_6haoq"), ExtResource("13_ciyj7"), ExtResource("14_2v3jv")])
 
 [node name="AudioLimpiar" type="AudioStreamPlayer2D" parent="."]
-volume_db = 19.349
+volume_db = 24.0
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
