@@ -1,0 +1,272 @@
+[gd_scene load_steps=30 format=3 uid="uid://cmb4mywi2q15d"]
+
+[ext_resource type="Script" uid="uid://b184pciuuwnv2" path="res://main.gd" id="1_h2yge"]
+[ext_resource type="Texture2D" uid="uid://ll7skkn03pof" path="res://backgrounds/Fondo_Lineart_Weno.png" id="2_getpj"]
+[ext_resource type="PackedScene" uid="uid://cyju4a84tud8p" path="res://player.tscn" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://cs3hs2pxnu23p" path="res://lado_izquierdo.gd" id="4_lquwl"]
+[ext_resource type="Script" uid="uid://de2iki58n2p6e" path="res://lado_derecho.gd" id="5_7mycd"]
+[ext_resource type="Script" uid="uid://im8fxoj1u3bv" path="res://camara_1.gd" id="6_4c57u"]
+[ext_resource type="PackedScene" uid="uid://llr8clerxhyn" path="res://assets/cars/auto.tscn" id="7_272bh"]
+[ext_resource type="Script" uid="uid://b182i385vct23" path="res://resources/cars/car_type.gd" id="9_dg77c"]
+[ext_resource type="Script" uid="uid://1el8yswkxm25" path="res://spawn_point.gd" id="9_kek77"]
+[ext_resource type="Resource" uid="uid://byrt46ir2ddl2" path="res://resources/cars/auto_comun.tres" id="10_ycdy4"]
+[ext_resource type="Resource" uid="uid://d6vvqiyricho" path="res://resources/cars/auto_grande.tres" id="11_w48qg"]
+[ext_resource type="Script" uid="uid://dt22tr88ohcd7" path="res://queue_manager.gd" id="11_ycdy4"]
+[ext_resource type="Resource" uid="uid://drjqhmslhvaeu" path="res://resources/cars/ford_ka.tres" id="12_82xsv"]
+[ext_resource type="Resource" uid="uid://n1n3j56inkr2" path="res://resources/cars/auto_mediano.tres" id="12_w48qg"]
+[ext_resource type="Script" uid="uid://cnhtthp0agawl" path="res://camera_controller.gd" id="14_w48qg"]
+[ext_resource type="Script" uid="uid://djvi564jhcwcy" path="res://day_transition.gd" id="15_074og"]
+[ext_resource type="Script" uid="uid://cixuwqch04vd" path="res://day_ui.gd" id="15_vivmo"]
+[ext_resource type="Script" uid="uid://qit6gviwssd" path="res://end_day_ui.gd" id="16_2cqfq"]
+[ext_resource type="FontFile" uid="uid://bkp4ybedmvrxb" path="res://assets/fuentes/GrapeSoda.ttf" id="17_cegan"]
+[ext_resource type="Theme" uid="uid://byi6wv5kft13" path="res://resources/themes/main_theme.tres" id="19_cegan"]
+[ext_resource type="PackedScene" uid="uid://dbfw7vlrcbs0o" path="res://Shop/shop_ui.tscn" id="21_getpj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(1205, 494)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(1174.5, 508)
+
+[sub_resource type="LabelSettings" id="LabelSettings_82xsv"]
+font = ExtResource("17_cegan")
+font_size = 60
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_getpj"]
+font = ExtResource("17_cegan")
+font_size = 32
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ryguw"]
+font = ExtResource("17_cegan")
+font_size = 32
+outline_size = 1
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_d13ii"]
+font = ExtResource("17_cegan")
+font_size = 180
+
+[sub_resource type="LabelSettings" id="LabelSettings_1u8w0"]
+font = ExtResource("17_cegan")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_0odxb"]
+font = ExtResource("17_cegan")
+font_size = 48
+
+[node name="Main" type="Node2D" groups=["Player", "auto", "day_manager"]]
+script = ExtResource("1_h2yge")
+
+[node name="background" type="Node2D" parent="."]
+
+[node name="TestBackgroundImage" type="Sprite2D" parent="background"]
+texture_repeat = 2
+position = Vector2(1567.0001, 207.00002)
+scale = Vector2(2.0399978, 2.11)
+texture = ExtResource("2_getpj")
+region_enabled = true
+region_rect = Rect2(0, 0, 1912.3906, 513.6385)
+
+[node name="camaras (obsoleto)" type="Node2D" parent="."]
+
+[node name="camera" type="Camera2D" parent="camaras (obsoleto)" groups=["camera"]]
+position = Vector2(603, 389)
+enabled = false
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+script = ExtResource("6_4c57u")
+
+[node name="camera_targets" type="Node2D" parent="camaras (obsoleto)"]
+
+[node name="target1" type="Marker2D" parent="camaras (obsoleto)/camera_targets"]
+position = Vector2(554, 390)
+
+[node name="target2" type="Marker2D" parent="camaras (obsoleto)/camera_targets"]
+position = Vector2(1806, 390)
+
+[node name="street_sides" type="Node2D" parent="."]
+visible = false
+
+[node name="lado_izquierdo" type="Area2D" parent="street_sides"]
+position = Vector2(-21, 0)
+script = ExtResource("4_lquwl")
+camera_target = NodePath("../../camaras (obsoleto)/camera_targets/target1")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="street_sides/lado_izquierdo"]
+position = Vector2(568.5, 452)
+shape = SubResource("RectangleShape2D_h2yge")
+debug_color = Color(0.62568676, 0.5254878, 0.24051675, 0.41960785)
+
+[node name="lado_derecho" type="Area2D" parent="street_sides"]
+position = Vector2(-41, 0)
+script = ExtResource("5_7mycd")
+camera_target = NodePath("../../camaras (obsoleto)/camera_targets/target2")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="street_sides/lado_derecho"]
+position = Vector2(1780.25, 459)
+shape = SubResource("RectangleShape2D_1bvp3")
+debug_color = Color(0.86415935, 0.3492322, 0.21470326, 0.41960785)
+
+[node name="car_spawner" type="Node2D" parent="."]
+
+[node name="spawner" type="Node2D" parent="car_spawner"]
+position = Vector2(-550, 568)
+metadata/_edit_group_ = true
+
+[node name="spawn_point" type="Marker2D" parent="car_spawner/spawner"]
+script = ExtResource("9_kek77")
+car_scene = ExtResource("7_272bh")
+queue_manager = NodePath("../../../QueueManager")
+Player = NodePath("../../../Player")
+car_types = Array[ExtResource("9_dg77c")]([ExtResource("10_ycdy4"), ExtResource("11_w48qg"), ExtResource("12_w48qg"), ExtResource("12_82xsv")])
+
+[node name="Timer" type="Timer" parent="car_spawner/spawner"]
+wait_time = 5.0
+autostart = true
+
+[node name="QueueManager" type="Node2D" parent="." groups=["QueueManager"]]
+script = ExtResource("11_ycdy4")
+
+[node name="Slot1" type="Marker2D" parent="QueueManager"]
+position = Vector2(2070, 560)
+
+[node name="Slot2" type="Marker2D" parent="QueueManager"]
+position = Vector2(1500, 560)
+
+[node name="Slot3" type="Marker2D" parent="QueueManager"]
+position = Vector2(771, 560)
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("2_h2yge")]
+position = Vector2(154, 594)
+
+[node name="CameraController" type="Camera2D" parent="."]
+offset = Vector2(100, -200)
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+script = ExtResource("14_w48qg")
+player_path = NodePath("../Player")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="DayPanel" type="Panel" parent="UI"]
+self_modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(10, 10)
+offset_left = 20.0
+offset_right = 220.0
+offset_bottom = 100.0
+script = ExtResource("15_vivmo")
+metadata/_edit_group_ = true
+
+[node name="DayLabel" type="Label" parent="UI/DayPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Día 1"
+label_settings = SubResource("LabelSettings_82xsv")
+
+[node name="TimeLabel" type="Label" parent="UI/DayPanel"]
+layout_mode = 0
+offset_top = 45.0
+offset_right = 166.0
+offset_bottom = 112.0
+text = "Tiempo: 00:00"
+label_settings = SubResource("LabelSettings_getpj")
+
+[node name="MoneyLabel" type="Label" parent="UI/DayPanel"]
+layout_mode = 0
+offset_top = 70.0
+offset_right = 126.0
+offset_bottom = 102.0
+text = "Dinero: $0"
+label_settings = SubResource("LabelSettings_ryguw")
+
+[node name="DayTransition" type="CanvasLayer" parent="." groups=["day_transition"]]
+process_mode = 3
+script = ExtResource("15_074og")
+
+[node name="Root" type="Control" parent="DayTransition"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FadePanel" type="ColorRect" parent="DayTransition/Root"]
+process_mode = 3
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EndDayUI" type="CanvasLayer" parent="." groups=["end_day"]]
+process_mode = 3
+script = ExtResource("16_2cqfq")
+
+[node name="Background" type="Panel" parent="EndDayUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="VBoxContainer" parent="EndDayUI/Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="EndDayUI/Background/Content"]
+layout_mode = 2
+text = "Fin del día"
+label_settings = SubResource("LabelSettings_d13ii")
+horizontal_alignment = 1
+
+[node name="DayLabel" type="Label" parent="EndDayUI/Background/Content"]
+layout_mode = 2
+text = "Día 1"
+label_settings = SubResource("LabelSettings_1u8w0")
+horizontal_alignment = 1
+
+[node name="MoneyLabel" type="Label" parent="EndDayUI/Background/Content"]
+layout_mode = 2
+text = "Dinero ganado: $0"
+label_settings = SubResource("LabelSettings_0odxb")
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="EndDayUI/Background/Content"]
+layout_mode = 2
+theme = ExtResource("19_cegan")
+text = "Continuar"
+
+[node name="ShopButton" type="Button" parent="EndDayUI/Background/Content" groups=["ShopUI"]]
+process_mode = 3
+layout_mode = 2
+theme = ExtResource("19_cegan")
+text = "Ir a la tienda"
+
+[node name="ShopUI" parent="." groups=["shop_ui"] instance=ExtResource("21_getpj")]
+
+[connection signal="body_entered" from="street_sides/lado_izquierdo" to="street_sides/lado_izquierdo" method="_on_body_entered"]
+[connection signal="body_entered" from="street_sides/lado_derecho" to="street_sides/lado_derecho" method="_on_body_entered"]
+[connection signal="timeout" from="car_spawner/spawner/Timer" to="car_spawner/spawner/spawn_point" method="_on_timer_timeout"]
+[connection signal="pressed" from="EndDayUI/Background/Content/ShopButton" to="EndDayUI" method="_on_shop_button_pressed"]

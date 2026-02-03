@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Mask" load_steps=3 format=3 uid="uid://divn1fo2r3d5a"]
+
+[ext_resource type="Texture2D" uid="uid://c516qevvhpv66" path="res://resources/mascaras/TENGU PROTECCION VI.png" id="1_ai4lk"]
+[ext_resource type="Script" uid="uid://d3wlernwvlht" path="res://resources/mascaras/mask.gd" id="1_b5xcm"]
+
+[resource]
+script = ExtResource("1_b5xcm")
+nombre = "Máscara de Tengu"
+descripcion = "El gato japones"
+icono = ExtResource("1_ai4lk")
+sprite = ExtResource("1_ai4lk")
+metadata/_custom_type_script = "uid://d3wlernwvlht"

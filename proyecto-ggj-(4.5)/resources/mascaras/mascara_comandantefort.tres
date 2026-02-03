@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Mask" load_steps=3 format=3 uid="uid://cterteoa6qpxw"]
+
+[ext_resource type="Texture2D" uid="uid://bl1aeiw08ityv" path="res://assets/mask_textures/ford.png" id="1_c5t7h"]
+[ext_resource type="Script" uid="uid://d3wlernwvlht" path="res://resources/mascaras/mask.gd" id="2_3g1yt"]
+
+[resource]
+script = ExtResource("2_3g1yt")
+nombre = "Comandante Fort"
+precio = 2600
+descripcion = "Mascara del comandante Fort"
+icono = ExtResource("1_c5t7h")
+sprite = ExtResource("1_c5t7h")
+metadata/_custom_type_script = "uid://d3wlernwvlht"

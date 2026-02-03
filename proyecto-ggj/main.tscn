@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://cmb4mywi2q15d"]
+[gd_scene format=3 uid="uid://cmb4mywi2q15d"]
 
 [ext_resource type="Script" uid="uid://b184pciuuwnv2" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cyju4a84tud8p" path="res://player.tscn" id="2_h2yge"]
@@ -45,6 +45,7 @@
 [ext_resource type="Resource" uid="uid://bsabmxaap7j42" path="res://resources/mascaras/mascara_ghibli.tres" id="42_f6a44"]
 [ext_resource type="Resource" uid="uid://ibagknp0ac74" path="res://resources/mascaras/mascara_jason.tres" id="43_0cbny"]
 [ext_resource type="Resource" uid="uid://c1qlwcyuwpcpr" path="res://resources/mascaras/mascara_adriel.tres" id="44_hrvbo"]
+[ext_resource type="Texture2D" uid="uid://c805vcl6ha41o" path="res://icon.svg" id="46_qnost"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6jrf"]
 
@@ -68,12 +69,12 @@ font_size = 180
 font = ExtResource("17_cegan")
 font_size = 48
 
-[node name="Main" type="Node2D" groups=["Player", "auto", "day_manager"]]
+[node name="Main" type="Node2D" unique_id=252182662 groups=["Player", "auto", "day_manager"]]
 script = ExtResource("1_h2yge")
 
-[node name="background" type="Node2D" parent="."]
+[node name="background" type="Node2D" parent="." unique_id=1503394898]
 
-[node name="TestBackgroundImage" type="Sprite2D" parent="background"]
+[node name="TestBackgroundImage" type="Sprite2D" parent="background" unique_id=263030943]
 texture_repeat = 2
 position = Vector2(1567.0001, 180)
 scale = Vector2(2.0399978, 2.11)
@@ -81,74 +82,74 @@ texture = ExtResource("2_qsp4k")
 region_enabled = true
 region_rect = Rect2(0, 0, 3840, 513.6385)
 
-[node name="camaras (obsoleto)" type="Node2D" parent="."]
+[node name="camaras (obsoleto)" type="Node2D" parent="." unique_id=1552489659]
 
-[node name="camera" type="Camera2D" parent="camaras (obsoleto)" groups=["camera"]]
+[node name="camera" type="Camera2D" parent="camaras (obsoleto)" unique_id=1607225104 groups=["camera"]]
 position = Vector2(603, 389)
 enabled = false
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 script = ExtResource("6_4c57u")
 
-[node name="camera_targets" type="Node2D" parent="camaras (obsoleto)"]
+[node name="camera_targets" type="Node2D" parent="camaras (obsoleto)" unique_id=1770463353]
 
-[node name="target1" type="Marker2D" parent="camaras (obsoleto)/camera_targets"]
+[node name="target1" type="Marker2D" parent="camaras (obsoleto)/camera_targets" unique_id=558317665]
 position = Vector2(554, 390)
 
-[node name="target2" type="Marker2D" parent="camaras (obsoleto)/camera_targets"]
+[node name="target2" type="Marker2D" parent="camaras (obsoleto)/camera_targets" unique_id=419205688]
 position = Vector2(1806, 390)
 
-[node name="street_sides" type="Node2D" parent="."]
+[node name="street_sides" type="Node2D" parent="." unique_id=1935103079]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="street_sides"]
+[node name="StaticBody2D" type="StaticBody2D" parent="street_sides" unique_id=914751459]
 position = Vector2(5315, 432)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="street_sides/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="street_sides/StaticBody2D" unique_id=1765910433]
 position = Vector2(11, -36.999996)
 scale = Vector2(2.76, 43.760006)
 shape = SubResource("RectangleShape2D_a6jrf")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="street_sides"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="street_sides" unique_id=1585531087]
 position = Vector2(-2021, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="street_sides/StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="street_sides/StaticBody2D2" unique_id=755788500]
 position = Vector2(-113, 431.99994)
 scale = Vector2(2.76, 43.760006)
 shape = SubResource("RectangleShape2D_a6jrf")
 
-[node name="car_spawner" type="Node2D" parent="."]
+[node name="car_spawner" type="Node2D" parent="." unique_id=575041426]
 
-[node name="spawner" type="Node2D" parent="car_spawner"]
+[node name="spawner" type="Node2D" parent="car_spawner" unique_id=626497483]
 position = Vector2(-3219, 568)
 metadata/_edit_group_ = true
 
-[node name="spawn_point" type="Marker2D" parent="car_spawner/spawner"]
+[node name="spawn_point" type="Marker2D" parent="car_spawner/spawner" unique_id=2013911]
 script = ExtResource("9_kek77")
 car_scene = ExtResource("7_272bh")
 queue_manager = NodePath("../../../QueueManager")
 Player = NodePath("../../../Player")
 car_types = Array[ExtResource("9_dg77c")]([ExtResource("10_ycdy4"), ExtResource("11_w48qg"), ExtResource("12_w48qg"), ExtResource("12_82xsv"), ExtResource("11_0rl1p"), ExtResource("12_facbu"), ExtResource("12_ok6jj"), ExtResource("14_b1qrp")])
 
-[node name="Timer" type="Timer" parent="car_spawner/spawner"]
+[node name="Timer" type="Timer" parent="car_spawner/spawner" unique_id=1070884509]
 wait_time = 5.0
 autostart = true
 
-[node name="QueueManager" type="Node2D" parent="." groups=["QueueManager"]]
+[node name="QueueManager" type="Node2D" parent="." unique_id=260568881 groups=["QueueManager"]]
 script = ExtResource("11_ycdy4")
 
-[node name="Slot1" type="Marker2D" parent="QueueManager"]
+[node name="Slot1" type="Marker2D" parent="QueueManager" unique_id=1454054115]
 position = Vector2(2070, 560)
 
-[node name="Slot2" type="Marker2D" parent="QueueManager"]
+[node name="Slot2" type="Marker2D" parent="QueueManager" unique_id=321846723]
 position = Vector2(1500, 560)
 
-[node name="Slot3" type="Marker2D" parent="QueueManager"]
+[node name="Slot3" type="Marker2D" parent="QueueManager" unique_id=722472885]
 position = Vector2(771, 560)
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("2_h2yge")]
+[node name="Player" parent="." unique_id=1985915593 groups=["Player"] instance=ExtResource("2_h2yge")]
 position = Vector2(154, 594)
 
-[node name="CameraController" type="Camera2D" parent="."]
+[node name="CameraController" type="Camera2D" parent="." unique_id=1891121740]
 position = Vector2(490, 597)
 offset = Vector2(100, -100)
 position_smoothing_enabled = true
@@ -156,9 +157,9 @@ position_smoothing_speed = 8.0
 script = ExtResource("14_w48qg")
 player_path = NodePath("../Player")
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1027001014]
 
-[node name="DayPanel" type="Panel" parent="UI"]
+[node name="DayPanel" type="Panel" parent="UI" unique_id=1385908711]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(10, 10)
 offset_left = 61.0
@@ -168,7 +169,7 @@ offset_bottom = 138.0
 script = ExtResource("15_vivmo")
 metadata/_edit_group_ = true
 
-[node name="DayLabel" type="Label" parent="UI/DayPanel"]
+[node name="DayLabel" type="Label" parent="UI/DayPanel" unique_id=792437777]
 layout_mode = 0
 offset_left = 3.0
 offset_top = -8.0
@@ -177,7 +178,7 @@ offset_bottom = 64.0
 text = "Día 1"
 label_settings = SubResource("LabelSettings_82xsv")
 
-[node name="MoneyLabel" type="Label" parent="UI/DayPanel"]
+[node name="MoneyLabel" type="Label" parent="UI/DayPanel" unique_id=564173228]
 layout_mode = 0
 offset_left = 88.0
 offset_top = 73.0
@@ -186,7 +187,7 @@ offset_bottom = 137.0
 text = "0"
 label_settings = SubResource("LabelSettings_ryguw")
 
-[node name="TextureRect" type="TextureRect" parent="UI/DayPanel"]
+[node name="TextureRect" type="TextureRect" parent="UI/DayPanel" unique_id=873342783]
 layout_mode = 0
 offset_left = -83.0
 offset_top = -9.0
@@ -194,7 +195,7 @@ offset_right = 157.0
 offset_bottom = 231.0
 texture = ExtResource("16_xuqvo")
 
-[node name="PanelBase" type="TextureRect" parent="UI"]
+[node name="PanelBase" type="TextureRect" parent="UI" unique_id=1585689791]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -202,7 +203,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("18_d13ii")
 
-[node name="Capa1" type="TextureRect" parent="UI/PanelBase"]
+[node name="Capa1" type="TextureRect" parent="UI/PanelBase" unique_id=1473452162]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -211,7 +212,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("19_xuqvo")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/PanelBase/Capa1"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PanelBase/Capa1" unique_id=605242823]
 layout_mode = 0
 offset_left = 320.0
 offset_top = 556.0
@@ -220,24 +221,24 @@ offset_bottom = 691.0
 theme_override_constants/separation = 16
 script = ExtResource("20_kq58d")
 
-[node name="Vida" type="ProgressBar" parent="UI/PanelBase/Capa1/VBoxContainer"]
+[node name="Vida" type="ProgressBar" parent="UI/PanelBase/Capa1/VBoxContainer" unique_id=299657862]
 modulate = Color(0.66719395, 0, 0.14129505, 1)
 layout_mode = 2
 theme = ExtResource("19_cegan")
 value = 100.0
 
-[node name="Estamina" type="ProgressBar" parent="UI/PanelBase/Capa1/VBoxContainer"]
+[node name="Estamina" type="ProgressBar" parent="UI/PanelBase/Capa1/VBoxContainer" unique_id=1340192557]
 modulate = Color(0.92941177, 0.90588236, 0.101960786, 1)
 layout_mode = 2
 theme = ExtResource("19_cegan")
 value = 100.0
 
-[node name="Carisma" type="ProgressBar" parent="UI/PanelBase/Capa1/VBoxContainer"]
+[node name="Carisma" type="ProgressBar" parent="UI/PanelBase/Capa1/VBoxContainer" unique_id=1505657225]
 modulate = Color(0.9585933, 0.00079512, 0.9652894, 1)
 layout_mode = 2
 theme = ExtResource("19_cegan")
 
-[node name="Capa2" type="TextureRect" parent="UI/PanelBase/Capa1"]
+[node name="Capa2" type="TextureRect" parent="UI/PanelBase/Capa1" unique_id=891035254]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -246,7 +247,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("20_qsp4k")
 
-[node name="Capa3" type="TextureRect" parent="UI/PanelBase/Capa1"]
+[node name="Capa3" type="TextureRect" parent="UI/PanelBase/Capa1" unique_id=94437987]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -255,7 +256,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("21_kq58d")
 
-[node name="TextureRect4" type="TextureRect" parent="UI/PanelBase"]
+[node name="TextureRect4" type="TextureRect" parent="UI/PanelBase" unique_id=1649709462]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -264,7 +265,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("23_htxhm")
 
-[node name="TextureRect" type="TextureRect" parent="UI/PanelBase"]
+[node name="TextureRect" type="TextureRect" parent="UI/PanelBase" unique_id=2039333027]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -273,7 +274,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("24_jq2sk")
 
-[node name="TextureRect3" type="TextureRect" parent="UI/PanelBase"]
+[node name="TextureRect3" type="TextureRect" parent="UI/PanelBase" unique_id=4121698]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -282,7 +283,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("26_0rl1p")
 
-[node name="TextureRect2" type="TextureRect" parent="UI/PanelBase"]
+[node name="TextureRect2" type="TextureRect" parent="UI/PanelBase" unique_id=1817539012]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -291,7 +292,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("25_4k2k6")
 
-[node name="PlayerState" type="TextureRect" parent="UI/PanelBase"]
+[node name="PlayerState" type="TextureRect" parent="UI/PanelBase" unique_id=1503002562]
 layout_mode = 0
 offset_left = 588.0
 offset_top = 534.0
@@ -300,7 +301,7 @@ offset_bottom = 774.0
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("27_jq2sk")
 
-[node name="Reloj" type="Control" parent="UI"]
+[node name="Reloj" type="Control" parent="UI" unique_id=174242981]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 142.00002
@@ -311,18 +312,18 @@ scale = Vector2(0.27999938, 0.19999936)
 script = ExtResource("20_lswn8")
 metadata/_edit_group_ = true
 
-[node name="Aguja" type="TextureRect" parent="UI/Reloj"]
+[node name="Aguja" type="TextureRect" parent="UI/Reloj" unique_id=1876513200]
 layout_mode = 1
 offset_right = 55.0
 offset_bottom = 60.0
 texture = ExtResource("20_0odxb")
 
-[node name="DayTransition" type="CanvasLayer" parent="." groups=["day_transition"]]
+[node name="DayTransition" type="CanvasLayer" parent="." unique_id=956860374 groups=["day_transition"]]
 process_mode = 3
 visible = false
 script = ExtResource("15_074og")
 
-[node name="Root" type="Control" parent="DayTransition"]
+[node name="Root" type="Control" parent="DayTransition" unique_id=716197100]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -331,7 +332,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="FadePanel" type="ColorRect" parent="DayTransition/Root"]
+[node name="FadePanel" type="ColorRect" parent="DayTransition/Root" unique_id=351898392]
 process_mode = 3
 modulate = Color(0, 0, 0, 1)
 layout_mode = 1
@@ -341,12 +342,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="EndDayUI" type="CanvasLayer" parent="." groups=["end_day"]]
+[node name="EndDayUI" type="CanvasLayer" parent="." unique_id=1204038950 groups=["end_day"]]
 process_mode = 3
 visible = false
 script = ExtResource("16_2cqfq")
 
-[node name="FondoFinDia" type="TextureRect" parent="EndDayUI"]
+[node name="FondoFinDia" type="TextureRect" parent="EndDayUI" unique_id=1180645455]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -354,7 +355,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("36_b1qrp")
 
-[node name="Content" type="VBoxContainer" parent="EndDayUI/FondoFinDia"]
+[node name="Content" type="VBoxContainer" parent="EndDayUI/FondoFinDia" unique_id=111487300]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -369,19 +370,19 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="TitleLabel" type="Label" parent="EndDayUI/FondoFinDia/Content"]
+[node name="TitleLabel" type="Label" parent="EndDayUI/FondoFinDia/Content" unique_id=1944328856]
 layout_mode = 2
 text = "Fin del día"
 label_settings = SubResource("LabelSettings_d13ii")
 horizontal_alignment = 1
 
-[node name="MoneyLabel" type="Label" parent="EndDayUI/FondoFinDia/Content"]
+[node name="MoneyLabel" type="Label" parent="EndDayUI/FondoFinDia/Content" unique_id=1864138159]
 layout_mode = 2
 text = "Dinero ganado: $0"
 label_settings = SubResource("LabelSettings_0odxb")
 horizontal_alignment = 1
 
-[node name="ContinueButton" type="Button" parent="EndDayUI/FondoFinDia/Content"]
+[node name="ContinueButton" type="Button" parent="EndDayUI/FondoFinDia/Content" unique_id=1016347113]
 layout_mode = 2
 theme = ExtResource("19_cegan")
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
@@ -389,7 +390,7 @@ theme_override_colors/font_hover_color = Color(0.85490197, 0.8, 0.16078432, 1)
 text = "Continuar"
 flat = true
 
-[node name="ShopButton" type="Button" parent="EndDayUI/FondoFinDia/Content" groups=["ShopUI"]]
+[node name="ShopButton" type="Button" parent="EndDayUI/FondoFinDia/Content" unique_id=2062431436 groups=["ShopUI"]]
 process_mode = 3
 layout_mode = 2
 theme = ExtResource("19_cegan")
@@ -398,18 +399,33 @@ theme_override_colors/font_hover_color = Color(0.85490197, 0.8, 0.16078432, 1)
 text = "Ir a la tienda"
 flat = true
 
-[node name="SonidoFinDIa" type="AudioStreamPlayer2D" parent="EndDayUI"]
+[node name="SonidoFinDIa" type="AudioStreamPlayer2D" parent="EndDayUI" unique_id=1755650412]
 stream = ExtResource("37_come4")
 volume_db = 24.0
 
-[node name="ShopUI" parent="." groups=["shop_ui"] instance=ExtResource("21_getpj")]
+[node name="ShopUI" parent="." unique_id=684712431 groups=["shop_ui"] instance=ExtResource("21_getpj")]
 visible = false
 mascaras_disponibles = Array[ExtResource("39_0n3wm")]([ExtResource("40_qnost"), ExtResource("41_wnkbs"), ExtResource("42_f6a44"), ExtResource("43_0cbny"), ExtResource("44_hrvbo")])
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1893778377]
 process_mode = 3
 stream = ExtResource("22_ryguw")
 autoplay = true
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="." unique_id=935098758]
+position = Vector2(0, 274)
+texture_normal = ExtResource("46_qnost")
+action = "left"
+
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="." unique_id=736036271]
+position = Vector2(1092, 274)
+texture_normal = ExtResource("46_qnost")
+action = "right"
+
+[node name="TouchScreenButton3" type="TouchScreenButton" parent="." unique_id=120146183]
+position = Vector2(1092, 410)
+texture_normal = ExtResource("46_qnost")
+action = "interactuar"
 
 [connection signal="timeout" from="car_spawner/spawner/Timer" to="car_spawner/spawner/spawn_point" method="_on_timer_timeout"]
 [connection signal="pressed" from="EndDayUI/FondoFinDia/Content/ShopButton" to="EndDayUI" method="_on_shop_button_pressed"]

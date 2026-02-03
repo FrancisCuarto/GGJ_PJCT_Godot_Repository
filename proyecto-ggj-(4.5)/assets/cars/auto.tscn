@@ -1,0 +1,98 @@
+[gd_scene load_steps=9 format=3 uid="uid://llr8clerxhyn"]
+
+[ext_resource type="Script" uid="uid://buhndf7viivg6" path="res://assets/cars/auto.gd" id="1_po63d"]
+[ext_resource type="Theme" uid="uid://byi6wv5kft13" path="res://resources/themes/main_theme.tres" id="2_ko1h0"]
+[ext_resource type="SpriteFrames" uid="uid://xrvf07sv6evh" path="res://assets/cars/new_sprite_frames.tres" id="3_ko1h0"]
+[ext_resource type="AudioStream" uid="uid://mtipmt5qcsq2" path="res://sounds/system/Coin_1.wav" id="4_0vose"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_po63d"]
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o38vp"]
+size = Vector2(1193.7058, 160.5824)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_po63d"]
+size = Vector2(138, 163)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ko1h0"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="auto" type="CharacterBody2D" groups=["auto", "autos"]]
+scale = Vector2(0.5, 0.5)
+collision_layer = 2
+collision_mask = 8
+script = ExtResource("1_po63d")
+metadata/_edit_group_ = true
+
+[node name="LabelTarea" type="Label" parent="."]
+offset_left = -124.00001
+offset_top = -64.0
+offset_right = -74.00001
+offset_bottom = -41.0
+scale = Vector2(3, 3)
+theme = ExtResource("2_ko1h0")
+text = "TEXTO"
+label_settings = SubResource("LabelSettings_po63d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("3_ko1h0")
+animation = &"ferrari_idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.007082, 11.000002)
+scale = Vector2(1.0220392, -0.97146386)
+shape = SubResource("RectangleShape2D_o38vp")
+
+[node name="interaction_area" type="Area2D" parent="."]
+process_mode = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_area"]
+position = Vector2(8, -4)
+shape = SubResource("RectangleShape2D_po63d")
+debug_color = Color(3.6098064e-07, 0.49991494, 0.2643189, 0.41960785)
+
+[node name="PatienceBar" type="ProgressBar" parent="."]
+offset_left = -192.0
+offset_top = -458.0
+offset_right = 108.0
+offset_bottom = -408.0
+max_value = 15.0
+value = 15.0
+show_percentage = false
+
+[node name="LabelInteractuar" type="Label" parent="."]
+offset_left = -162.0
+offset_top = -292.0
+offset_right = -81.0
+offset_bottom = -269.0
+scale = Vector2(3, 3)
+theme = ExtResource("2_ko1h0")
+text = "Presioná E"
+label_settings = SubResource("LabelSettings_ko1h0")
+horizontal_alignment = 1
+
+[node name="ScreenNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(7.4799995, 1)
+rect = Rect2(-100, -100, 200, 200)
+
+[node name="AudioMotor" type="AudioStreamPlayer2D" parent="."]
+
+[node name="AudioMotorStart" type="AudioStreamPlayer2D" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_0vose")
+volume_db = 24.0
+
+[node name="TexturaTarea" type="TextureRect" parent="."]
+offset_left = 68.0
+offset_top = -416.00003
+offset_right = 308.0
+offset_bottom = -176.00003
+scale = Vector2(1.8, 1.8)
+
+[connection signal="body_entered" from="interaction_area" to="." method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="interaction_area" to="." method="_on_interaction_area_body_exited"]
+[connection signal="screen_exited" from="ScreenNotifier" to="." method="_on_screen_notifier_screen_exited"]

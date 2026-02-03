@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://civff26bq1cu7"]
+
+[ext_resource type="Texture2D" uid="uid://bwya07etw7vso" path="res://assets/minigame_textures/estacionamiento_textures/topview_car_textures/auto_top_rojo.png" id="1_vxr1y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pvorj"]
+
+[node name="Area2D" type="Area2D"]
+process_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+process_mode = 3
+position = Vector2(0, 16)
+texture = ExtResource("1_vxr1y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+process_mode = 3
+scale = Vector2(4.920001, 8.760002)
+shape = SubResource("RectangleShape2D_pvorj")

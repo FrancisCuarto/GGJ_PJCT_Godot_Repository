@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b40bfkpvy137a"]
+
+[ext_resource type="Script" uid="uid://caohb6p11wybn" path="res://minigames/estacionar/estacionamiento.gd" id="1_ooysw"]
+[ext_resource type="Texture2D" uid="uid://cvk1j0gs8cgeu" path="res://assets/minigame_textures/estacionamiento_textures/conos_4.png" id="2_ooysw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_otoo2"]
+
+[node name="Estacionamiento" type="Area2D"]
+process_mode = 3
+script = ExtResource("1_ooysw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+process_mode = 3
+position = Vector2(81.99999, 182.00003)
+scale = Vector2(2.0439987, 2.2000003)
+texture = ExtResource("2_ooysw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+process_mode = 3
+scale = Vector2(10.040003, 11.480001)
+shape = SubResource("RectangleShape2D_otoo2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

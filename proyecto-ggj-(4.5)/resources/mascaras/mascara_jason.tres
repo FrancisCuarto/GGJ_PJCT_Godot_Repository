@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Mask" load_steps=3 format=3 uid="uid://ibagknp0ac74"]
+
+[ext_resource type="Texture2D" uid="uid://cq21m0sw0ijs7" path="res://assets/mask_textures/JASON MASK (1).png" id="1_thrak"]
+[ext_resource type="Script" uid="uid://d3wlernwvlht" path="res://resources/mascaras/mask.gd" id="2_macp4"]
+
+[resource]
+script = ExtResource("2_macp4")
+desbloquea_minijuego = "Mascara de Jason"
+nombre = "Mascara de Jason"
+precio = 9000
+descripcion = "Del asesino"
+icono = ExtResource("1_thrak")
+sprite = ExtResource("1_thrak")
+metadata/_custom_type_script = "uid://d3wlernwvlht"

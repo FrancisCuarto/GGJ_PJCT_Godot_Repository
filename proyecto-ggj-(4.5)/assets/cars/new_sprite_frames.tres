@@ -1,0 +1,168 @@
+[gd_resource type="SpriteFrames" load_steps=21 format=3 uid="uid://xrvf07sv6evh"]
+
+[ext_resource type="Texture2D" uid="uid://ou44blt08fp4" path="res://assets/cars textures/F-K_bordo_pos0.png" id="1_8gtdw"]
+[ext_resource type="Texture2D" uid="uid://ch3qm3gh0qa6p" path="res://assets/cars textures/FiatUno/Fiat Uno pos0.png" id="1_173r6"]
+[ext_resource type="Texture2D" uid="uid://dlmq7oiib85n4" path="res://assets/cars textures/ferrari 2.png" id="1_ntmth"]
+[ext_resource type="Texture2D" uid="uid://cbt862xwgx40x" path="res://assets/cars textures/FiatUno/Fiat Uno pos1.png" id="2_l4d08"]
+[ext_resource type="Texture2D" uid="uid://dmilrradtnuwm" path="res://assets/cars textures/F-K_bordo_pos1.png" id="2_ph7wg"]
+[ext_resource type="Texture2D" uid="uid://b2jg7ewu36ls1" path="res://assets/cars textures/ferrari 3.png" id="2_pxttv"]
+[ext_resource type="Texture2D" uid="uid://fnpihjg5iba2" path="res://assets/cars textures/F-K_bordo_pos2.png" id="3_6sjro"]
+[ext_resource type="Texture2D" uid="uid://cill3uo7e68h7" path="res://assets/cars textures/Ferrari.png" id="3_e2h8f"]
+[ext_resource type="Texture2D" uid="uid://4fed4kwfoa6o" path="res://assets/cars textures/FiatUno/Fiat Uno pos2.png" id="3_tgvsr"]
+[ext_resource type="Texture2D" uid="uid://drsblkdtawecd" path="res://assets/cars textures/FiatUno/Fiat Uno pos-1.png" id="4_ntmth"]
+[ext_resource type="Texture2D" uid="uid://dv11fvbbd72ms" path="res://assets/cars textures/F-K_bordo_pos-1.png" id="4_xud3i"]
+[ext_resource type="Texture2D" uid="uid://d362u0brmlc55" path="res://assets/cars textures/F-K_bordo_pos-2.png" id="5_fpbma"]
+[ext_resource type="Texture2D" uid="uid://dpc2dgc2ktbef" path="res://assets/cars textures/FiatUno/Fiat Uno pos-2.png" id="5_pxttv"]
+[ext_resource type="Texture2D" uid="uid://cpgmlt4x20sao" path="res://assets/cars textures/new/Fiat Uno rosa.png" id="9_1wcn7"]
+[ext_resource type="Texture2D" uid="uid://v5a6i04mvj8p" path="res://assets/cars textures/new/ford ka gri.png" id="9_e2h8f"]
+[ext_resource type="Texture2D" uid="uid://dotgqgrrnyt4f" path="res://assets/cars textures/new/ford ka grido.png" id="10_b7tg6"]
+[ext_resource type="Texture2D" uid="uid://b04wo0nafk3wq" path="res://assets/cars textures/new/ford ka negrito.png" id="11_fe8em"]
+[ext_resource type="Texture2D" uid="uid://dh7uskmqfid4o" path="res://assets/cars textures/new/ford ka negrito2.png" id="12_h3vg5"]
+[ext_resource type="Texture2D" uid="uid://cvx0pwsxldrbc" path="res://assets/cars textures/new/ford ka naranjoso.png" id="12_ii03b"]
+[ext_resource type="Texture2D" uid="uid://dlu4385lksmiy" path="res://assets/cars textures/new/ford ka naranjoso 2.png" id="13_wef8q"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ntmth")
+}],
+"loop": true,
+"name": &"ferrari_idle",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ntmth")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pxttv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_e2h8f")
+}],
+"loop": true,
+"name": &"ferrari_move",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_173r6")
+}],
+"loop": true,
+"name": &"fiat_uno_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_173r6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_l4d08")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tgvsr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ntmth")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pxttv")
+}],
+"loop": true,
+"name": &"fiat_uno_move",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_1wcn7")
+}],
+"loop": true,
+"name": &"fiatuno_rosa_idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_e2h8f")
+}],
+"loop": true,
+"name": &"fordka_gris_idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_e2h8f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_b7tg6")
+}],
+"loop": true,
+"name": &"fordka_gris_move",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_ii03b")
+}],
+"loop": true,
+"name": &"fordka_naranja_idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_wef8q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ii03b")
+}],
+"loop": true,
+"name": &"fordka_naranja_move",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_fe8em")
+}],
+"loop": true,
+"name": &"fordka_negro_idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_h3vg5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_fe8em")
+}],
+"loop": true,
+"name": &"fordka_negro_move",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8gtdw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8gtdw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ph7wg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6sjro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xud3i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fpbma")
+}],
+"loop": true,
+"name": &"move",
+"speed": 30.0
+}]

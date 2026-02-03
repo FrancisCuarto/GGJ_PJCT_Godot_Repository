@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Mask" load_steps=3 format=3 uid="uid://bsabmxaap7j42"]
+
+[ext_resource type="Texture2D" uid="uid://bmym7qhfo1cip" path="res://assets/mask_textures/ghibli mask (1).png" id="1_h566b"]
+[ext_resource type="Script" uid="uid://d3wlernwvlht" path="res://resources/mascaras/mask.gd" id="2_21k5s"]
+
+[resource]
+script = ExtResource("2_21k5s")
+desbloquea_minijuego = "Mascara Ghibli"
+nombre = "Máscara Ghibli"
+precio = 10500
+descripcion = "Mascara de messi"
+icono = ExtResource("1_h566b")
+sprite = ExtResource("1_h566b")
+metadata/_custom_type_script = "uid://d3wlernwvlht"

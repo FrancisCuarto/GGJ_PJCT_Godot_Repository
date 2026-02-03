@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Mask" load_steps=3 format=3 uid="uid://c1qlwcyuwpcpr"]
+
+[ext_resource type="Texture2D" uid="uid://bcvu76gret58r" path="res://assets/mask_textures/messi.png" id="1_q7a1t"]
+[ext_resource type="Script" uid="uid://d3wlernwvlht" path="res://resources/mascaras/mask.gd" id="2_od88b"]
+
+[resource]
+script = ExtResource("2_od88b")
+desbloquea_minijuego = "messi_minigame"
+nombre = "Mascara de M"
+precio = 150
+descripcion = "El mejor del mundo"
+icono = ExtResource("1_q7a1t")
+sprite = ExtResource("1_q7a1t")
+metadata/_custom_type_script = "uid://d3wlernwvlht"

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dfwmcoe17vyv6"
+path="res://.godot/imported/limpiaparabrisas_mejor_7.wav-9264f4c4db706529be2a48695b28d568.sample"
+
+[deps]
+
+source_file="res://sounds/minigame sounds/limpiar_minigame/limpiaparabrisas_mejor_7.wav"
+dest_files=["res://.godot/imported/limpiaparabrisas_mejor_7.wav-9264f4c4db706529be2a48695b28d568.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

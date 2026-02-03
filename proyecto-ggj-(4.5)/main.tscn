@@ -1,0 +1,415 @@
+[gd_scene load_steps=51 format=3 uid="uid://cmb4mywi2q15d"]
+
+[ext_resource type="Script" uid="uid://b184pciuuwnv2" path="res://main.gd" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cyju4a84tud8p" path="res://player.tscn" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://xco4etlbtqx3" path="res://backgrounds/fondo_final.png" id="2_qsp4k"]
+[ext_resource type="Script" uid="uid://im8fxoj1u3bv" path="res://camara_1.gd" id="6_4c57u"]
+[ext_resource type="PackedScene" uid="uid://llr8clerxhyn" path="res://assets/cars/auto.tscn" id="7_272bh"]
+[ext_resource type="Script" uid="uid://b182i385vct23" path="res://resources/cars/car_type.gd" id="9_dg77c"]
+[ext_resource type="Script" uid="uid://1el8yswkxm25" path="res://spawn_point.gd" id="9_kek77"]
+[ext_resource type="Resource" uid="uid://byrt46ir2ddl2" path="res://resources/cars/auto_comun.tres" id="10_ycdy4"]
+[ext_resource type="Resource" uid="uid://clea1jooro78y" path="res://resources/cars/fordkaGris.tres" id="11_0rl1p"]
+[ext_resource type="Resource" uid="uid://d6vvqiyricho" path="res://resources/cars/auto_grande.tres" id="11_w48qg"]
+[ext_resource type="Script" uid="uid://dt22tr88ohcd7" path="res://queue_manager.gd" id="11_ycdy4"]
+[ext_resource type="Resource" uid="uid://drjqhmslhvaeu" path="res://resources/cars/ford_ka.tres" id="12_82xsv"]
+[ext_resource type="Resource" uid="uid://cfgcujg3aywv2" path="res://resources/cars/FiatUnoRosa.tres" id="12_facbu"]
+[ext_resource type="Resource" uid="uid://7l3upap0clqg" path="res://resources/cars/fordkaNegro.tres" id="12_ok6jj"]
+[ext_resource type="Resource" uid="uid://n1n3j56inkr2" path="res://resources/cars/auto_mediano.tres" id="12_w48qg"]
+[ext_resource type="Resource" uid="uid://bw7ny6rychuqm" path="res://resources/cars/fordkaNaranja.tres" id="14_b1qrp"]
+[ext_resource type="Script" uid="uid://cnhtthp0agawl" path="res://camera_controller.gd" id="14_w48qg"]
+[ext_resource type="Script" uid="uid://djvi564jhcwcy" path="res://day_transition.gd" id="15_074og"]
+[ext_resource type="Script" uid="uid://cixuwqch04vd" path="res://day_ui.gd" id="15_vivmo"]
+[ext_resource type="Script" uid="uid://qit6gviwssd" path="res://end_day_ui.gd" id="16_2cqfq"]
+[ext_resource type="Texture2D" uid="uid://bedt6cxu7mqd4" path="res://assets/cars textures/Icons/MONEDA.png" id="16_xuqvo"]
+[ext_resource type="FontFile" uid="uid://bkp4ybedmvrxb" path="res://assets/fuentes/GrapeSoda.ttf" id="17_cegan"]
+[ext_resource type="Texture2D" uid="uid://bx5mcy11g53h5" path="res://UI assets/INTERFAZ_CAPA 1_FONDOR RELOJ.png" id="18_d13ii"]
+[ext_resource type="Theme" uid="uid://byi6wv5kft13" path="res://resources/themes/main_theme.tres" id="19_cegan"]
+[ext_resource type="Texture2D" uid="uid://bj22fjj2s6k7y" path="res://UI assets/INTERFAZ_CAPA 2_ ESTADISTICA_FONDO.png" id="19_xuqvo"]
+[ext_resource type="Texture2D" uid="uid://ty4si2iorvud" path="res://UI assets/RELOJ  AGU 3 (1).png" id="20_0odxb"]
+[ext_resource type="Script" uid="uid://sgrkxjbnqik0" path="res://stats_ui.gd" id="20_kq58d"]
+[ext_resource type="Script" uid="uid://coke4dp5logfx" path="res://aguja.gd" id="20_lswn8"]
+[ext_resource type="Texture2D" uid="uid://eubywjyaakcb" path="res://UI assets/INTERFAZ_CAPA 3_ ESTADISTICA_MARCO.png" id="20_qsp4k"]
+[ext_resource type="PackedScene" uid="uid://dbfw7vlrcbs0o" path="res://Shop/shop_ui.tscn" id="21_getpj"]
+[ext_resource type="Texture2D" uid="uid://dygf4p1rg14om" path="res://UI assets/INTERFAZ_CAPA 2.5_ ESTADISTICA_ICONOS.png" id="21_kq58d"]
+[ext_resource type="AudioStream" uid="uid://cg7jjolw8kx3r" path="res://sounds/music/Cumbia 8bit mejorada.mp3" id="22_ryguw"]
+[ext_resource type="Texture2D" uid="uid://c0aolv4wmfxc7" path="res://UI assets/INTERFAZ_CAPA 2_ CARAS TRAPITO_FONDO AMARILLOS.png" id="23_htxhm"]
+[ext_resource type="Texture2D" uid="uid://bogoheeyrt3yf" path="res://UI assets/INTERFAZ_CAPA 3_ CARAS TRAPITO_MARCO.png" id="24_jq2sk"]
+[ext_resource type="Texture2D" uid="uid://bnte8ahf5bksx" path="res://UI assets/INTERFAZ_CAPA 3_ INVENTARIO MARCO.png" id="25_4k2k6"]
+[ext_resource type="Texture2D" uid="uid://xleppb6k0q7w" path="res://UI assets/INTERFAZ_CAPA 2_ INVENTARIO FONDO.png" id="26_0rl1p"]
+[ext_resource type="Texture2D" uid="uid://dpuxtqc68nst2" path="res://UI assets/playerstate/TRAPITO_CARA_CANCHERO.png" id="27_jq2sk"]
+[ext_resource type="Texture2D" uid="uid://dbwlyfcctrcj8" path="res://backgrounds/FIN DE DIA.png" id="36_b1qrp"]
+[ext_resource type="AudioStream" uid="uid://ca12ckx5ssx3i" path="res://sounds/system/Victoria.wav" id="37_come4"]
+[ext_resource type="Script" uid="uid://d3wlernwvlht" path="res://resources/mascaras/mask.gd" id="39_0n3wm"]
+[ext_resource type="Resource" uid="uid://odx6kbr757gd" path="res://resources/mascaras/mascara_messi.tres" id="40_qnost"]
+[ext_resource type="Resource" uid="uid://cterteoa6qpxw" path="res://resources/mascaras/mascara_comandantefort.tres" id="41_wnkbs"]
+[ext_resource type="Resource" uid="uid://bsabmxaap7j42" path="res://resources/mascaras/mascara_ghibli.tres" id="42_f6a44"]
+[ext_resource type="Resource" uid="uid://ibagknp0ac74" path="res://resources/mascaras/mascara_jason.tres" id="43_0cbny"]
+[ext_resource type="Resource" uid="uid://c1qlwcyuwpcpr" path="res://resources/mascaras/mascara_adriel.tres" id="44_hrvbo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6jrf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_82xsv"]
+font = ExtResource("17_cegan")
+font_size = 72
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ryguw"]
+font = ExtResource("17_cegan")
+font_size = 64
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_d13ii"]
+font = ExtResource("17_cegan")
+font_size = 180
+
+[sub_resource type="LabelSettings" id="LabelSettings_0odxb"]
+font = ExtResource("17_cegan")
+font_size = 48
+
+[node name="Main" type="Node2D" groups=["Player", "auto", "day_manager"]]
+script = ExtResource("1_h2yge")
+
+[node name="background" type="Node2D" parent="."]
+
+[node name="TestBackgroundImage" type="Sprite2D" parent="background"]
+texture_repeat = 2
+position = Vector2(1567.0001, 180)
+scale = Vector2(2.0399978, 2.11)
+texture = ExtResource("2_qsp4k")
+region_enabled = true
+region_rect = Rect2(0, 0, 3840, 513.6385)
+
+[node name="camaras (obsoleto)" type="Node2D" parent="."]
+
+[node name="camera" type="Camera2D" parent="camaras (obsoleto)" groups=["camera"]]
+position = Vector2(603, 389)
+enabled = false
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+script = ExtResource("6_4c57u")
+
+[node name="camera_targets" type="Node2D" parent="camaras (obsoleto)"]
+
+[node name="target1" type="Marker2D" parent="camaras (obsoleto)/camera_targets"]
+position = Vector2(554, 390)
+
+[node name="target2" type="Marker2D" parent="camaras (obsoleto)/camera_targets"]
+position = Vector2(1806, 390)
+
+[node name="street_sides" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="street_sides"]
+position = Vector2(5315, 432)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="street_sides/StaticBody2D"]
+position = Vector2(11, -36.999996)
+scale = Vector2(2.76, 43.760006)
+shape = SubResource("RectangleShape2D_a6jrf")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="street_sides"]
+position = Vector2(-2021, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="street_sides/StaticBody2D2"]
+position = Vector2(-113, 431.99994)
+scale = Vector2(2.76, 43.760006)
+shape = SubResource("RectangleShape2D_a6jrf")
+
+[node name="car_spawner" type="Node2D" parent="."]
+
+[node name="spawner" type="Node2D" parent="car_spawner"]
+position = Vector2(-3219, 568)
+metadata/_edit_group_ = true
+
+[node name="spawn_point" type="Marker2D" parent="car_spawner/spawner"]
+script = ExtResource("9_kek77")
+car_scene = ExtResource("7_272bh")
+queue_manager = NodePath("../../../QueueManager")
+Player = NodePath("../../../Player")
+car_types = Array[ExtResource("9_dg77c")]([ExtResource("10_ycdy4"), ExtResource("11_w48qg"), ExtResource("12_w48qg"), ExtResource("12_82xsv"), ExtResource("11_0rl1p"), ExtResource("12_facbu"), ExtResource("12_ok6jj"), ExtResource("14_b1qrp")])
+
+[node name="Timer" type="Timer" parent="car_spawner/spawner"]
+wait_time = 5.0
+autostart = true
+
+[node name="QueueManager" type="Node2D" parent="." groups=["QueueManager"]]
+script = ExtResource("11_ycdy4")
+
+[node name="Slot1" type="Marker2D" parent="QueueManager"]
+position = Vector2(2070, 560)
+
+[node name="Slot2" type="Marker2D" parent="QueueManager"]
+position = Vector2(1500, 560)
+
+[node name="Slot3" type="Marker2D" parent="QueueManager"]
+position = Vector2(771, 560)
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("2_h2yge")]
+position = Vector2(154, 594)
+
+[node name="CameraController" type="Camera2D" parent="."]
+position = Vector2(490, 597)
+offset = Vector2(100, -100)
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+script = ExtResource("14_w48qg")
+player_path = NodePath("../Player")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="DayPanel" type="Panel" parent="UI"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(10, 10)
+offset_left = 61.0
+offset_top = 38.0
+offset_right = 261.0
+offset_bottom = 138.0
+script = ExtResource("15_vivmo")
+metadata/_edit_group_ = true
+
+[node name="DayLabel" type="Label" parent="UI/DayPanel"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -8.0
+offset_right = 143.0
+offset_bottom = 64.0
+text = "Día 1"
+label_settings = SubResource("LabelSettings_82xsv")
+
+[node name="MoneyLabel" type="Label" parent="UI/DayPanel"]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 73.0
+offset_right = 214.0
+offset_bottom = 137.0
+text = "0"
+label_settings = SubResource("LabelSettings_ryguw")
+
+[node name="TextureRect" type="TextureRect" parent="UI/DayPanel"]
+layout_mode = 0
+offset_left = -83.0
+offset_top = -9.0
+offset_right = 157.0
+offset_bottom = 231.0
+texture = ExtResource("16_xuqvo")
+
+[node name="PanelBase" type="TextureRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_d13ii")
+
+[node name="Capa1" type="TextureRect" parent="UI/PanelBase"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_xuqvo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PanelBase/Capa1"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 556.0
+offset_right = 580.0
+offset_bottom = 691.0
+theme_override_constants/separation = 16
+script = ExtResource("20_kq58d")
+
+[node name="Vida" type="ProgressBar" parent="UI/PanelBase/Capa1/VBoxContainer"]
+modulate = Color(0.66719395, 0, 0.14129505, 1)
+layout_mode = 2
+theme = ExtResource("19_cegan")
+value = 100.0
+
+[node name="Estamina" type="ProgressBar" parent="UI/PanelBase/Capa1/VBoxContainer"]
+modulate = Color(0.92941177, 0.90588236, 0.101960786, 1)
+layout_mode = 2
+theme = ExtResource("19_cegan")
+value = 100.0
+
+[node name="Carisma" type="ProgressBar" parent="UI/PanelBase/Capa1/VBoxContainer"]
+modulate = Color(0.9585933, 0.00079512, 0.9652894, 1)
+layout_mode = 2
+theme = ExtResource("19_cegan")
+
+[node name="Capa2" type="TextureRect" parent="UI/PanelBase/Capa1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("20_qsp4k")
+
+[node name="Capa3" type="TextureRect" parent="UI/PanelBase/Capa1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("21_kq58d")
+
+[node name="TextureRect4" type="TextureRect" parent="UI/PanelBase"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("23_htxhm")
+
+[node name="TextureRect" type="TextureRect" parent="UI/PanelBase"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("24_jq2sk")
+
+[node name="TextureRect3" type="TextureRect" parent="UI/PanelBase"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("26_0rl1p")
+
+[node name="TextureRect2" type="TextureRect" parent="UI/PanelBase"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("25_4k2k6")
+
+[node name="PlayerState" type="TextureRect" parent="UI/PanelBase"]
+layout_mode = 0
+offset_left = 588.0
+offset_top = 534.0
+offset_right = 828.0
+offset_bottom = 774.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("27_jq2sk")
+
+[node name="Reloj" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 142.00002
+offset_top = 580.0
+offset_right = 142.00002
+offset_bottom = 580.0
+scale = Vector2(0.27999938, 0.19999936)
+script = ExtResource("20_lswn8")
+metadata/_edit_group_ = true
+
+[node name="Aguja" type="TextureRect" parent="UI/Reloj"]
+layout_mode = 1
+offset_right = 55.0
+offset_bottom = 60.0
+texture = ExtResource("20_0odxb")
+
+[node name="DayTransition" type="CanvasLayer" parent="." groups=["day_transition"]]
+process_mode = 3
+visible = false
+script = ExtResource("15_074og")
+
+[node name="Root" type="Control" parent="DayTransition"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FadePanel" type="ColorRect" parent="DayTransition/Root"]
+process_mode = 3
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EndDayUI" type="CanvasLayer" parent="." groups=["end_day"]]
+process_mode = 3
+visible = false
+script = ExtResource("16_2cqfq")
+
+[node name="FondoFinDia" type="TextureRect" parent="EndDayUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("36_b1qrp")
+
+[node name="Content" type="VBoxContainer" parent="EndDayUI/FondoFinDia"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -388.5
+offset_top = -186.0
+offset_right = 388.5
+offset_bottom = 186.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="EndDayUI/FondoFinDia/Content"]
+layout_mode = 2
+text = "Fin del día"
+label_settings = SubResource("LabelSettings_d13ii")
+horizontal_alignment = 1
+
+[node name="MoneyLabel" type="Label" parent="EndDayUI/FondoFinDia/Content"]
+layout_mode = 2
+text = "Dinero ganado: $0"
+label_settings = SubResource("LabelSettings_0odxb")
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="EndDayUI/FondoFinDia/Content"]
+layout_mode = 2
+theme = ExtResource("19_cegan")
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_hover_color = Color(0.85490197, 0.8, 0.16078432, 1)
+text = "Continuar"
+flat = true
+
+[node name="ShopButton" type="Button" parent="EndDayUI/FondoFinDia/Content" groups=["ShopUI"]]
+process_mode = 3
+layout_mode = 2
+theme = ExtResource("19_cegan")
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_hover_color = Color(0.85490197, 0.8, 0.16078432, 1)
+text = "Ir a la tienda"
+flat = true
+
+[node name="SonidoFinDIa" type="AudioStreamPlayer2D" parent="EndDayUI"]
+stream = ExtResource("37_come4")
+volume_db = 24.0
+
+[node name="ShopUI" parent="." groups=["shop_ui"] instance=ExtResource("21_getpj")]
+visible = false
+mascaras_disponibles = Array[ExtResource("39_0n3wm")]([ExtResource("40_qnost"), ExtResource("41_wnkbs"), ExtResource("42_f6a44"), ExtResource("43_0cbny"), ExtResource("44_hrvbo")])
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("22_ryguw")
+autoplay = true
+
+[connection signal="timeout" from="car_spawner/spawner/Timer" to="car_spawner/spawner/spawn_point" method="_on_timer_timeout"]
+[connection signal="pressed" from="EndDayUI/FondoFinDia/Content/ShopButton" to="EndDayUI" method="_on_shop_button_pressed"]

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="CarType" load_steps=7 format=3 uid="uid://cfgcujg3aywv2"]
+
+[ext_resource type="AudioStream" uid="uid://ctns1g53fmu60" path="res://sounds/car_sounds/Car_engine_better.wav" id="1_00tcg"]
+[ext_resource type="AudioStream" uid="uid://b1q7r80qnfggr" path="res://sounds/car_sounds/Car_engine_start_6.wav" id="2_0xuj8"]
+[ext_resource type="AudioStream" uid="uid://r0coxhfc8wh2" path="res://sounds/car_sounds/Car_engine_start_7.wav" id="3_qyuve"]
+[ext_resource type="AudioStream" uid="uid://chxxw8xcofhy7" path="res://sounds/car_sounds/Car_engine_start_8.wav" id="4_faft7"]
+[ext_resource type="Script" uid="uid://b182i385vct23" path="res://resources/cars/car_type.gd" id="5_h0h57"]
+[ext_resource type="SpriteFrames" uid="uid://xrvf07sv6evh" path="res://assets/cars/new_sprite_frames.tres" id="6_ew2hr"]
+
+[resource]
+script = ExtResource("5_h0h57")
+nombre = "FiatUnoRosa"
+motor_loop = ExtResource("1_00tcg")
+motor_start_sounds = Array[AudioStream]([ExtResource("2_0xuj8"), ExtResource("3_qyuve"), ExtResource("4_faft7")])
+audio_motor = ExtResource("1_00tcg")
+sprite_frames = ExtResource("6_ew2hr")
+anim_idle = "fiatuno_rosa_idle"
+anim_move = "fiatuno_rosa_idle"
+sprite_scale = Vector2(3, 3)
+speed_normal = 300.0
+speed_lenta = 260.0
+dinero_min = 70
+tareas_posibles = Array[int]([1, 0])
+metadata/_custom_type_script = "uid://b182i385vct23"
